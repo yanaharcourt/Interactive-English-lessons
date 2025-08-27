@@ -1,0 +1,2342 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Common vs Proper Noun</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Comic Neue', cursive;
+        background: #f8f6f0;
+        color: #2c3e50;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .presentation {
+        background: #faf8f3;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .slide {
+        display: none;
+        padding: 40px;
+        flex: 1;
+        overflow-y: auto;
+        animation: slideIn 0.5s ease-in-out;
+        position: relative;
+    }
+
+    .slide.active {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        background: #f8f6f0;
+        border-top: 3px solid #e8e4d9;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 1000;
+    }
+
+    /* Decorative elements */
+    .slide::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: 80px;
+        height: 80px;
+        background: #ff6b6b;
+        border-radius: 50%;
+        opacity: 0.1;
+        z-index: 0;
+    }
+
+    .slide::after {
+        content: '';
+        position: absolute;
+        bottom: -30px;
+        right: -30px;
+        width: 100px;
+        height: 60px;
+        background: #4ecdc4;
+        transform: rotate(45deg);
+        opacity: 0.1;
+        z-index: 0;
+    }
+
+    .decorative-star {
+        position: absolute;
+        font-size: 2em;
+        opacity: 0.3;
+        z-index: 0;
+    }
+
+    .star-1 {
+        top: 10%;
+        right: 15%;
+        color: #ff6b6b;
+    }
+
+    .star-2 {
+        bottom: 20%;
+        left: 10%;
+        color: #4ecdc4;
+    }
+
+    .star-3 {
+        top: 50%;
+        right: 5%;
+        color: #ffe66d;
+    }
+
+    .decorative-shape {
+        position: absolute;
+        z-index: 0;
+        opacity: 0.2;
+    }
+
+    .shape-triangle {
+        width: 0;
+        height: 0;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 40px solid #ff6b6b;
+        top: 15%;
+        left: 5%;
+    }
+
+    .shape-circle {
+        width: 60px;
+        height: 60px;
+        background: #4ecdc4;
+        border-radius: 50%;
+        bottom: 25%;
+        right: 8%;
+    }
+
+    .shape-square {
+        width: 40px;
+        height: 40px;
+        background: #ffe66d;
+        transform: rotate(45deg);
+        top: 30%;
+        left: 85%;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    h1 {
+        color: #2c3e50;
+        font-size: 2.8em;
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: 700;
+        position: relative;
+        z-index: 10;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #34495e;
+        font-size: 2.2em;
+        margin-bottom: 25px;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+    }
+
+    h3 {
+        color: #2c3e50;
+        font-size: 1.6em;
+        margin-bottom: 20px;
+        margin-top: 25px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .noun-types-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin: 30px 0;
+        position: relative;
+        z-index: 10;
+    }
+
+    .noun-type-card {
+        background: #fff;
+        border: 3px solid #e8e4d9;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        transform: translateY(0);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .common-noun-card {
+        border-color: #4ecdc4;
+    }
+
+    .common-noun-card::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 30px;
+        height: 30px;
+        background: #4ecdc4;
+        border-radius: 50%;
+        opacity: 0.3;
+    }
+
+    .proper-noun-card {
+        border-color: #ff6b6b;
+    }
+
+    .proper-noun-card::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 30px;
+        height: 30px;
+        background: #ff6b6b;
+        border-radius: 50%;
+        opacity: 0.3;
+    }
+
+    .noun-type-card:hover {
+        transform: translateY(-8px) rotate(1deg);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .noun-type-card h4 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        color: #2c3e50;
+        font-weight: 700;
+    }
+
+    .noun-type-card p {
+        font-size: 1.1em;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    .examples-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .examples-list li {
+        margin: 10px 0;
+        padding: 8px 15px;
+        background: #f8f6f0;
+        border-radius: 12px;
+        border: 2px solid #e8e4d9;
+        font-weight: 600;
+    }
+
+    .common-examples li {
+        background: #e6f7f7;
+        border-color: #4ecdc4;
+    }
+
+    .proper-examples li {
+        background: #ffe6e6;
+        border-color: #ff6b6b;
+    }
+
+    .comparison-table {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin: 30px 0;
+        position: relative;
+        z-index: 10;
+    }
+
+    .comparison-column {
+        background: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        border: 3px solid #e8e4d9;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .comparison-column::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        border-radius: 2px;
+    }
+
+    .common-column::before {
+        background: #4ecdc4;
+    }
+
+    .proper-column::before {
+        background: #ff6b6b;
+    }
+
+    .comparison-column h4 {
+        color: #2c3e50;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .example-box {
+        background: #fff;
+        border: 3px solid #4ecdc4;
+        border-radius: 20px;
+        padding: 25px;
+        margin: 20px 0;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .example-box::before {
+        content: '✨';
+        position: absolute;
+        top: -15px;
+        left: 20px;
+        background: #fff;
+        padding: 5px 10px;
+        border-radius: 50%;
+        font-size: 1.2em;
+    }
+
+    .nav-btn {
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1.1em;
+        font-weight: 700;
+        font-family: 'Comic Neue', cursive;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+    }
+
+    .nav-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+    }
+
+    .nav-btn:disabled {
+        background: #bdc3c7;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+    .slide-counter {
+        color: #2c3e50;
+        font-weight: 700;
+        font-size: 1.2em;
+        background: #fff;
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: 2px solid #e8e4d9;
+    }
+
+    .highlight {
+        background: linear-gradient(120deg, #ffe66d 0%, #ff6b6b 100%);
+        padding: 3px 8px;
+        border-radius: 8px;
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .title-decoration {
+        position: relative;
+        z-index: 10;
+    }
+
+    .title-decoration::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffe66d);
+        border-radius: 2px;
+    }
+
+    /* Exercise Styles */
+    .exercise-container {
+        margin: 20px 0;
+    }
+
+    .score-board {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #f8f6f0;
+        padding: 15px 25px;
+        border-radius: 15px;
+        border: 2px solid #e8e4d9;
+        margin-bottom: 25px;
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+
+    .reset-btn, .start-btn {
+        background: #ffe66d;
+        color: #2c3e50;
+        border: none;
+        padding: 20px 40px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: 'Comic Neue', cursive;
+        transition: all 0.3s ease;
+        font-size: 1.4em;
+        min-width: 250px;
+        box-shadow: 0 8px 20px rgba(255, 230, 109, 0.4);
+    }
+
+    .reset-btn:hover, .start-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 25px rgba(255, 230, 109, 0.6);
+    }
+
+    .start-btn {
+        display: block;
+        margin: 30px auto;
+        text-align: center;
+    }
+
+    .words-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 15px;
+        margin: 25px 0;
+    }
+
+    .word-card {
+        background: #fff;
+        border: 3px solid #e8e4d9;
+        padding: 20px 10px;
+        border-radius: 15px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 1.2em;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .word-card:hover {
+        transform: translateY(-5px);
+        border-color: #4ecdc4;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .word-card.selected {
+        border-color: #ff6b6b;
+        background: #ffe6e6;
+        transform: translateY(-5px) scale(1.05);
+    }
+
+    .word-card.correct {
+        border-color: #27ae60;
+        background: #d5f4e6;
+        animation: bounce 0.6s ease;
+    }
+
+    .word-card.incorrect {
+        border-color: #e74c3c;
+        background: #ffeaea;
+        animation: shake 0.6s ease;
+    }
+
+    .word-card.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 60%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+        80% { transform: translateY(-5px); }
+    }
+
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+
+    .choice-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin: 25px 0;
+    }
+
+    .choice-btn {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 20px;
+        font-size: 1.2em;
+        font-weight: 700;
+        font-family: 'Comic Neue', cursive;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .common-btn {
+        background: #4ecdc4;
+        color: white;
+    }
+
+    .proper-btn {
+        background: #ff6b6b;
+        color: white;
+    }
+
+    .choice-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .feedback {
+        text-align: center;
+        font-size: 1.3em;
+        font-weight: 700;
+        margin: 20px 0;
+        padding: 15px;
+        border-radius: 15px;
+        min-height: 50px;
+    }
+
+    .feedback.correct {
+        background: #d5f4e6;
+        color: #27ae60;
+        border: 2px solid #27ae60;
+    }
+
+    .feedback.incorrect {
+        background: #ffeaea;
+        color: #e74c3c;
+        border: 2px solid #e74c3c;
+    }
+
+    .current-word-display {
+        text-align: center;
+        margin: 30px 0;
+    }
+
+    .current-word {
+        font-size: 3em;
+        font-weight: 700;
+        color: #2c3e50;
+        background: #fff;
+        border: 3px solid #4ecdc4;
+        border-radius: 20px;
+        padding: 20px;
+        margin-bottom: 15px;
+        display: inline-block;
+        min-width: 200px;
+    }
+
+    .word-translation {
+        font-size: 1.3em;
+        color: #7f8c8d;
+        font-weight: 600;
+    }
+
+    .options-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin: 25px 0;
+    }
+
+    .option-card {
+        background: #fff;
+        border: 3px solid #e8e4d9;
+        padding: 25px;
+        border-radius: 20px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 1.4em;
+        font-weight: 700;
+        transition: all 0.3s ease;
+    }
+
+    .option-card:hover {
+        transform: translateY(-5px);
+        border-color: #4ecdc4;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .option-card.correct {
+        border-color: #27ae60;
+        background: #d5f4e6;
+        animation: bounce 0.6s ease;
+    }
+
+    .option-card.incorrect {
+        border-color: #e74c3c;
+        background: #ffeaea;
+        animation: shake 0.6s ease;
+    }
+
+    .sentence-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin: 25px 0;
+    }
+
+    .sentence-card {
+        background: #fff;
+        border: 3px solid #e8e4d9;
+        padding: 25px;
+        border-radius: 20px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 1.3em;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        line-height: 1.6;
+    }
+
+    .sentence-card:hover {
+        transform: translateY(-3px);
+        border-color: #4ecdc4;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .sentence-card.selected {
+        border-color: #ff6b6b;
+        background: #ffe6e6;
+        transform: translateY(-3px) scale(1.02);
+    }
+
+    .homework-section {
+        background: #fff;
+        border: 3px solid #9b59b6;
+        border-radius: 20px;
+        padding: 30px;
+        margin: 30px 0;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .homework-section::before {
+        content: '🏠';
+        position: absolute;
+        top: -20px;
+        left: 30px;
+        background: #fff;
+        padding: 10px;
+        border-radius: 50%;
+        font-size: 1.5em;
+        border: 3px solid #9b59b6;
+    }
+
+    .homework-section h3 {
+        color: #9b59b6;
+        margin-top: 10px;
+    }
+
+    .homework-tasks {
+        display: grid;
+        gap: 20px;
+        margin-top: 25px;
+    }
+
+    .homework-task {
+        background: #f8f6f0;
+        border: 2px solid #e8e4d9;
+        padding: 20px;
+        border-radius: 15px;
+        border-left: 5px solid #9b59b6;
+    }
+
+    .homework-task h4 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+
+    .homework-task p {
+        line-height: 1.6;
+        margin-bottom: 10px;
+    }
+
+    .homework-examples {
+        background: #f0e6ff;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
+        border: 2px solid #9b59b6;
+    }
+
+    /* Фиксированная плашка для фидбека */
+    .feedback-fixed {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        max-width: 500px;
+        padding: 20px;
+        border-radius: 15px;
+        font-size: 1.3em;
+        font-weight: 700;
+        text-align: center;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        display: none;
+    }
+
+    .feedback-fixed.show {
+        display: block;
+        animation: popIn 0.3s ease-out;
+    }
+
+    @keyframes popIn {
+        0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    .feedback-fixed.correct {
+        background: #d5f4e6;
+        color: #27ae60;
+        border: 3px solid #27ae60;
+    }
+
+    .feedback-fixed.incorrect {
+        background: #ffeaea;
+        color: #e74c3c;
+        border: 3px solid #e74c3c;
+    }
+
+    /* Стили для домашних заданий */
+    .words-to-sort {
+        margin-bottom: 30px;
+    }
+
+    .draggable-words {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 20px;
+        background: #f8f6f0;
+        border-radius: 15px;
+        border: 2px dashed #e8e4d9;
+        margin-top: 15px;
+    }
+
+    .draggable-word {
+        background: #fff;
+        border: 2px solid #4ecdc4;
+        padding: 10px 15px;
+        border-radius: 12px;
+        cursor: grab;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        user-select: none;
+    }
+
+    .draggable-word:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .draggable-word.dragging {
+        opacity: 0.5;
+        transform: rotate(5deg);
+    }
+
+    .sort-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin: 20px 0;
+    }
+
+    .sort-column {
+        background: #fff;
+        border: 3px solid #e8e4d9;
+        border-radius: 20px;
+        padding: 20px;
+        min-height: 300px;
+    }
+
+    .common-column-hw {
+        border-color: #4ecdc4;
+    }
+
+    .proper-column-hw {
+        border-color: #ff6b6b;
+    }
+
+    .drop-zone {
+        min-height: 220px;
+        border: 2px dashed #bdc3c7;
+        border-radius: 15px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .drop-zone.drag-over {
+        border-color: #4ecdc4;
+        background: #e6f7f7;
+        transform: scale(1.02);
+    }
+
+    .drop-zone p {
+        color: #7f8c8d;
+        text-align: center;
+        font-style: italic;
+        margin: 0;
+    }
+
+    .dropped-word {
+        background: #fff;
+        border: 2px solid #4ecdc4;
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-weight: 700;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .dropped-word.correct {
+        border-color: #27ae60;
+        background: #d5f4e6;
+    }
+
+    .dropped-word.incorrect {
+        border-color: #e74c3c;
+        background: #ffeaea;
+    }
+
+    .homework-result {
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .check-btn {
+        background: #27ae60;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 20px;
+        font-size: 1.2em;
+        font-weight: 700;
+        font-family: 'Comic Neue', cursive;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+    }
+
+    .check-btn:hover {
+        background: #229954;
+        transform: translateY(-2px);
+    }
+
+    .sorting-feedback, .correction-feedback, .creation-feedback {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 15px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .correction-exercises {
+        display: grid;
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .correction-item {
+        background: #f8f6f0;
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #e8e4d9;
+    }
+
+    .correction-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .correction-input {
+        flex: 1;
+        padding: 12px;
+        border: 2px solid #e8e4d9;
+        border-radius: 10px;
+        font-size: 1.1em;
+        font-family: 'Comic Neue', cursive;
+    }
+
+    .correction-input.correct {
+        border-color: #27ae60;
+        background: #d5f4e6;
+    }
+
+    .correction-input.incorrect {
+        border-color: #e74c3c;
+        background: #ffeaea;
+    }
+
+    .check-single-btn {
+        background: #27ae60;
+        color: white;
+        border: none;
+        padding: 12px 16px;
+        border-radius: 12px;
+        font-size: 1.1em;
+        font-weight: 700;
+        font-family: 'Comic Neue', cursive;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        min-width: 60px;
+    }
+
+    .check-single-btn:hover {
+        background: #229954;
+        transform: translateY(-2px);
+    }
+
+    .check-single-btn.checked {
+        background: #4ecdc4;
+    }
+
+    .single-feedback {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.9em;
+    }
+
+    .single-feedback.correct {
+        background: #d5f4e6;
+        color: #27ae60;
+        border: 2px solid #27ae60;
+    }
+
+    .single-feedback.incorrect {
+        background: #ffeaea;
+        color: #e74c3c;
+        border: 2px solid #e74c3c;
+    }
+
+    .creation-exercises {
+        display: grid;
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .creation-item {
+        background: #f8f6f0;
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #e8e4d9;
+    }
+
+    .creation-item label {
+        display: block;
+        margin-bottom: 10px;
+        color: #2c3e50;
+        font-weight: 700;
+    }
+
+    .creation-input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e8e4d9;
+        border-radius: 10px;
+        font-size: 1.1em;
+        font-family: 'Comic Neue', cursive;
+        min-height: 60px;
+        resize: vertical;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="presentation">
+        <!-- Слайд 1: Введение -->
+        <div class="slide active">
+            <div class="decorative-star star-1">⭐</div>
+            <div class="decorative-star star-2">✨</div>
+            <div class="decorative-shape shape-triangle"></div>
+            <div class="decorative-shape shape-circle"></div>
+    
+            <h1 class="title-decoration">🎯 Common vs Proper Noun</h1>
+            <h2>Обычные и собственные существительные</h2>
+    
+            <p
+                style="font-size: 1.3em; text-align: center; margin: 30px 0; position: relative; z-index: 10; font-weight: 600;">
+                Сегодня мы узнаем, что такое <strong>Common Noun</strong> и <strong>Proper Noun</strong>!
+            </p>
+    
+            <div class="noun-types-grid">
+                <div class="noun-type-card common-noun-card">
+                    <h4>🌍 Common Noun</h4>
+                    <p><strong>Обычное существительное</strong></p>
+                    <p style="color: #7f8c8d; margin-top: 10px;">Общие названия предметов, людей, мест</p>
+                    <p style="font-size: 1.1em; font-weight: 600; color: #4ecdc4;">НЕ пишется с большой буквы</p>
+                </div>
+    
+                <div class="noun-type-card proper-noun-card">
+                    <h4>👑 Proper Noun</h4>
+                    <p><strong>Собственное существительное</strong></p>
+                    <p style="color: #7f8c8d; margin-top: 10px;">Конкретные имена людей, мест, брендов</p>
+                    <p style="font-size: 1.1em; font-weight: 600; color: #ff6b6b;">ВСЕГДА пишется с большой буквы</p>
+                </div>
+            </div>
+    
+            <div class="example-box">
+                <h3>🌟 Главное правило:</h3>
+                <p style="font-size: 1.4em; text-align: center; font-weight: 700;">
+                    <span style="color: #4ecdc4;">Common Noun</span> = обычное слово<br>
+                    <span style="color: #ff6b6b;">Proper Noun</span> = особенное имя
+                </p>
+            </div>
+        </div>
+    
+        <!-- Слайд 2: Common Noun подробно -->
+        <div class="slide">
+            <div class="decorative-star star-1">🌍</div>
+            <div class="decorative-star star-2">📚</div>
+            <div class="decorative-shape shape-circle"></div>
+            <div class="decorative-shape shape-square"></div>
+    
+            <h1 class="title-decoration">🌍 Common Noun</h1>
+            <h2>Обычные существительные</h2>
+    
+            <div
+                style="background: #fff; border: 3px solid #4ecdc4; padding: 35px; border-radius: 25px; text-align: center; margin: 30px 0; position: relative; z-index: 10; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+                <h2 style="color: #2c3e50; margin-bottom: 20px;">Что такое Common Noun?</h2>
+                <p style="font-size: 1.4em; font-weight: 700; color: #4ecdc4;">
+                    Общие названия людей, мест, предметов или животных
+                </p>
+                <p style="font-size: 1.2em; margin-top: 15px; color: #7f8c8d;">
+                    НЕ пишутся с большой буквы (кроме начала предложения)
+                </p>
+            </div>
+    
+            <div class="comparison-table">
+                <div class="comparison-column common-column">
+                    <h4>👥 Люди</h4>
+                    <ul class="examples-list common-examples">
+                        <li>boy</li>
+                        <li>girl</li>
+                        <li>teacher</li>
+                        <li>doctor</li>
+                    </ul>
+                </div>
+    
+                <div class="comparison-column common-column">
+                    <h4>🏠 Места</h4>
+                    <ul class="examples-list common-examples">
+                        <li>city</li>
+                        <li>school</li>
+                        <li>park</li>
+                        <li>country</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="comparison-table">
+                <div class="comparison-column common-column">
+                    <h4>📦 Предметы</h4>
+                    <ul class="examples-list common-examples">
+                        <li>book</li>
+                        <li>car</li>
+                        <li>phone</li>
+                        <li>table</li>
+                    </ul>
+                </div>
+    
+                <div class="comparison-column common-column">
+                    <h4>🐾 Животные</h4>
+                    <ul class="examples-list common-examples">
+                        <li>cat</li>
+                        <li>dog</li>
+                        <li>bird</li>
+                        <li>fish</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Слайд 3: Proper Noun подробно -->
+        <div class="slide">
+            <div class="decorative-star star-1">👑</div>
+            <div class="decorative-star star-2">✨</div>
+            <div class="decorative-shape shape-triangle"></div>
+            <div class="decorative-shape shape-circle"></div>
+    
+            <h1 class="title-decoration">👑 Proper Noun</h1>
+            <h2>Собственные существительные</h2>
+    
+            <div
+                style="background: #fff; border: 3px solid #ff6b6b; padding: 35px; border-radius: 25px; text-align: center; margin: 30px 0; position: relative; z-index: 10; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+                <h2 style="color: #2c3e50; margin-bottom: 20px;">Что такое Proper Noun?</h2>
+                <p style="font-size: 1.4em; font-weight: 700; color: #ff6b6b;">
+                    Конкретные имена людей, мест, брендов, событий
+                </p>
+                <p style="font-size: 1.2em; margin-top: 15px; color: #7f8c8d;">
+                    ВСЕГДА пишутся с большой буквы!
+                </p>
+            </div>
+    
+            <div class="comparison-table">
+                <div class="comparison-column proper-column">
+                    <h4>👤 Имена людей</h4>
+                    <ul class="examples-list proper-examples">
+                        <li>Oliver</li>
+                        <li>Emma</li>
+                        <li>Sophie</li>
+                        <li>Lucas</li>
+                    </ul>
+                </div>
+    
+                <div class="comparison-column proper-column">
+                    <h4>🌍 Названия мест</h4>
+                    <ul class="examples-list proper-examples">
+                        <li>Germany</li>
+                        <li>Berlin</li>
+                        <li>Paris</li>
+                        <li>Spain</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="comparison-table">
+                <div class="comparison-column proper-column">
+                    <h4>🏢 Бренды и компании</h4>
+                    <ul class="examples-list proper-examples">
+                        <li>Apple</li>
+                        <li>McDonald's</li>
+                        <li>Google</li>
+                        <li>Disney</li>
+                    </ul>
+                </div>
+    
+                <div class="comparison-column proper-column">
+                    <h4>📅 События и праздники</h4>
+                    <ul class="examples-list proper-examples">
+                        <li>Christmas</li>
+                        <li>New Year </li>
+                        <li>Easter</li>
+                        <li>Halloween</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Слайд 4: Сравнение -->
+        <div class="slide">
+            <div class="decorative-star star-1">🔄</div>
+            <div class="decorative-star star-2">💫</div>
+            <div class="decorative-shape shape-square"></div>
+            <div class="decorative-shape shape-triangle"></div>
+    
+            <h1 class="title-decoration">🔄 Сравнение</h1>
+            <h2>Common vs Proper Noun</h2>
+    
+            <div class="comparison-table">
+                <div class="comparison-column common-column">
+                    <h4>🌍 Common Noun</h4>
+                    <ul class="examples-list common-examples">
+                        <li><strong>boy</strong> → любой мальчик</li>
+                        <li><strong>city</strong> → любой город</li>
+                        <li><strong>school</strong> → любая школа</li>
+                        <li><strong>country</strong> → любая страна</li>
+                        <li><strong>day</strong> → любой день</li>
+                    </ul>
+                </div>
+    
+                <div class="comparison-column proper-column">
+                    <h4>👑 Proper Noun</h4>
+                    <ul class="examples-list proper-examples">
+                        <li><strong>Oliver</strong> → конкретный мальчик</li>
+                        <li><strong>Berlin</strong> → конкретный город</li>
+                        <li><strong>Harvard</strong> → конкретная школа</li>
+                        <li><strong>Germany</strong> → конкретная страна</li>
+                        <li><strong>Monday</strong> → конкретный день</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="example-box">
+                <h3>🌟 Примеры в предложениях:</h3>
+                <p style="font-size: 1.2em; margin: 10px 0; font-weight: 600;">
+                    🌍 The <strong style="color: #4ecdc4;">boy</strong> lives in a <strong
+                        style="color: #4ecdc4;">city</strong>.
+                </p>
+                <p style="font-size: 1.2em; margin: 10px 0; font-weight: 600;">
+                    👑 <strong style="color: #ff6b6b;">Oliver</strong> lives in <strong
+                        style="color: #ff6b6b;">Berlin</strong>.
+                </p>
+                <p style="text-align: center; margin-top: 20px; color: #7f8c8d; font-size: 1.1em;">
+                    Видишь разницу? Общее VS конкретное!
+                </p>
+            </div>
+        </div>
+    
+        <!-- Слайд 5: Правила написания -->
+        <div class="slide">
+            <div class="decorative-star star-1">📝</div>
+            <div class="decorative-star star-2">✏️</div>
+            <div class="decorative-shape shape-circle"></div>
+            <div class="decorative-shape shape-square"></div>
+    
+            <h1 class="title-decoration">📝 Правила написания</h1>
+            <h2>Как правильно писать?</h2>
+    
+            <div class="noun-types-grid">
+                <div class="noun-type-card common-noun-card">
+                    <h4>🌍 Common Noun</h4>
+                    <p style="font-size: 1.3em; font-weight: 700; color: #4ecdc4; margin-bottom: 15px;">
+                        С маленькой буквы
+                    </p>
+                    <ul class="examples-list common-examples">
+                        <li>cat, dog, bird</li>
+                        <li>book, pen, table</li>
+                        <li>teacher, student</li>
+                        <li>city, park, school</li>
+                    </ul>
+                    <p style="margin-top: 15px; color: #7f8c8d; font-size: 0.9em;">
+                        *Кроме начала предложения!
+                    </p>
+                </div>
+    
+                <div class="noun-type-card proper-noun-card">
+                    <h4>👑 Proper Noun</h4>
+                    <p style="font-size: 1.3em; font-weight: 700; color: #ff6b6b; margin-bottom: 15px;">
+                        ВСЕГДА с большой буквы
+                    </p>
+                    <ul class="examples-list proper-examples">
+                        <li>Oliver, Emma, Sophie</li>
+                        <li>Germany, Paris, Berlin</li>
+                        <li>Monday, January</li>
+                        <li>Apple, Google, Disney</li>
+                    </ul>
+                    <p style="margin-top: 15px; color: #7f8c8d; font-size: 0.9em;">
+                        *Даже в середине предложения!
+                    </p>
+                </div>
+            </div>
+    
+            <div class="example-box">
+                <h3>🎯 Запомни:</h3>
+                <p style="font-size: 1.3em; text-align: center; font-weight: 700;">
+                    <strong style="color: #4ecdc4;">Common Noun</strong> = обычное → маленькая буква<br><br>
+                    <strong style="color: #ff6b6b;">Proper Noun</strong> = особенное → БОЛЬШАЯ буква
+                </p>
+            </div>
+        </div>
+    
+        <!-- Слайд 6: Задание 1 - Определи тип существительного -->
+        <div class="slide">
+            <div class="decorative-star star-1">🎯</div>
+            <div class="decorative-star star-2">📝</div>
+            <div class="decorative-shape shape-triangle"></div>
+            <div class="decorative-shape shape-circle"></div>
+    
+            <h1 class="title-decoration">🎯 Задание 1</h1>
+            <h2>Common или Proper Noun?</h2>
+    
+            <div
+                style="background: #fff; border: 3px solid #4ecdc4; padding: 20px; border-radius: 20px; margin: 20px 0; position: relative; z-index: 10;">
+                <p style="font-size: 1.2em; text-align: center; font-weight: 600;">
+                    Нажми на слово и выбери: это <strong style="color: #4ecdc4;">COMMON</strong> или <strong
+                        style="color: #ff6b6b;">PROPER</strong> noun?
+                </p>
+            </div>
+    
+            <div id="exercise1" class="exercise-container" style="position: relative; z-index: 10;">
+                <div class="score-board">
+                    <span>Правильно: <strong id="score1">0</strong>/12</span>
+                    <button onclick="resetExercise1()" class="reset-btn">🔄 Начать заново</button>
+                </div>
+    
+                <div class="words-grid">
+                    <div class="word-card" data-word="book" data-type="common" data-translation="книга">book</div>
+                    <div class="word-card" data-word="Berlin" data-type="proper" data-translation="Берлин">Berlin</div>
+                    <div class="word-card" data-word="teacher" data-type="common" data-translation="учитель">teacher</div>
+                    <div class="word-card" data-word="Emma" data-type="proper" data-translation="Эмма">Emma</div>
+                    <div class="word-card" data-word="cat" data-type="common" data-translation="кот">cat</div>
+                    <div class="word-card" data-word="France" data-type="proper" data-translation="Франция">France</div>
+                    <div class="word-card" data-word="city" data-type="common" data-translation="город">city</div>
+                    <div class="word-card" data-word="Apple" data-type="proper" data-translation="Эппл">Apple</div>
+                    <div class="word-card" data-word="school" data-type="common" data-translation="школа">school</div>
+                    <div class="word-card" data-word="Monday" data-type="proper" data-translation="понедельник">Monday</div>
+                    <div class="word-card" data-word="dog" data-type="common" data-translation="собака">dog</div>
+                    <div class="word-card" data-word="Christmas" data-type="proper" data-translation="Рождество">Christmas
+                    </div>
+                </div>
+    
+                <div id="buttons1" class="choice-buttons" style="display: none;">
+                    <button onclick="checkAnswer1('common')" class="choice-btn common-btn">🌍 COMMON NOUN</button>
+                    <button onclick="checkAnswer1('proper')" class="choice-btn proper-btn">👑 PROPER NOUN</button>
+                </div>
+    
+                <div id="feedback1" class="feedback"></div>
+            </div>
+        </div>
+    
+        <!-- Слайд 7: Задание 2 - Исправь ошибки (ИСПРАВЛЕННОЕ) -->
+        <div class="slide">
+            <div class="decorative-star star-1">✏️</div>
+            <div class="decorative-star star-2">🔍</div>
+            <div class="decorative-shape shape-square"></div>
+            <div class="decorative-shape shape-circle"></div>
+    
+            <h1 class="title-decoration">✏️ Задание 2</h1>
+            <h2>Найди ошибки в написании</h2>
+    
+            <div
+                style="background: #fff; border: 3px solid #ff6b6b; padding: 20px; border-radius: 20px; margin: 20px 0; position: relative; z-index: 10;">
+                <p style="font-size: 1.2em; text-align: center; font-weight: 600;">
+                    Нажми на предложение, где есть <strong style="color: #ff6b6b;">ОШИБКА</strong> в написании!
+                </p>
+            </div>
+    
+            <!-- Фиксированная плашка для фидбека -->
+            <div id="feedback2" class="feedback-fixed"></div>
+    
+            <div id="exercise2" class="exercise-container" style="position: relative; z-index: 10;">
+                <div class="score-board">
+                    <span>Найдено ошибок: <strong id="score2">0</strong>/4</span>
+                    <button onclick="resetExercise2()" class="reset-btn">🔄 Начать заново</button>
+                </div>
+    
+                <div class="sentence-grid">
+                    <div class="sentence-card" data-correct="false" data-error="berlin" data-fixed="Berlin">
+                        I live in berlin.
+                    </div>
+                    <div class="sentence-card" data-correct="true">
+                        The cat is sleeping.
+                    </div>
+                    <div class="sentence-card" data-correct="false" data-error="emma" data-fixed="Emma">
+                        My friend emma is smart.
+                    </div>
+                    <div class="sentence-card" data-correct="true">
+                        We go to school every day.
+                    </div>
+                    <div class="sentence-card" data-correct="false" data-error="Apple" data-fixed="apple">
+                        I eat an Apple every morning.
+                    </div>
+                    <div class="sentence-card" data-correct="true">
+                        Monday is my favorite day.
+                    </div>
+                    <div class="sentence-card" data-correct="false" data-error="christmas" data-fixed="Christmas">
+                        We celebrate christmas in December.
+                    </div>
+                    <div class="sentence-card" data-correct="true">
+                        The teacher is very kind. 
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Слайд 8: Задание 3 - Замени на Proper Noun -->
+        <div class="slide">
+            <div class="decorative-star star-1">🔄</div>
+            <div class="decorative-star star-2">⭐</div>
+            <div class="decorative-shape shape-triangle"></div>
+            <div class="decorative-shape shape-square"></div>
+    
+            <h1 class="title-decoration">🔄 Задание 3</h1>
+            <h2>Замени на конкретное имя</h2>
+    
+            <div
+                style="background: #fff; border: 3px solid #ffe66d; padding: 20px; border-radius: 20px; margin: 20px 0; position: relative; z-index: 10;">
+                <p style="font-size: 1.2em; text-align: center; font-weight: 600;">
+                    Замени Common Noun на подходящий <strong style="color: #ff6b6b;">Proper Noun</strong>!
+                </p>
+            </div>
+    
+            <div id="exercise3" class="exercise-container" style="position: relative; z-index: 10;">
+                <div class="score-board">
+                    <span>Правильно: <strong id="score3">0</strong>/8</span>
+                    <button onclick="resetExercise3()" class="reset-btn">🔄 Начать заново</button>
+                </div>
+    
+                <div class="current-word-display">
+                    <div id="currentWord3" class="current-word">🎮 Готов начать?</div>
+                    <div id="wordTranslation3" class="word-translation">Нажми кнопку ниже!</div>
+                </div>
+    
+                <button id="startBtn3" onclick="startExercise3()"
+                    style="width: 300px; display: block; margin: 30px auto; padding: 20px 40px; font-size: 1.4em; background: #ffe66d; color: #2c3e50; border: none; border-radius: 25px; font-weight: 700; font-family: 'Comic Neue', cursive; cursor: pointer; text-align: center; box-shadow: 0 8px 20px rgba(255, 230, 109, 0.4); transition: all 0.3s ease;">🎮
+                    Начать задание</button>
+    
+                <div id="options3" class="options-grid" style="display: none;"></div>
+    
+                <div id="feedback3" class="feedback"></div>
+            </div>
+        </div>
+    
+        <!-- Слайд 9: Домашнее задание (ИНТЕРАКТИВНОЕ) -->
+        <div class="slide">
+            <div class="decorative-star star-1">🏠</div>
+            <div class="decorative-star star-2">📚</div>
+            <div class="decorative-shape shape-circle"></div>
+            <div class="decorative-shape shape-triangle"></div>
+    
+            <h1 class="title-decoration">🏠 Домашнее задание</h1>
+            <h2>Interactive Homework Tasks</h2>
+    
+            <!-- Задание 1: Интерактивная сортировка -->
+            <div class="homework-section">
+                <h3>📝 Задание 1: Перетащи слова в правильные колонки</h3>
+                <div class="homework-task">
+    
+                    <!-- Слова для сортировки -->
+                    <div class="words-to-sort">
+                        <h4>Перетащи эти слова:</h4>
+                        <div class="draggable-words">
+                            <div class="draggable-word" draggable="true" data-type="common">cat</div>
+                            <div class="draggable-word" draggable="true" data-type="proper">Paris</div>
+                            <div class="draggable-word" draggable="true" data-type="common">teacher</div>
+                            <div class="draggable-word" draggable="true" data-type="proper">Oliver</div>
+                            <div class="draggable-word" draggable="true" data-type="common">book</div>
+                            <div class="draggable-word" draggable="true" data-type="proper">Germany</div>
+                            <div class="draggable-word" draggable="true" data-type="proper">Monday</div>
+                            <div class="draggable-word" draggable="true" data-type="common">school</div>
+                            <div class="draggable-word" draggable="true" data-type="proper">Emma</div>
+                            <div class="draggable-word" draggable="true" data-type="common">dog</div>
+                            <div class="draggable-word" draggable="true" data-type="proper">Christmas</div>
+                            <div class="draggable-word" draggable="true" data-type="common">city</div>
+                        </div>
+                    </div>
+    
+                    <!-- Колонки для сортировки -->
+                    <div class="sort-columns">
+                        <div class="sort-column common-column-hw" id="commonColumn">
+                            <h4>🌍 Common Noun</h4>
+                            <div class="drop-zone" data-type="common">
+                                <p>Перетащи сюда обычные существительные</p>
+                            </div>
+                        </div>
+    
+                        <div class="sort-column proper-column-hw" id="properColumn">
+                            <h4>👑 Proper Noun</h4>
+                            <div class="drop-zone" data-type="proper">
+                                <p>Перетащи сюда собственные существительные</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="homework-result">
+                        <!-- <button onclick="checkSorting()" class="check-btn">✅ Проверить результат</button> -->
+                        <button onclick="resetSorting()" class="reset-btn">🔄 Сбросить</button>
+                        <div id="sortingFeedback" class="sorting-feedback"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Задание 2: Интерактивное исправление ошибок -->
+            <div class="homework-section">
+                <h3>✏️ Задание 2: Перепиши предложения правильно</h3>
+                <div class="homework-task">
+                    <div class="correction-exercises">
+                        <div class="correction-item">
+                            <p><strong>1.</strong> i live in paris with my friend emma.</p>
+                            <div class="correction-row">
+                                <input type="text" class="correction-input" placeholder="Напиши правильно..."
+                                    data-correct="I live in Paris with my friend Emma.">
+                                <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
+                            </div>
+                        </div>
+    
+                        <div class="correction-item">
+                            <p><strong>2.</strong> We eat at mcdonald's on sunday.</p>
+                            <div class="correction-row">
+                                <input type="text" class="correction-input" placeholder="Напиши правильно..."
+                                    data-correct="We eat at McDonald's on Sunday.">
+                                <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
+                            </div>
+                        </div>
+    
+                        <div class="correction-item">
+                            <p><strong>3.</strong> My Teacher speaks English and german.</p>
+                            <div class="correction-row">
+                                <input type="text" class="correction-input" placeholder="Напиши правильно..."
+                                    data-correct="My teacher speaks English and German.">
+                                <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
+                            </div>
+                        </div>
+    
+                        <div class="correction-item">
+                            <p><strong>4.</strong> christmas is in december.</p>
+                            <div class="correction-row">
+                                <input type="text" class="correction-input" placeholder="Напиши правильно..."
+                                    data-correct="Christmas is in December.">
+                                <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="homework-result">
+                        <button onclick="checkCorrections()" class="check-btn">✅ Проверить все ответы</button>
+                        <button onclick="resetCorrections()" class="reset-btn">🔄 Очистить</button>
+                        <div id="correctionFeedback" class="correction-feedback"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Задание 3: Создай свои примеры -->
+            <div class="homework-section">
+                <h3>🎨 Задание 3: Создай свои примеры</h3>
+                <div class="homework-task">
+                    <div class="creation-exercises">
+                        <div class="creation-item">
+                            <label><strong>Common Noun предложение 1:</strong></label>
+                            <textarea class="creation-input" placeholder="Напиши предложение с Common Noun..."></textarea>
+                        </div>
+    
+                        <div class="creation-item">
+                            <label><strong>Common Noun предложение 2:</strong></label>
+                            <textarea class="creation-input" placeholder="Напиши предложение с Common Noun..."></textarea>
+                        </div>
+    
+                        <div class="creation-item">
+                            <label><strong>Proper Noun предложение 1:</strong></label>
+                            <textarea class="creation-input" placeholder="Напиши предложение с Proper Noun..."></textarea>
+                        </div>
+    
+                        <div class="creation-item">
+                            <label><strong>Proper Noun предложение 2:</strong></label>
+                            <textarea class="creation-input" placeholder="Напиши предложение с Proper Noun..."></textarea>
+                        </div>
+    
+                        <div class="creation-item">
+                            <label><strong>Предложение с Common И Proper Noun:</strong></label>
+                            <textarea class="creation-input" placeholder="Напиши предложение с обеими типами..."></textarea>
+                        </div>
+                    </div>
+    
+                    <div class="homework-result">
+                        <button onclick="saveCreations()" class="check-btn">💾 Сохранить примеры</button>
+                        <button onclick="resetCreations()" class="reset-btn">🔄 Очистить</button>
+                        <div id="creationFeedback" class="creation-feedback"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Слайд 10: Повторение и заключение -->
+        <div class="slide">
+            <div class="decorative-star star-1">🎉</div>
+            <div class="decorative-star star-2">🌟</div>
+            <div class="decorative-shape shape-square"></div>
+            <div class="decorative-shape shape-circle"></div>
+    
+            <h1 class="title-decoration">🎉 Отлично!</h1>
+            <h2>Что мы сегодня изучили</h2>
+    
+            <div class="noun-types-grid">
+                <div class="noun-type-card common-noun-card">
+                    <h4>🌍 Common Noun</h4>
+                    <ul class="examples-list common-examples">
+                        <li>Общие названия</li>
+                        <li>Маленькая буква</li>
+                        <li>cat, book, teacher</li>
+                        <li>city, school, day</li>
+                    </ul>
+                </div>
+    
+                <div class="noun-type-card proper-noun-card">
+                    <h4>👑 Proper Noun</h4>
+                    <ul class="examples-list proper-examples">
+                        <li>Конкретные имена</li>
+                        <li>БОЛЬШАЯ буква</li>
+                        <li>Emma, Berlin, Apple</li>
+                        <li>Monday, Christmas</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="example-box">
+                <h3>🏆 Главное правило:</h3>
+                <p style="font-size: 1.4em; text-align: center; font-weight: 700;">
+                    <strong style="color: #4ecdc4;">Common</strong> = обычное, маленькая буква<br><br>
+                    <strong style="color: #ff6b6b;">Proper</strong> = особенное, БОЛЬШАЯ буква
+                </p>
+                <p style="text-align: center; margin-top: 20px; font-size: 1.2em; color: #7f8c8d;">
+                    Увидимся на следующем уроке! 👋
+                </p>
+            </div>
+        </div>
+    
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Назад</button>
+            <span class="slide-counter">
+                <span id="currentSlide">1</span> из <span id="totalSlides">10</span>
+            </span>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Вперёд →</button>
+        </div>
+    </div>
+
+    <script>
+        // Основная навигация презентации
+            let currentSlideIndex = 0;
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[index].classList.add('active');
+
+                document.getElementById('currentSlide').textContent = index + 1;
+                document.getElementById('totalSlides').textContent = totalSlides;
+
+                document.getElementById('prevBtn').disabled = index === 0;
+                document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+            }
+
+            function changeSlide(direction) {
+                currentSlideIndex += direction;
+                if (currentSlideIndex < 0) currentSlideIndex = 0;
+                if (currentSlideIndex >= totalSlides) currentSlideIndex = totalSlides - 1;
+                showSlide(currentSlideIndex);
+            }
+
+            showSlide(0);
+
+            // Навигация клавишами
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'ArrowLeft') changeSlide(-1);
+                if (e.key === 'ArrowRight') changeSlide(1);
+            });
+
+            // Задание 1: Common vs Proper Noun
+            let exercise1Data = {
+                currentIndex: 0,
+                score: 0,
+                currentWord: null,
+                words: [
+                    { word: "book", type: "common", translation: "книга" },
+                    { word: "Berlin", type: "proper", translation: "Берлин" },
+                    { word: "teacher", type: "common", translation: "учитель" },
+                    { word: "Emma", type: "proper", translation: "Эмма" },
+                    { word: "cat", type: "common", translation: "кот" },
+                    { word: "France", type: "proper", translation: "Франция" },
+                    { word: "city", type: "common", translation: "город" },
+                    { word: "Apple", type: "proper", translation: "Эппл" },
+                    { word: "school", type: "common", translation: "школа" },
+                    { word: "Monday", type: "proper", translation: "понедельник" },
+                    { word: "dog", type: "common", translation: "собака" },
+                    { word: "Christmas", type: "proper", translation: "Рождество" }
+                ]
+            };
+
+            function initExercise1() {
+                const wordCards = document.querySelectorAll('#exercise1 .word-card');
+                wordCards.forEach(card => {
+                    card.addEventListener('click', function () {
+                        if (this.classList.contains('disabled')) return;
+
+                        wordCards.forEach(c => c.classList.remove('selected'));
+                        this.classList.add('selected');
+
+                        exercise1Data.currentWord = {
+                            element: this,
+                            word: this.dataset.word,
+                            type: this.dataset.type,
+                            translation: this.dataset.translation
+                        };
+
+                        document.getElementById('buttons1').style.display = 'flex';
+                        document.getElementById('feedback1').innerHTML = `
+                <div style="background: #f0f4f8; padding: 15px; border-radius: 15px; border: 2px solid #4ecdc4;">
+                    Слово: <strong>${this.dataset.word}</strong> (${this.dataset.translation})<br>
+                    Common или Proper noun?
+                </div>`;
+                    });
+                });
+            }
+
+            function checkAnswer1(selectedType) {
+                const correct = exercise1Data.currentWord.type === selectedType;
+                const feedbackEl = document.getElementById('feedback1');
+
+                if (correct) {
+                    exercise1Data.score++;
+                    exercise1Data.currentWord.element.classList.add('correct');
+                    const typeText = selectedType === 'common' ? 'Common Noun (обычное)' : 'Proper Noun (собственное)';
+                    feedbackEl.innerHTML = `
+            <div class="feedback correct">
+                🎉 Правильно! "${exercise1Data.currentWord.word}" - это ${typeText}!
+            </div>`;
+                } else {
+                    exercise1Data.currentWord.element.classList.add('incorrect');
+                    const correctTypeText = exercise1Data.currentWord.type === 'common' ? 'Common Noun (обычное)' : 'Proper Noun (собственное)';
+                    const explanation = exercise1Data.currentWord.type === 'common' ?
+                        'пишется с маленькой буквы' : 'пишется с большой буквы';
+                    feedbackEl.innerHTML = `
+            <div class="feedback incorrect">
+                😅 Неправильно! "${exercise1Data.currentWord.word}" - это ${correctTypeText}, ${explanation}!
+            </div>`;
+                }
+
+                exercise1Data.currentWord.element.classList.add('disabled');
+                document.getElementById('score1').textContent = exercise1Data.score;
+                document.getElementById('buttons1').style.display = 'none';
+
+                if (document.querySelectorAll('#exercise1 .word-card.disabled').length === 12) {
+                    setTimeout(() => {
+                        feedbackEl.innerHTML += `
+                <div style="background: #d5f4e6; padding: 20px; border-radius: 15px; margin-top: 15px; border: 2px solid #27ae60;">
+                    🏆 Задание завершено! Результат: ${exercise1Data.score}/12
+                </div>`;
+                    }, 1500);
+                }
+            }
+
+            function resetExercise1() {
+                exercise1Data.score = 0;
+                exercise1Data.currentWord = null;
+                document.getElementById('score1').textContent = '0';
+                document.getElementById('buttons1').style.display = 'none';
+                document.getElementById('feedback1').innerHTML = '';
+
+                const wordCards = document.querySelectorAll('#exercise1 .word-card');
+                wordCards.forEach(card => {
+                    card.classList.remove('selected', 'correct', 'incorrect', 'disabled');
+                });
+            }
+
+            // Задание 2: Поиск ошибок
+            let exercise2Data = {
+                score: 0,
+                completed: 0,
+                errorsFound: 0,
+                totalErrors: 4
+            };
+
+            function initExercise2() {
+                const sentenceCards = document.querySelectorAll('#exercise2 .sentence-card');
+                sentenceCards.forEach(card => {
+                    card.addEventListener('click', function () {
+                        if (this.classList.contains('disabled')) return;
+
+                        const isCorrect = this.dataset.correct === 'true';
+                        const feedbackEl = document.getElementById('feedback2');
+
+                        this.classList.add('disabled');
+                        exercise2Data.completed++;
+
+                        feedbackEl.classList.add('show');
+
+                        if (!isCorrect) {
+                            exercise2Data.errorsFound++;
+                            this.classList.add('correct');
+                            const error = this.dataset.error;
+                            const fixed = this.dataset.fixed;
+                            feedbackEl.className = 'feedback-fixed correct show';
+                            feedbackEl.innerHTML = `🎉 Правильно! Ошибка: "${error}" → "${fixed}"`;
+                        } else {
+                            this.classList.add('incorrect');
+                            feedbackEl.className = 'feedback-fixed incorrect show';
+                            feedbackEl.innerHTML = `😅 Это предложение написано правильно!`;
+                        }
+
+                        document.getElementById('score2').textContent = exercise2Data.errorsFound;
+
+                        setTimeout(() => {
+                            feedbackEl.classList.remove('show');
+                        }, 3000);
+
+                        if (exercise2Data.completed === 8) {
+                            setTimeout(() => {
+                                feedbackEl.className = 'feedback-fixed correct show';
+                                feedbackEl.innerHTML = `🏆 Задание завершено! Найдено ошибок: ${exercise2Data.errorsFound}/4`;
+                                setTimeout(() => {
+                                    feedbackEl.classList.remove('show');
+                                }, 4000);
+                            }, 3500);
+                        }
+                    });
+                });
+            }
+
+            function resetExercise2() {
+                exercise2Data.score = 0;
+                exercise2Data.completed = 0;
+                exercise2Data.errorsFound = 0;
+                document.getElementById('score2').textContent = '0';
+                document.getElementById('feedback2').classList.remove('show');
+
+                const sentenceCards = document.querySelectorAll('#exercise2 .sentence-card');
+                sentenceCards.forEach(card => {
+                    card.classList.remove('selected', 'correct', 'incorrect', 'disabled');
+                });
+            }
+
+            // Задание 3: Замена на Proper Noun
+            let exercise3Data = {
+                score: 0,
+                currentIndex: 0,
+                questions: [
+                    {
+                        common: "boy",
+                        translation: "мальчик",
+                        question: "Какое имя мальчика?",
+                        options: ["Oliver", "table", "book", "city"],
+                        correct: "Oliver"
+                    },
+                    {
+                        common: "city",
+                        translation: "город",
+                        question: "Какой конкретный город?",
+                        options: ["Berlin", "school", "teacher", "cat"],
+                        correct: "Berlin"
+                    },
+                    {
+                        common: "country",
+                        translation: "страна",
+                        question: "Какая конкретная страна?",
+                        options: ["Germany", "book", "dog", "table"],
+                        correct: "Germany"
+                    },
+                    {
+                        common: "day",
+                        translation: "день",
+                        question: "Какой конкретный день недели?",
+                        options: ["Monday", "school", "cat", "pen"],
+                        correct: "Monday"
+                    },
+                    {
+                        common: "girl",
+                        translation: "девочка",
+                        question: "Какое имя девочки?",
+                        options: ["Emma", "book", "chair", "park"],
+                        correct: "Emma"
+                    },
+                    {
+                        common: "company",
+                        translation: "компания",
+                        question: "Какая конкретная компания?",
+                        options: ["Apple", "teacher", "dog", "house"],
+                        correct: "Apple"
+                    },
+                    {
+                        common: "holiday",
+                        translation: "праздник",
+                        question: "Какой конкретный праздник?",
+                        options: ["Christmas", "school", "book", "cat"],
+                        correct: "Christmas"
+                    },
+                    {
+                        common: "restaurant",
+                        translation: "ресторан",
+                        question: "Какой конкретный ресторан?",
+                        options: ["McDonald's", "table", "pen", "city"],
+                        correct: "McDonald's"
+                    }
+                ]
+            };
+
+            function startExercise3() {
+                exercise3Data.currentIndex = 0;
+                exercise3Data.score = 0;
+                document.getElementById('score3').textContent = '0';
+                document.getElementById('startBtn3').style.display = 'none';
+                showNextQuestion3();
+            }
+
+            function showNextQuestion3() {
+                if (exercise3Data.currentIndex >= exercise3Data.questions.length) {
+                    document.getElementById('feedback3').innerHTML = `
+            <div style="background: #d5f4e6; padding: 20px; border-radius: 15px; border: 2px solid #27ae60;">
+                🏆 Все задания выполнены! Результат: ${exercise3Data.score}/8<br>
+                <button onclick="resetExercise3()" style="margin-top: 15px; background: #4ecdc4; color: white; border: none; padding: 10px 20px; border-radius: 15px; cursor: pointer; font-family: 'Comic Neue', cursive; font-weight: 700;">Начать заново</button>
+            </div>`;
+                    return;
+                }
+
+                const currentQuestion = exercise3Data.questions[exercise3Data.currentIndex];
+                document.getElementById('currentWord3').textContent = currentQuestion.common;
+                document.getElementById('wordTranslation3').textContent = `(${currentQuestion.translation}) - ${currentQuestion.question}`;
+                document.getElementById('options3').style.display = 'grid';
+                document.getElementById('feedback3').innerHTML = '';
+
+                const optionsContainer = document.getElementById('options3');
+                optionsContainer.innerHTML = '';
+
+                const shuffledOptions = [...currentQuestion.options].sort(() => Math.random() - 0.5);
+
+                shuffledOptions.forEach(option => {
+                    const optionEl = document.createElement('div');
+                    optionEl.className = 'option-card';
+                    optionEl.textContent = option;
+                    optionEl.onclick = () => checkAnswer3(option);
+                    optionsContainer.appendChild(optionEl);
+                });
+            }
+
+            function checkAnswer3(selectedAnswer) {
+                const currentQuestion = exercise3Data.questions[exercise3Data.currentIndex];
+                const correct = selectedAnswer === currentQuestion.correct;
+                const options = document.querySelectorAll('#options3 .option-card');
+
+                options.forEach(option => {
+                    option.style.pointerEvents = 'none';
+                    if (option.textContent === currentQuestion.correct) {
+                        option.classList.add('correct');
+                    } else if (option.textContent === selectedAnswer && !correct) {
+                        option.classList.add('incorrect');
+                    }
+                });
+
+                if (correct) {
+                    exercise3Data.score++;
+                    document.getElementById('score3').textContent = exercise3Data.score;
+                    document.getElementById('feedback3').innerHTML = `
+            <div class="feedback correct">
+                🎉 Правильно! ${currentQuestion.common} → ${currentQuestion.correct} (Proper Noun)
+            </div>`;
+                } else {
+                    document.getElementById('feedback3').innerHTML = `
+            <div class="feedback incorrect">
+                😅 Неправильно! ${currentQuestion.common} → ${currentQuestion.correct} (Proper Noun с большой буквы!)
+            </div>`;
+                }
+
+                exercise3Data.currentIndex++;
+                setTimeout(() => {
+                    showNextQuestion3();
+                }, 2500);
+            }
+
+            function resetExercise3() {
+                exercise3Data.score = 0;
+                exercise3Data.currentIndex = 0;
+                document.getElementById('score3').textContent = '0';
+                document.getElementById('currentWord3').textContent = '🎮 Готов начать?';
+                document.getElementById('wordTranslation3').textContent = 'Нажми кнопку ниже!';
+                document.getElementById('options3').style.display = 'none';
+                document.getElementById('feedback3').innerHTML = '';
+                document.getElementById('startBtn3').style.display = 'block';
+            }
+
+            // Домашнее задание 1: Drag & Drop сортировка
+            let draggedElement = null;
+
+            function addDragListeners(element) {
+                element.addEventListener('dragstart', function (e) {
+                    draggedElement = this;
+                    this.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                });
+
+                element.addEventListener('dragend', function () {
+                    this.classList.remove('dragging');
+                    draggedElement = null;
+                });
+            }
+
+            function initDragAndDrop() {
+                const draggableWords = document.querySelectorAll('.draggable-word');
+                const dropZones = document.querySelectorAll('.drop-zone');
+
+                draggableWords.forEach(word => {
+                    addDragListeners(word);
+                });
+
+                dropZones.forEach(zone => {
+                    zone.addEventListener('dragover', function (e) {
+                        e.preventDefault();
+                        this.classList.add('drag-over');
+                    });
+
+                    zone.addEventListener('dragleave', function () {
+                        this.classList.remove('drag-over');
+                    });
+
+                    zone.addEventListener('drop', function (e) {
+                        e.preventDefault();
+                        this.classList.remove('drag-over');
+
+                        if (draggedElement) {
+                            const droppedWord = document.createElement('div');
+                            droppedWord.className = 'dropped-word';
+                            droppedWord.textContent = draggedElement.textContent;
+                            droppedWord.dataset.type = draggedElement.dataset.type;
+                            droppedWord.dataset.originalType = draggedElement.dataset.type;
+
+                            const correctZone = this.dataset.type === draggedElement.dataset.type;
+                            if (correctZone) {
+                                droppedWord.classList.add('correct');
+                                droppedWord.style.borderColor = '#27ae60';
+                                droppedWord.style.backgroundColor = '#d5f4e6';
+                            } else {
+                                droppedWord.classList.add('incorrect');
+                                droppedWord.style.borderColor = '#e74c3c';
+                                droppedWord.style.backgroundColor = '#ffeaea';
+                            }
+
+                            droppedWord.addEventListener('click', function () {
+                                if (this.parentNode) {
+                                    const originalWord = document.createElement('div');
+                                    originalWord.className = 'draggable-word';
+                                    originalWord.textContent = this.textContent;
+                                    originalWord.dataset.type = this.dataset.originalType;
+                                    originalWord.draggable = true;
+                                    
+                                    addDragListeners(originalWord);
+                                    
+                                    document.querySelector('.draggable-words').appendChild(originalWord);
+                                    this.remove();
+                                    updateScore();
+                                }
+                            });
+
+                            this.appendChild(droppedWord);
+                            draggedElement.remove();
+                            updateScore();
+                        }
+                    });
+                });
+            }
+            function updateScore() {
+                const allDroppedWords = document.querySelectorAll('.dropped-word');
+                const correctWords = document.querySelectorAll('.dropped-word.correct');
+                
+                const feedback = document.getElementById('sortingFeedback');
+                
+                if (allDroppedWords.length === 0) {
+                    feedback.innerHTML = '';
+                    return;
+                }
+                
+                if (correctWords.length === 12 && allDroppedWords.length === 12) {
+                    feedback.innerHTML = `🎉 Отлично! Все слова отсортированы правильно! (${correctWords.length}/12)`;
+                    feedback.style.background = '#d5f4e6';
+                    feedback.style.color = '#27ae60';
+                    feedback.style.border = '2px solid #27ae60';
+                } else {
+                    feedback.innerHTML = `📝 Правильно: ${correctWords.length}/${allDroppedWords.length} слов`;
+                    feedback.style.background = '#fff3cd';
+                    feedback.style.color = '#856404';
+                    feedback.style.border = '2px solid #ffc107';
+                }
+            }
+
+            function checkSorting() {
+                const commonDropZone = document.querySelector('[data-type="common"]');
+                const properDropZone = document.querySelector('[data-type="proper"]');
+                const commonWords = commonDropZone.querySelectorAll('.dropped-word');
+                const properWords = properDropZone.querySelectorAll('.dropped-word');
+
+                let correct = 0;
+                let total = 0;
+
+                // Проверка Common Noun
+                commonWords.forEach(word => {
+                    total++;
+                    if (word.dataset.originalType === 'common') {
+                        word.classList.add('correct');
+                        correct++;
+                    } else {
+                        word.classList.add('incorrect');
+                    }
+                });
+
+                // Проверка Proper Noun
+                properWords.forEach(word => {
+                    total++;
+                    if (word.dataset.originalType === 'proper') {
+                        word.classList.add('correct');
+                        correct++;
+                    } else {
+                        word.classList.add('incorrect');
+                    }
+                });
+
+                const feedback = document.getElementById('sortingFeedback');
+                if (correct === total && total === 12) {
+                    feedback.innerHTML = `🎉 Отлично! Все слова отсортированы правильно! (${correct}/${total})`;
+                    feedback.style.background = '#d5f4e6';
+                    feedback.style.color = '#27ae60';
+                    feedback.style.border = '2px solid #27ae60';
+                } else {
+                    feedback.innerHTML = `😅 Почти! Правильно: ${correct}/${total}. Попробуй еще раз!`;
+                    feedback.style.background = '#fff3cd';
+                    feedback.style.color = '#856404';
+                    feedback.style.border = '2px solid #ffc107';
+                }
+            }
+
+            function resetSorting() {
+                document.querySelectorAll('.dropped-word').forEach(word => word.remove());
+                
+                const container = document.querySelector('.draggable-words');
+                container.innerHTML = '';
+                
+                const wordsData = [
+                    { word: 'cat', type: 'common' },
+                    { word: 'Paris', type: 'proper' },
+                    { word: 'teacher', type: 'common' },
+                    { word: 'Oliver', type: 'proper' },
+                    { word: 'book', type: 'common' },
+                    { word: 'Germany', type: 'proper' },
+                    { word: 'Monday', type: 'proper' },
+                    { word: 'school', type: 'common' },
+                    { word: 'Emma', type: 'proper' },
+                    { word: 'dog', type: 'common' },
+                    { word: 'Christmas', type: 'proper' },
+                    { word: 'city', type: 'common' }
+                ];
+                
+                wordsData.forEach(data => {
+                    const wordElement = document.createElement('div');
+                    wordElement.className = 'draggable-word';
+                    wordElement.textContent = data.word;
+                    wordElement.dataset.type = data.type;
+                    wordElement.draggable = true;
+                    addDragListeners(wordElement);
+                    container.appendChild(wordElement);
+                });
+                
+                document.getElementById('sortingFeedback').innerHTML = '';
+            }
+            // Домашнее задание 2: Исправление ошибок
+            function checkSingleCorrection(button) {
+                const correctionItem = button.closest('.correction-item');
+                const input = correctionItem.querySelector('.correction-input');
+                const userAnswer = input.value.trim();
+                const correctAnswer = input.dataset.correct;
+
+                const existingFeedback = correctionItem.querySelector('.single-feedback');
+                if (existingFeedback) {
+                    existingFeedback.remove();
+                }
+
+                const feedback = document.createElement('div');
+                feedback.className = 'single-feedback';
+
+                if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                    feedback.classList.add('correct');
+                    feedback.innerHTML = '🎉 Правильно!';
+                    button.classList.add('checked');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                    feedback.classList.add('incorrect');
+                    feedback.innerHTML = `😅 Неправильно! Правильный ответ: "${correctAnswer}"`;
+                    button.classList.remove('checked');
+                }
+
+                correctionItem.appendChild(feedback);
+            }
+
+            function checkCorrections() {
+                const inputs = document.querySelectorAll('.correction-input');
+                let correct = 0;
+
+                inputs.forEach(input => {
+                    const userAnswer = input.value.trim();
+                    const correctAnswer = input.dataset.correct;
+
+                    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                        input.classList.add('correct');
+                        input.classList.remove('incorrect');
+                        correct++;
+                    } else {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    }
+                });
+
+                const feedback = document.getElementById('correctionFeedback');
+                if (correct === inputs.length) {
+                    feedback.innerHTML = `🎉 Отлично! Все предложения исправлены правильно!`;
+                    feedback.style.background = '#d5f4e6';
+                    feedback.style.color = '#27ae60';
+                    feedback.style.border = '2px solid #27ae60';
+                } else {
+                    feedback.innerHTML = `😅 Правильно: ${correct}/${inputs.length}. Проверь красные поля!`;
+                    feedback.style.background = '#fff3cd';
+                    feedback.style.color = '#856404';
+                    feedback.style.border = '2px solid #ffc107';
+                }
+            }
+
+            function resetCorrections() {
+                const inputs = document.querySelectorAll('.correction-input');
+                inputs.forEach(input => {
+                    input.value = '';
+                    input.classList.remove('correct', 'incorrect');
+                });
+
+                // Удаление фидбеков отдельных заданий
+                document.querySelectorAll('.single-feedback').forEach(feedback => {
+                    feedback.remove();
+                });
+
+                // Сброс состояния кнопок
+                document.querySelectorAll('.check-single-btn').forEach(button => {
+                    button.classList.remove('checked');
+                });
+
+                document.getElementById('correctionFeedback').innerHTML = '';
+            }
+
+            // Домашнее задание 3: Создание примеров
+            function saveCreations() {
+                const inputs = document.querySelectorAll('.creation-input');
+                let filled = 0;
+
+                inputs.forEach(input => {
+                    if (input.value.trim().length > 0) {
+                        filled++;
+                    }
+                });
+
+                const feedback = document.getElementById('creationFeedback');
+                if (filled === inputs.length) {
+                    feedback.innerHTML = `💾 Отлично! Все ${filled} примеров сохранены!`;
+                    feedback.style.background = '#d5f4e6';
+                    feedback.style.color = '#27ae60';
+                    feedback.style.border = '2px solid #27ae60';
+                } else {
+                    feedback.innerHTML = `📝 Сохранено ${filled}/${inputs.length} примеров. Заполни остальные!`;
+                    feedback.style.background = '#fff3cd';
+                    feedback.style.color = '#856404';
+                    feedback.style.border = '2px solid #ffc107';
+                }
+            }
+
+            function resetCreations() {
+                const inputs = document.querySelectorAll('.creation-input');
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+                document.getElementById('creationFeedback').innerHTML = '';
+            }
+
+            // Инициализация при загрузке
+            document.addEventListener('DOMContentLoaded', function () {
+                initExercise1();
+                initExercise2();
+                initDragAndDrop();
+            });
+
+            // Поддержка клавиш
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    if (document.getElementById('buttons1').style.display === 'flex') {
+                        document.getElementById('buttons1').style.display = 'none';
+                        document.querySelectorAll('#exercise1 .word-card').forEach(card => {
+                            card.classList.remove('selected');
+                        });
+                    }
+                }
+            });
+
+            // Автоскролл к активному элементу
+            function scrollToActiveElement(elementId) {
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+
+            // Звуковые эффекты
+            function playSuccessSound() {
+                console.log('🎉 Правильный ответ!');
+            }
+
+            function playErrorSound() {
+                console.log('😅 Попробуй еще раз!');
+            }
+
+            // Статистика сессии
+            let sessionStats = {
+                exercise1: { attempts: 0, correct: 0 },
+                exercise2: { attempts: 0, correct: 0 },
+                exercise3: { attempts: 0, correct: 0 }
+            };
+
+            function updateStats(exercise, isCorrect) {
+                sessionStats[exercise].attempts++;
+                if (isCorrect) {
+                    sessionStats[exercise].correct++;
+                }
+            }
+
+            function getSessionStats() {
+                console.log('📊 Статистика сессии:', sessionStats);
+                return sessionStats;
+            }
+    </script>
+    </body>
+</html>
