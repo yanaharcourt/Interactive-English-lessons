@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Interactive Bookshelf - English Stories</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="decorative-elements">
+            <div class="floating-icon">📚</div>
+            <div class="floating-icon">✨</div>
+            <div class="floating-icon">🌟</div>
+            <div class="floating-icon">📖</div>
+        </div>
+        <div class="container">
+            <h1>Bookshelf</h1>
+            <p>Discover amazing English stories with beautiful illustrations and audio</p>
+        </div>
+    </div>
+
+    <div class="nav-section">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="bookshelf.html" class="nav-btn active">Stories</a>
+                <a href="https://yanaharcourt.dev/cambridge_voca/" class="nav-btn">Vocabulary</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="intro-section">
+                <h2>Choose Your Reading Level</h2>
+                <p>Select stories that match your English level and enjoy reading with audio narration</p>
+            </div>
+
+            <div class="level-filters">
+                <div class="level-filter active" data-level="all">All Levels</div>
+                <div class="level-filter" data-level="beginner">🟢 Beginner</div>
+                <div class="level-filter" data-level="elementary">🔵 Elementary</div>
+                <div class="level-filter" data-level="intermediate">🟡 Intermediate</div>
+                <div class="level-filter" data-level="advanced">🟠 Advanced</div>
+                <div class="level-filter" data-level="expert">🔴 Expert</div>
+            </div>
+
+            <div class="books-grid" id="booksGrid">
+                <!-- Beginner Level Books -->
+                <div class="book-card beginner" data-level="beginner">
+                    <div class="book-cover">
+                        <div class="book-cover-icon">🐱</div>
+                        <div class="level-badge">Beginner</div>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">The Little Cat's Adventure</h3>
+                        <p class="book-description">Follow a curious little cat as it explores the garden and meets new friends. Perfect for beginners with simple vocabulary and short sentences.</p>
+                        <div class="book-stats">
+                            <div class="book-stat">⏱️ 5 min</div>
+                            <div class="book-stat">📄 12 pages</div>
+                            <div class="book-stat">🔤 50 words</div>
+                        </div>
+                        <button class="read-button" onclick="openBook('cat-adventure')">📖 Read Story</button>
+                    </div>
+                </div>
+
+                <div class="book-card beginner" data-level="beginner">
+                    <div class="book-cover">
+                        <div class="book-cover-icon">🌈</div>
+                        <div class="level-badge">Beginner</div>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">Colors All Around</h3>
+                        <p class="book-description">Learn about colors through a magical journey where everything changes color! Interactive story with audio pronunciation.</p>
+                        <div class="book-stats">
+                            <div class="book-stat">⏱️ 4 min</div>
+                            <div class="book-stat">📄 10 pages</div>
+                            <div class="book-stat">🔤 40 words</div>
+                        </div>
+                        <button class="read-button" onclick="openBook('colors-around')">📖 Read Story</button>
+                    </div>
+                </div>
+
+                <!-- Elementary Level Books -->
+                <div class="book-card elementary" data-level="elementary">
+                    <div class="book-cover">
+                        <div class="book-cover-icon">🏰</div>
+                        <div class="level-badge">Elementary</div>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">The Magic Castle</h3>
+                        <p class="book-description">A young wizard discovers a mysterious castle full of magical creatures and ancient secrets waiting to be revealed.</p>
+                        <div class="book-stats">
+                            <div class="book-stat">⏱️ 8 min</div>
+                            <div class="book-stat">📄 16 pages</div>
+                            <div class="book-stat">🔤 120 words</div>
+                        </div>
+                        <button class="read-button" onclick="openBook('magic-castle')">📖 Read Story</button>
+                    </div>
+                </div>
+
+                <div class="book-card elementary" data-level="elementary">
+                    <div class="book-cover">
+                        <div class="book-cover-icon">🐶</div>
+                        <div class="level-badge">Elementary</div>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">My Best Friend</h3>
+                        <p class="book-description">The heartwarming story of a boy and his loyal dog, and the adventures they share together every day.</p>
+                        <div class="book-stats">
+                            <div class="book-stat">⏱️ 7 min</div>
+                            <div class="book-stat">📄 14 pages</div>
+                            <div class="book-stat">🔤 100 words</div>
+                        </div>
+                        <button class="read-button" onclick="openBook('best-friend')">📖 Read Story</button>
+                    </div>
+                </div>
+
+                <!-- Intermediate Level Books -->
+                <div class="book-card intermediate" data-level="intermediate">
+                    <div class="book-cover">
+                        <div class="book-cover-icon">🌊</div>
+                        <div class="level-badge">Intermediate</div>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">Ocean Mysteries</h3>
+                        <p class="book-description">Dive deep into the ocean to discover incredible sea creatures and underwater worlds that few have ever seen.</p>
+                        <div class="book-stats">
+                            <div class="book-stat">⏱️ 12 min</div>
+                            <div class="book-stat">📄 20 pages</div>
+                            <div class="book-stat">🔤 200 words</div>
+                        </div>
+                        <button class="read-button" onclick="openBook('ocean-mysteries')">📖 Read Story</button>
+                    </div>
+                </div>
+
+                <div class="book-card intermediate" data-level="intermediate">
+                    <div class="book-cover">
+                        <div class="book-cover-icon">🚀</div>
+                        <div class="level-badge">Intermediate</div>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">Space Explorer</h3>
+                        <p class="book-description">Join an astronaut on an incredible journey through space, visiting different planets and meeting alien civilizations.</p>
+                        <div class="book-stats">
+                            <div class="book-stat">⏱️ 15 min</div>
+                            <div class="book-stat">📄 24 pages</div>
+                            <div class="book-stat">🔤 250 words</div>
+                        </div>
+                        <button class="read-button" onclick="openBook('space-explorer')">📖 Read Story</button>
+                    </div>
+                </div>
+
+                <!-- Advanced Level Books -->
+                <div class="book-card advanced coming-soon" data-level="advanced">
+                    <div class="book-cover">
+                        <div class="book-cover-icon">🔮</div>
+                        <div class="level-badge">Advanced</div>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">The Time Traveler</h3>
+                        <p class="book-description">A complex story about time travel and its consequences, featuring advanced vocabulary and sophisticated plot twists.</p>
+                        <div class="book-stats">
+                            <div class="book-stat">⏱️ 20 min</div>
+                            <div class="book-stat">📄 30 pages</div>
+                            <div class="book-stat">🔤 400 words</div>
+                        </div>
+                        <button class="read-button">🔒 Coming Soon</button>
+                    </div>
+                </div>
+
+                <div class="book-card expert coming-soon" data-level="expert">
+                    <div class="book-cover">
+                        <div class="book-cover-icon">👑</div>
+                        <div class="level-badge">Expert</div>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">The Lost Kingdom</h3>
+                        <p class="book-description">An epic tale of adventure, betrayal, and redemption set in a fantasy world with rich descriptions and complex characters.</p>
+                        <div class="book-stats">
+                            <div class="book-stat">⏱️ 30 min</div>
+                            <div class="book-stat">📄 45 pages</div>
+                            <div class="book-stat">🔤 600 words</div>
+                        </div>
+                        <button class="read-button">🔒 Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Level filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const levelFilters = document.querySelectorAll('.level-filter');
+            const bookCards = document.querySelectorAll('.book-card');
+
+            levelFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    // Remove active class from all filters
+                    levelFilters.forEach(f => f.classList.remove('active'));
+                    
+                    // Add active class to clicked filter
+                    this.classList.add('active');
+                    
+                    const selectedLevel = this.getAttribute('data-level');
+                    
+                    // Show/hide books based on selected level
+                    bookCards.forEach(card => {
+                        if (selectedLevel === 'all' || card.getAttribute('data-level') === selectedLevel) {
+                            card.style.display = 'flex';
+                            card.style.animation = 'fadeIn 0.5s ease-in-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Add hover effects to book cards
+            bookCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('coming-soon')) {
+                        this.style.transform = 'translateY(-10px) rotate(1deg)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) rotate(0)';
+                });
+            });
+        });
+
+        // Function to open a book (placeholder for now)
+        function openBook(bookId) {
+            // For now, show an alert. Later this will open the actual book reader
+            alert(`Opening "${bookId}" book reader. This feature will be implemented soon with beautiful illustrations and audio narration!`);
+            
+            // TODO: Implement book reader with:
+            // - Page by page navigation
+            // - Audio narration
+            // - Interactive elements
+            // - Progress tracking
+            // - Vocabulary highlights
+        }
+
+        // Add fade-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

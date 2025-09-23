@@ -7,353 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #ff6b6b;
-            --secondary-color: #4ecdc4;
-            --accent-color: #ffe66d;
-            --text-dark: #2c3e50;
-            --text-light: #34495e;
-            --text-muted: #7f8c8d;
-            --background-main: #f8f6f0;
-            --background-light: #faf8f3;
-            --background-white: #fff;
-            --border-light: #e8e4d9;
-            --success-color: #27ae60;
-            --error-color: #e74c3c;
-            --warning-color: #f39c12;
-            --info-color: #3498db;
-            --purple-color: #9b59b6;
-            --font-family: 'Comic Neue', cursive;
-            --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.1);
-            --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.3);
-            --transition: 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-family);
-            background: var(--background-main);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            padding: 60px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255, 255, 255, 0.1) 10px,
-                rgba(255, 255, 255, 0.1) 20px
-            );
-            animation: float 20s linear infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .header h1 {
-            color: white;
-            font-size: 3.5em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 2;
-        }
-
-        .header p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.3em;
-            font-weight: 400;
-            position: relative;
-            z-index: 2;
-        }
-
-        .decorative-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        .floating-icon {
-            position: absolute;
-            font-size: 2em;
-            opacity: 0.2;
-            animation: floatUpDown 4s ease-in-out infinite;
-        }
-
-        .floating-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .floating-icon:nth-child(2) { top: 60%; left: 85%; animation-delay: 1s; }
-        .floating-icon:nth-child(3) { top: 30%; left: 80%; animation-delay: 2s; }
-        .floating-icon:nth-child(4) { top: 70%; left: 15%; animation-delay: 3s; }
-
-        @keyframes floatUpDown {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 80px 0;
-        }
-
-        .intro-section {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .intro-section h2 {
-            font-size: 2.5em;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .intro-section p {
-            font-size: 1.2em;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Lessons Grid */
-        .lessons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .lesson-card {
-            background: var(--background-white);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: var(--shadow-light);
-            transition: all var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 3px solid transparent;
-            cursor: pointer;
-        }
-
-        .lesson-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .lesson-card.grammar::before { background: var(--primary-color); }
-        .lesson-card.vocabulary::before { background: var(--secondary-color); }
-        .lesson-card.time::before { background: var(--accent-color); }
-        .lesson-card.verbs::before { background: var(--success-color); }
-        .lesson-card.advanced::before { background: var(--purple-color); }
-
-        .lesson-card:hover {
-            transform: translateY(-10px) rotate(1deg);
-            box-shadow: var(--shadow-heavy);
-            border-color: var(--secondary-color);
-        }
-
-        .lesson-card.grammar:hover { border-color: var(--primary-color); }
-        .lesson-card.vocabulary:hover { border-color: var(--secondary-color); }
-        .lesson-card.time:hover { border-color: var(--accent-color); }
-        .lesson-card.verbs:hover { border-color: var(--success-color); }
-        .lesson-card.advanced:hover { border-color: var(--purple-color); }
-
-
-
-        .lesson-title {
-            font-size: 1.8em;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
-
-        .lesson-description {
-            color: var(--text-muted);
-            font-size: 1.1em;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .lesson-topics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 25px;
-        }
-
-        .topic-tag {
-            background: var(--background-main);
-            color: var(--text-dark);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 600;
-            border: 2px solid var(--border-light);
-        }
-
-        .lesson-card.grammar .topic-tag {
-            background: rgba(255, 107, 107, 0.1);
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .lesson-card.vocabulary .topic-tag {
-            background: rgba(78, 205, 196, 0.1);
-            border-color: var(--secondary-color);
-            color: var(--secondary-color);
-        }
-
-        .lesson-card.time .topic-tag {
-            background: rgba(255, 230, 109, 0.1);
-            border-color: var(--accent-color);
-            color: var(--warning-color);
-        }
-
-        .lesson-card.verbs .topic-tag {
-            background: rgba(39, 174, 96, 0.1);
-            border-color: var(--success-color);
-            color: var(--success-color);
-        }
-
-        .lesson-card.advanced .topic-tag {
-            background: rgba(155, 89, 182, 0.1);
-            border-color: var(--purple-color);
-            color: var(--purple-color);
-        }
-
-        .lesson-button {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 12px;
-            font-family: var(--font-family);
-            font-size: 1.1em;
-            font-weight: 700;
-            color: white;
-            cursor: pointer;
-            transition: all var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .lesson-card.grammar .lesson-button {
-            background: linear-gradient(135deg, var(--primary-color), #ff8a8a);
-        }
-
-        .lesson-card.vocabulary .lesson-button {
-            background: linear-gradient(135deg, var(--secondary-color), #6ee7df);
-        }
-
-        .lesson-card.time .lesson-button {
-            background: linear-gradient(135deg, var(--accent-color), #ffed94);
-            color: var(--text-dark);
-        }
-
-        .lesson-card.verbs .lesson-button {
-            background: linear-gradient(135deg, var(--success-color), #4fbf7a);
-        }
-
-        .lesson-card.advanced .lesson-button {
-            background: linear-gradient(135deg, var(--purple-color), #b574d1);
-        }
-
-        .lesson-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-            margin-top: 80px;
-        }
-
-        .footer p {
-            font-size: 1.1em;
-            opacity: 0.8;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5em;
-            }
-
-            .header p {
-                font-size: 1.1em;
-            }
-
-            .lessons-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .lesson-card {
-                padding: 25px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header {
-                padding: 40px 0;
-            }
-
-            .header h1 {
-                font-size: 2em;
-            }
-
-            .main-content {
-                padding: 40px 0;
-            }
-
-            .intro-section h2 {
-                font-size: 2em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
     <div class="header">
@@ -364,10 +18,20 @@
             <div class="floating-icon">🌟</div>
         </div>
         <div class="container">
-            <h1>📖 Interactive English </h1>
+            <h1>Interactive English </h1>
             <!-- <p>Master English grammar with fun, interactive presentations</p> -->
         </div>
     </div>
+
+    <!-- <div class="nav-section">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="#" class="nav-btn active">Home</a>
+                <a href="bookshelf.html" class="nav-btn">Stories</a>
+                <a href="https://yanaharcourt.dev/cambridge_voca/" class="nav-btn">Vocabulary</a>
+            </div>
+        </div>
+    </div> -->
 
     <div class="main-content">
         <div class="container">
@@ -377,7 +41,7 @@
 
             <div class="lessons-grid">
                 <!-- Adjectives -->
-                <div class="lesson-card grammar" onclick="openLesson('Adjectives.html')">
+                <div class="lesson-card grammar" onclick="openLesson('./presentations/Adjectives.html')">
                     <h3 class="lesson-title">Adjectives</h3>
                     <p class="lesson-description">Learn about descriptive, quantitative, and demonstrative adjectives with interactive exercises and real examples.</p>
                     <div class="lesson-topics">
@@ -389,7 +53,7 @@
                 </div>
 
                 <!-- Adverbs of Frequency -->
-                <div class="lesson-card grammar" onclick="openLesson('Adverbs of Frequency.html')">
+                <div class="lesson-card grammar" onclick="openLesson('./presentations/Adverbs of Frequency.html')">
                     <h3 class="lesson-title">Adverbs of Frequency</h3>
                     <p class="lesson-description">Discover how often things happen! Learn always, usually, sometimes, and never with fun activities.</p>
                     <div class="lesson-topics">
@@ -401,7 +65,7 @@
                 </div>
 
                 <!-- Pronouns -->
-                <div class="lesson-card vocabulary" onclick="openLesson('Pronouns.html')">
+                <div class="lesson-card vocabulary" onclick="openLesson('./presentations/Pronouns.html')">
                     <h3 class="lesson-title">Pronouns</h3>
                     <p class="lesson-description">Master personal, possessive, and demonstrative pronouns with comprehensive exercises and examples.</p>
                     <div class="lesson-topics">
@@ -413,7 +77,7 @@
                 </div>
 
                 <!-- Common vs Proper Nouns -->
-                <div class="lesson-card vocabulary" onclick="openLesson('Common vs Proper Noun.html')">
+                <div class="lesson-card vocabulary" onclick="openLesson('./presentations/Common vs Proper Noun.html')">
                     <h3 class="lesson-title">Common vs Proper Nouns</h3>
                     <p class="lesson-description">Learn the difference between common and proper nouns with engaging examples and sorting activities.</p>
                     <div class="lesson-topics">
@@ -425,7 +89,7 @@
                 </div>
 
                 <!-- Noun & Verb -->
-                <div class="lesson-card vocabulary" onclick="openLesson('Noun&Verb.html')">
+                <div class="lesson-card vocabulary" onclick="openLesson('./presentations/Noun&Verb.html')">
                     <h3 class="lesson-title">Nouns & Verbs</h3>
                     <p class="lesson-description">Understand the building blocks of sentences - nouns (naming words) and verbs (action words).</p>
                     <div class="lesson-topics">
@@ -437,7 +101,7 @@
                 </div>
 
                 <!-- What Time Is It -->
-                <div class="lesson-card time" onclick="openLesson('What Time Is It.html')">
+                <div class="lesson-card time" onclick="openLesson('./presentations/What Time Is It.html')">
                     <h3 class="lesson-title">What Time Is It?</h3>
                     <p class="lesson-description">Learn to tell time in English with digital and analog clocks, plus time expressions and daily routines.</p>
                     <div class="lesson-topics">
@@ -449,7 +113,7 @@
                 </div>
 
                 <!-- Present Simple -->
-                <div class="lesson-card verbs" onclick="openLesson('present_simple.html')">
+                <div class="lesson-card verbs" onclick="openLesson('./presentations/present_simple.html')">
                     <h3 class="lesson-title">Present Simple Tense</h3>
                     <p class="lesson-description">Master the present simple tense for habits, facts, and regular actions with comprehensive practice.</p>
                     <div class="lesson-topics">
@@ -461,7 +125,7 @@
                 </div>
 
                 <!-- Present Continuous -->
-                <div class="lesson-card verbs" onclick="openLesson('present_continuous.html')">
+                <div class="lesson-card verbs" onclick="openLesson('./presentations/present_continuous.html')">
                     <h3 class="lesson-title">Present Continuous</h3>
                     <p class="lesson-description">Learn about actions happening right now using the present continuous tense with be + -ing.</p>
                     <div class="lesson-topics">
@@ -473,7 +137,7 @@
                 </div>
 
                 <!-- Past Simple -->
-                <div class="lesson-card verbs" onclick="openLesson('past_simple.html')">
+                <div class="lesson-card verbs" onclick="openLesson('./presentations/past_simple.html')">
                     <h3 class="lesson-title">Past Simple Tense</h3>
                     <p class="lesson-description">Learn about actions that happened in the past with regular and irregular verbs, questions, and negatives.</p>
                     <div class="lesson-topics">
@@ -485,7 +149,7 @@
                 </div>
 
                 <!-- 100+ Irregular Verbs -->
-                <div class="lesson-card advanced" onclick="openLesson('100+ irregular verbs.html')">
+                <div class="lesson-card advanced" onclick="openLesson('./presentations/100+ irregular verbs.html')">
                     <h3 class="lesson-title">100+ Irregular Verbs</h3>
                     <p class="lesson-description">Complete guide to irregular verbs with past forms, past participles, and interactive practice exercises.</p>
                     <div class="lesson-topics">

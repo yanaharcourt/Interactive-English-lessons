@@ -1,0 +1,710 @@
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #4ecdc4;
+    --accent-color: #ffe66d;
+    --text-dark: #2c3e50;
+    --text-light: #34495e;
+    --text-muted: #7f8c8d;
+    --background-main: #f8f6f0;
+    --background-light: #faf8f3;
+    --background-white: #fff;
+    --border-light: #e8e4d9;
+    --success-color: #27ae60;
+    --error-color: #e74c3c;
+    --warning-color: #f39c12;
+    --info-color: #3498db;
+    --purple-color: #9b59b6;
+    --font-family: 'Comic Neue', cursive;
+    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.1);
+    --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.3);
+    --transition: 0.3s ease;
+    --orange-color: #e67e22;
+    --pink-color: #e91e63;
+    --teal-color: #1abc9c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--background-main);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 60px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 255, 255, 0.1) 10px,
+            rgba(255, 255, 255, 0.1) 20px);
+    animation: float 20s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+.header h1 {
+    color: white;
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.3em;
+    font-weight: 400;
+    position: relative;
+    z-index: 2;
+}
+
+.decorative-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.floating-icon {
+    position: absolute;
+    font-size: 2em;
+    opacity: 0.2;
+    animation: floatUpDown 4s ease-in-out infinite;
+}
+
+.floating-icon:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-icon:nth-child(2) {
+    top: 60%;
+    left: 85%;
+    animation-delay: 1s;
+}
+
+.floating-icon:nth-child(3) {
+    top: 30%;
+    left: 80%;
+    animation-delay: 2s;
+}
+
+.floating-icon:nth-child(4) {
+    top: 70%;
+    left: 15%;
+    animation-delay: 3s;
+}
+
+@keyframes floatUpDown {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Main Content */
+.main-content {
+    padding: 80px 0;
+}
+
+.intro-section {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.intro-section h2 {
+    font-size: 2.5em;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.intro-section p {
+    font-size: 1.2em;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Lessons Grid */
+.lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.lesson-card {
+    background: var(--background-white);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--shadow-light);
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 3px solid transparent;
+    cursor: pointer;
+}
+
+.lesson-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    border-radius: 20px 20px 0 0;
+}
+
+.lesson-card.grammar::before {
+    background: var(--primary-color);
+}
+
+.lesson-card.vocabulary::before {
+    background: var(--secondary-color);
+}
+
+.lesson-card.time::before {
+    background: var(--accent-color);
+}
+
+.lesson-card.verbs::before {
+    background: var(--success-color);
+}
+
+.lesson-card.advanced::before {
+    background: var(--purple-color);
+}
+
+.lesson-card:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: var(--shadow-heavy);
+    border-color: var(--secondary-color);
+}
+
+.lesson-card.grammar:hover {
+    border-color: var(--primary-color);
+}
+
+.lesson-card.vocabulary:hover {
+    border-color: var(--secondary-color);
+}
+
+.lesson-card.time:hover {
+    border-color: var(--accent-color);
+}
+
+.lesson-card.verbs:hover {
+    border-color: var(--success-color);
+}
+
+.lesson-card.advanced:hover {
+    border-color: var(--purple-color);
+}
+
+
+
+.lesson-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.lesson-description {
+    color: var(--text-muted);
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.lesson-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.topic-tag {
+    background: var(--background-main);
+    color: var(--text-dark);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    border: 2px solid var(--border-light);
+}
+
+.lesson-card.grammar .topic-tag {
+    background: rgba(255, 107, 107, 0.1);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.lesson-card.vocabulary .topic-tag {
+    background: rgba(78, 205, 196, 0.1);
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.lesson-card.time .topic-tag {
+    background: rgba(255, 230, 109, 0.1);
+    border-color: var(--accent-color);
+    color: var(--warning-color);
+}
+
+.lesson-card.verbs .topic-tag {
+    background: rgba(39, 174, 96, 0.1);
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.lesson-card.advanced .topic-tag {
+    background: rgba(155, 89, 182, 0.1);
+    border-color: var(--purple-color);
+    color: var(--purple-color);
+}
+
+.lesson-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-family: var(--font-family);
+    font-size: 1.1em;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: all var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.lesson-card.grammar .lesson-button {
+    background: linear-gradient(135deg, var(--primary-color), #ff8a8a);
+}
+
+.lesson-card.vocabulary .lesson-button {
+    background: linear-gradient(135deg, var(--secondary-color), #6ee7df);
+}
+
+.lesson-card.time .lesson-button {
+    background: linear-gradient(135deg, var(--accent-color), #ffed94);
+    color: var(--text-dark);
+}
+
+.lesson-card.verbs .lesson-button {
+    background: linear-gradient(135deg, var(--success-color), #4fbf7a);
+}
+
+.lesson-card.advanced .lesson-button {
+    background: linear-gradient(135deg, var(--purple-color), #b574d1);
+}
+
+.lesson-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Footer */
+.footer {
+    background: var(--text-dark);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.footer p {
+    font-size: 1.1em;
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2.5em;
+    }
+
+    .header p {
+        font-size: 1.1em;
+    }
+
+    .lessons-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .lesson-card {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 40px 0;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .main-content {
+        padding: 40px 0;
+    }
+
+    .intro-section h2 {
+        font-size: 2em;
+    }
+}
+
+.nav-section {
+    background: var(--background-white);
+    padding: 20px 0;
+    box-shadow: var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--border-light);
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    background: var(--background-light);
+    color: var(--text-dark);
+    padding: 12px 24px;
+    border: 2px solid var(--border-light);
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: var(--font-family);
+    font-size: 1.1em;
+    transition: all var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+}
+
+.nav-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.nav-btn.active:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+    .nav-section {
+        padding: 15px 0;
+    }
+
+    .nav-buttons {
+        gap: 10px;
+    }
+
+    .nav-btn {
+        padding: 10px 18px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-buttons {
+        gap: 8px;
+        padding: 0 10px;
+    }
+
+    .nav-btn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+        flex: 1;
+        justify-content: center;
+        min-width: 0;
+    }
+}
+
+/* =================================
+Bookshelf 
+===================================*/
+/* Level Filters */
+.level-filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.level-filter {
+    background: var(--background-white);
+    color: var(--text-dark);
+    padding: 10px 20px;
+    border: 2px solid var(--border-light);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all var(--transition);
+    font-weight: 600;
+}
+
+.level-filter:hover,
+.level-filter.active {
+    background: var(--info-color);
+    color: white;
+    border-color: var(--info-color);
+    transform: translateY(-2px);
+}
+
+/* Books Grid */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.book-card {
+    background: var(--background-white);
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: var(--shadow-light);
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 3px solid transparent;
+    cursor: pointer;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-card:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: var(--shadow-heavy);
+}
+
+.book-cover {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, var(--info-color), var(--secondary-color));
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px 20px 0 0;
+}
+
+.book-card.beginner .book-cover { 
+    background: linear-gradient(135deg, var(--success-color), var(--teal-color)); 
+}
+.book-card.elementary .book-cover { 
+    background: linear-gradient(135deg, var(--info-color), var(--secondary-color)); 
+}
+.book-card.intermediate .book-cover { 
+    background: linear-gradient(135deg, var(--warning-color), var(--accent-color)); 
+}
+.book-card.advanced .book-cover { 
+    background: linear-gradient(135deg, var(--error-color), var(--pink-color)); 
+}
+.book-card.expert .book-cover { 
+    background: linear-gradient(135deg, var(--purple-color), var(--error-color)); 
+}
+
+.book-cover-icon {
+    font-size: 4em;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.level-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-dark);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+.book-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-title {
+    font-size: 1.4em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+    line-height: 1.3;
+}
+
+.book-description {
+    color: var(--text-muted);
+    font-size: 1em;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.book-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: var(--text-muted);
+}
+
+.book-stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.read-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--purple-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font-family);
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.read-button:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--purple-color));
+    transform: translateY(-2px);
+}
+
+.coming-soon {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.coming-soon .read-button {
+    background: var(--text-muted);
+    cursor: not-allowed;
+}
+
+.coming-soon .read-button:hover {
+    background: var(--text-muted);
+    transform: none;
+}
+
+/* Responsive for bookshelf */
+@media (max-width: 768px) {
+    .books-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .book-card {
+        height: 400px;
+    }
+
+    .book-cover {
+        height: 200px;
+    }
+
+    .book-content {
+        padding: 20px;
+    }
+
+    .level-filters {
+        gap: 8px;
+    }
+
+    .level-filter {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .books-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .level-filters {
+        gap: 8px;
+    }
+
+    .level-filter {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
