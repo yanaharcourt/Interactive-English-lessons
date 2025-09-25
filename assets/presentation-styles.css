@@ -870,34 +870,59 @@ p {
     font-size: 1.3em;
     line-height: 1.8;
     margin-bottom: 20px;
-    color: var(--text-dark);
+    padding: 15px;
+    background: rgb(248, 246, 240);
+    border-radius: 12px;
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-left-color: rgb(78, 205, 196);
 }
 
 .story-blank {
-    background: var(--accent-color);
-    color: var(--text-dark);
-    font-weight: 700;
-    padding: 4px 12px;
+    display: inline-block;
+    min-width: 100px;
+    padding: 5px 10px;
+    margin: 0 3px;
+    background: var(--background-white);
+    border: 2px dashed var(--border-medium);
     border-radius: var(--border-radius-small);
+    text-align: center;
     cursor: pointer;
-    transition: all var(--transition-fast);
-    margin: 0 2px;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: var(--transition-medium);
+    position: relative;
 }
 
 .story-blank:hover {
-    background: var(--warning-color);
-    color: var(--background-white);
+    border-color: var(--secondary-color);
+    background: var(--card-bg-secondary);
+    transform: translateY(-2px);
+}
+
+.story-blank.selected {
+    background: var(--error-light);
+    border-color: var(--primary-color);
+    color: var(--text-dark);
+}
+
+.story-blank.filled {
+    background: var(--card-bg-secondary);
+    border: 2px solid var(--secondary-color);
+    color: var(--text-dark);
 }
 
 .story-blank.correct {
-    background: var(--success-color);
-    color: var(--background-white);
+    background: var(--success-light);
+    border-color: var(--success-color);
+    color: var(--success-color);
 }
 
 .story-blank.incorrect {
-    background: var(--error-color);
-    color: var(--background-white);
-    animation: shake 0.3s ease;
+    background: var(--error-light);
+    border-color: var(--error-color);
+    color: var(--error-color);
+    animation: shake 0.5s ease;
 }
 
 /* =================================================================
@@ -2518,45 +2543,3 @@ p {
     background: var(--error-light);
 }
 
-/* Story Exercise */
-.story-blank {
-    display: inline-block;
-    padding: 3px 8px;
-    background: #fff9e6;
-    border: 2px dashed var(--warning-color);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all var(--transition-medium);
-    position: relative;
-    min-width: 100px;
-    text-align: center;
-}
-
-.story-blank:hover {
-    background: var(--warning-light);
-    border-style: solid;
-}
-
-.story-blank.selected {
-    background: var(--secondary-color);
-    color: white;
-    border-color: var(--secondary-color);
-}
-
-.story-blank.filled {
-    background: var(--background-white);
-    border-color: var(--border-medium);
-    border-style: solid;
-}
-
-.story-blank.correct {
-    background: var(--success-light);
-    border-color: var(--success-color);
-    color: var(--success-color);
-}
-
-.story-blank.incorrect {
-    background: var(--error-light);
-    border-color: var(--error-color);
-    color: var(--error-color);
-}
