@@ -1394,58 +1394,20 @@
             const popup = document.createElement('div');
             popup.className = 'options-popup';
 
-            popup.style.position = 'absolute';
-            popup.style.zIndex = '9999';
-            popup.style.background = '#fff';
-            popup.style.border = '3px solid #4ecdc4';
-            popup.style.borderRadius = '12px';
-            popup.style.padding = '10px';
-            popup.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
-            popup.style.minWidth = '120px';
-            popup.style.display = 'block';
-
             options.forEach(option => {
                 const optionEl = document.createElement('button');
                 optionEl.className = 'option-item';
                 optionEl.textContent = option;
-                optionEl.style.cssText = `
-                display: block;
-                width: 100%;
-                padding: 8px 12px;
-                background: #f8f6f0;
-                border: 2px solid transparent;
-                border-radius: 8px;
-                margin: 3px 0;
-                cursor: pointer;
-                font-weight: 700;
-                text-align: center;
-                transition: all 0.3s ease;
-                font-family: 'Comic Neue', cursive;
-            `;
-
-                optionEl.addEventListener('mouseenter', function () {
-                    this.style.background = '#4ecdc4';
-                    this.style.color = 'white';
-                    this.style.transform = 'translateY(-1px)';
-                });
-
-                optionEl.addEventListener('mouseleave', function () {
-                    this.style.background = '#f8f6f0';
-                    this.style.color = '#2c3e50';
-                    this.style.transform = 'translateY(0)';
-                });
-
                 optionEl.onclick = () => selectOption(blank, option, popup);
                 popup.appendChild(optionEl);
             });
 
             document.body.appendChild(popup);
-
             positionPopup(blank, popup);
 
             popup.style.opacity = '0';
             popup.style.transform = 'scale(0.8)';
-            popup.offsetHeight;
+            popup.offsetHeight; // Trigger reflow
             popup.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
             popup.style.opacity = '1';
             popup.style.transform = 'scale(1)';

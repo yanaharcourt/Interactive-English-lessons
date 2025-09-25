@@ -455,8 +455,8 @@
             <div class="decorative-shape shape-circle"></div>
             <div class="decorative-shape shape-triangle"></div>
 
-            <h1 class="title-decoration">🏠 Домашнее задание</h1>
-            <h2>Interactive Homework Tasks</h2>
+            <h1 class="title-decoration">Домашнее задание</h1>
+            <h2>Homework Tasks</h2>
 
             <!-- Задание 1: Интерактивная сортировка -->
             <div class="homework-section">
@@ -497,21 +497,21 @@
                     <!-- Колонки для сортировки -->
                     <div class="sort-columns">
                         <div class="sort-column personal-column-hw" id="descriptiveColumn">
-                            <h4>🎨 Descriptive Adjectives</h4>
+                            <h4>Descriptive Adjectives</h4>
                             <div class="drop-zone" data-type="descriptive">
                                 <p>Перетащи сюда описательные прилагательные</p>
                             </div>
                         </div>
 
                         <div class="sort-column possessive-column-hw" id="quantitativeColumn">
-                            <h4>📊 Quantitative Adjectives</h4>
+                            <h4>Quantitative Adjectives</h4>
                             <div class="drop-zone" data-type="quantitative">
                                 <p>Перетащи сюда количественные прилагательные</p>
                             </div>
                         </div>
 
                         <div class="sort-column demonstrative-column-hw" id="demonstrativeColumn">
-                            <h4>👆 Demonstrative Adjectives</h4>
+                            <h4>Demonstrative Adjectives</h4>
                             <div class="drop-zone" data-type="demonstrative">
                                 <p>Перетащи сюда указательные прилагательные</p>
                             </div>
@@ -520,7 +520,6 @@
 
                     <div class="homework-result">
                         <button onclick="resetSorting()" class="reset-btn">🔄 Сбросить</button>
-                        <div id="sortingFeedback" class="sorting-feedback"></div>
                     </div>
                 </div>
             </div>
@@ -718,10 +717,10 @@
                     <strong class="color-primary">Descriptive</strong> = КАКОЙ? (качество)<br>
                     <strong class="color-secondary">Quantitative</strong> = СКОЛЬКО? (количество)<br>
                     <strong class="color-accent">Demonstrative</strong> = ЭТОТ? ТОТ? (указание)<br><br>
-                    <strong class="color-purple">Порядок:</strong> Opinion → Size → Age → Color → Material
+                    <strong class="color-purple"></strong> Порядок: Opinion → Size → Age → Color → Material
                 </p>
                 <p class="farewell-text">
-                    Увидимся на следующем уроке! 👋
+                    Увидимся на следующем уроке! 
                 </p>
             </div>
         </div>
@@ -1468,60 +1467,20 @@
             const popup = document.createElement('div');
             popup.className = 'options-popup';
 
-            popup.style.position = 'absolute';
-            popup.style.zIndex = '9999';
-            popup.style.background = '#fff';
-            popup.style.border = '3px solid #4ecdc4';
-            popup.style.borderRadius = '12px';
-            popup.style.padding = '10px';
-            popup.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
-            popup.style.minWidth = '120px';
-            popup.style.display = 'block';
-
             options.forEach(option => {
                 const optionEl = document.createElement('button');
                 optionEl.className = 'option-item';
                 optionEl.textContent = option;
-                optionEl.style.cssText = `
-                display: block;
-                width: 100%;
-                padding: 8px 12px;
-                background: #f8f6f0;
-                border: 2px solid transparent;
-                border-radius: 8px;
-                margin: 3px 0;
-                cursor: pointer;
-                font-weight: 700;
-                text-align: center;
-                transition: all 0.3s ease;
-                font-family: 'Comic Neue', cursive;
-            `;
-
-                optionEl.addEventListener('mouseenter', function () {
-                    this.style.background = '#4ecdc4';
-                    this.style.color = 'white';
-                    this.style.transform = 'translateY(-1px)';
-                });
-
-                optionEl.addEventListener('mouseleave', function () {
-                    this.style.background = '#f8f6f0';
-                    this.style.color = '#2c3e50';
-                    this.style.transform = 'translateY(0)';
-                });
-
                 optionEl.onclick = () => selectOption(blank, option, popup);
                 popup.appendChild(optionEl);
             });
 
             document.body.appendChild(popup);
-
             positionPopup(blank, popup);
 
             popup.style.opacity = '0';
             popup.style.transform = 'scale(0.8)';
-
-            popup.offsetHeight;
-
+            popup.offsetHeight; // Trigger reflow
             popup.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
             popup.style.opacity = '1';
             popup.style.transform = 'scale(1)';
