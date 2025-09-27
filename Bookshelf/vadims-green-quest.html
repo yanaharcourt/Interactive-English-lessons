@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📖 Vadim's Green Quest - Interactive Story</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        @font-face {
+            font-family: 'Green Love';
+            src: url('../assets/Green Love otf.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        :root {
+            /* Font Variables */
+            --font-family-book-body: 'EB Garamond', sans-serif;
+        }
+
+        body {
+            background: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-family-book-body);
+        }
+
+        .book-container {
+            width: 595px;   
+            height: 680px; 
+            margin: 20px auto 20px auto; 
+            background: white;
+            border-radius: 8px;
+            box-shadow: 
+                0 0 20px rgba(0,0,0,0.1),
+                inset 0 0 0 1px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+        }
+
+        .book-spine {
+            width: 20px;
+            background: linear-gradient(to bottom, #8B4513, #A0522D);
+            box-shadow: inset -2px 0 5px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+        }
+
+        .book-content {
+            position: relative;
+        }
+
+        .book-page {
+            display: none;
+            position: absolute;
+            background: white;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .book-page.active {
+            display: block;
+            z-index: 5;
+        }
+
+        .cover-page {
+            display: block;
+            background-image: url('../assets/books img/Vadim\'s Green Quest/0.png');
+            background-size: fill;
+            background-position: top;
+            background-repeat: no-repeat;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0;
+            position: relative;
+            width: 595px;
+            height: 680px;
+            z-index: 1;
+        }
+
+        .cover-title {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Green Love', 'Comic Neue', cursive;
+            font-size: 3em;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
+            color: white;
+            font-weight: normal;
+            text-align: center;
+            white-space: nowrap;      
+            max-width: 90%;
+            line-height: 1.2;      
+            padding-bottom: 5px;      
+        }
+
+
+        .book-page:not(.cover-page) {
+            padding: 30px 40px 50px 40px;
+            width: 495px;
+            height: 680px;
+        }
+
+        .page-text {
+            font-size: 24px;
+            line-height: 1.8;
+            color: #2c3e50;
+            text-align: left;
+            margin-bottom: 20px;
+            font-family: var(--font-family-book-body);
+        }
+
+        .page-text p {
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-family: var(--font-family-book-body);
+        }
+
+        .page-content {
+            font-size: 24px;
+            font-family: var(--font-family-book-body);
+            line-height: 1.8;
+            color: #2c3e50;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .page-content p {
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-family: var(--font-family-book-body);
+        }
+        
+        .book-page:not(.cover-page) h2 {
+            font-size: 24px;
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+        }
+
+        .page-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contents-title {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            letter-spacing: 3px;
+        }
+
+        .contents-list {
+            list-style: none;
+            padding: 0;
+            font-size: 1.1em;
+            line-height: 2;
+        }
+
+        .contents-list li {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;           
+            padding: 8px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        .contents-list li:last-child {
+            border-bottom: none;
+        }
+
+        .page-number {
+            position: static;
+            bottom: 20px;
+            right: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .book-navigation {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            transform: none;
+            margin: 0 auto;
+            margin-top: 10px; 
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+            background: rgba(255,255,255,0.95);
+            padding: 15px 25px;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            width: fit-content;
+        }
+
+        .nav-button {
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-family: var(--font-family);
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 80px;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #45b7b8;
+            transform: translateY(-2px);
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .page-indicator {
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 1em;
+        }
+
+        .translatable-word {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #4ecdc4;
+            transition: all 0.3s ease;
+        }
+
+        .translatable-word:hover {
+            background-color: rgba(78, 205, 196, 0.1);
+            border-bottom-color: #4ecdc4;
+            border-bottom-style: solid;
+        }
+
+        .translation-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-weight: 600;
+        }
+
+        .translation-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #2c3e50;
+        }
+
+        .translatable-word:hover .translation-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @keyframes pageFlip {
+            0% { transform: rotateY(-10deg); opacity: 0.8; }
+            100% { transform: rotateY(0deg); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .cover-page {
+                width: 400px;
+                height: 566px;
+                padding: 0 0 40px 0;
+            }
+            
+            .book-page:not(.cover-page) {
+                width: 400px;
+                height: 566px;
+                padding: 20px 25px 30px 25px;
+            }
+            
+            .cover-title {
+                font-size: 2em;
+            }
+            
+            .book-spine {
+                width: 15px;
+            }
+            
+            .book-navigation {
+                bottom: 10px;
+                padding: 10px 20px;
+            }
+            
+            .nav-button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+                min-width: 70px;
+            }
+            
+            .page-number {
+                right: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <div class="book-spine"></div>
+        <div class="book-content">
+            
+             <!-- Обложка -->
+            <div class="book-page cover-page active" id="page-0">
+                <h1 class="cover-title">Vadim's Green Quest</h1>
+            </div>
+            
+            <!-- Contents Page -->
+            <div class="book-page" id="page-contents">
+                <div class="contents-page">
+                    <h2>CONTENTS</h2>
+                    <ul class="contents-list">
+                        <li>
+                            <span class="chapter-title">Introduction</span>
+                            <span class="page-number">2</span>
+                        </li>
+                        <li>
+                            <span class="chapter-title">Chapter 1: The Bird That Changed Everything</span>
+                            <span class="page-number">3</span>
+                        </li>
+                        <li>
+                            <span class="chapter-title">Chapter 2: From Multicraft to Real Life</span>
+                            <span class="page-number">7</span>
+                        </li>
+                        <li>
+                            <span class="chapter-title">Chapter 3: The Water Guardian</span>
+                            <span class="page-number">11</span>
+                        </li>
+                        <li>
+                            <span class="chapter-title">Chapter 4: The Lego Recycling Factory</span>
+                            <span class="page-number">15</span>
+                        </li>
+                        <li>
+                            <span class="chapter-title">Chapter 5: Eco-friendly Clash of Clans Base</span>
+                            <span class="page-number">19</span>
+                        </li>
+                        <li>
+                            <span class="chapter-title">Chapter 6: Vadim's YouTube Debut</span>
+                            <span class="page-number">23</span>
+                        </li>
+                        <li>
+                            <span class="chapter-title">Chapter 7: The Bird Returns and the Continuing Mission</span>
+                            <span class="page-number">27</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Introduction Page -->
+            <div class="book-page" id="page-intro">
+                <h2>Introduction</h2>
+                <div class="page-content">
+                    <p>Meet Vadim! He's 9 <span class="translatable-word" data-translation="лет">years old</span> and loves building with Lego, playing Clash of Clans and watching videos on YouTube. Vadim is an <span class="translatable-word" data-translation="обычный мальчик">ordinary boy</span>, but <span class="translatable-word" data-translation="скоро">soon</span> <span class="translatable-word" data-translation="что-то">something</span> <span class="translatable-word" data-translation="необычное">extraordinary</span> <span class="translatable-word" data-translation="случится">will happen</span> that will <span class="translatable-word" data-translation="изменить">change</span> his <span class="translatable-word" data-translation="взгляд на мир">view of the world</span> <span class="translatable-word" data-translation="вокруг">around</span> him.</p>
+                    
+                    <p>Join his adventure!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+        <!-- Навигация -->
+        <div class="book-navigation">
+            <button class="nav-button" id="prevBtn" onclick="previousPage()">← Prev</button>
+            <span class="page-indicator" id="pageIndicator">Page 1 of 5</span>
+            <button class="nav-button" id="nextBtn" onclick="nextPage()">Next →</button>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 0;
+const pages = document.querySelectorAll('.book-page');
+const totalPages = pages.length;
+
+function showPage(pageIndex) {
+    pages.forEach(page => page.classList.remove('active')); // снимаем active со всех страниц
+    pages[pageIndex].classList.add('active'); // включаем нужную страницу
+
+    document.getElementById('pageIndicator').textContent = `Page ${pageIndex + 1} of ${totalPages}`;
+    document.getElementById('prevBtn').disabled = pageIndex === 0;
+    document.getElementById('nextBtn').disabled = pageIndex === totalPages - 1;
+
+    window.scrollTo(0, 0);
+}
+
+showPage(0);
+
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+
+        function previousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+
+        function goToPage(pageIndex) {
+            if (pageIndex >= 0 && pageIndex < totalPages) {
+                currentPage = pageIndex;
+                showPage(currentPage);
+            }
+        }
+
+        // Навигация с клавиатуры
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextPage();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousPage();
+            }
+        });
+
+        // Инициализация
+        showPage(0);
+    </script>
+
+    <script>
+        /**
+ * Interactive Translation System for English Learning Books
+ * Автор: Claude
+ * Описание: Скрипт для показа переводов слов при наведении
+ */
+
+class TranslationSystem {
+    constructor(options = {}) {
+        this.options = {
+            tooltipClass: 'translation-tooltip',
+            wordClass: 'translatable-word',
+            hoverClass: 'word-hover',
+            dataAttribute: 'data-translation',
+            animationDuration: 300,
+            ...options
+        };
+        
+        this.init();
+    }
+
+    init() {
+        // Создаем стили для тултипов если их нет
+        this.createStyles();
+        
+        // Инициализируем все переводимые слова
+        this.initTranslatableWords();
+        
+        // Добавляем обработчики событий
+        this.addEventListeners();
+    }
+
+    createStyles() {
+        // Проверяем, есть ли уже стили
+        if (document.getElementById('translation-system-styles')) {
+            return;
+        }
+
+        const style = document.createElement('style');
+        style.id = 'translation-system-styles';
+        style.textContent = `
+            /* .${this.options.wordClass} {
+                position: relative;
+                cursor: help;
+                border-bottom: 1px dotted #4ecdc4;
+                transition: all 0.3s ease;
+                display: inline-block;
+            }
+
+            .${this.options.wordClass}:hover {
+                background-color: rgba(78, 205, 196, 0.1);
+                border-bottom-color: #4ecdc4;
+                border-bottom-style: solid;
+            }
+
+            .${this.options.tooltipClass} {
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #2c3e50;
+                color: white;
+                padding: 8px 12px;
+                border-radius: 8px;
+                font-size: 16px;
+                white-space: nowrap;
+                opacity: 0;
+                visibility: hidden;
+                transition: all ${this.options.animationDuration}ms ease;
+                z-index: 1000;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                font-family: 'Comic Neue', Arial, sans-serif;
+                font-weight: 600;
+                pointer-events: none;
+                max-width: 200px;
+                white-space: normal;
+                text-align: left;
+            }
+
+            .${this.options.tooltipClass}::after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border: 5px solid transparent;
+                border-top-color: #2c3e50;
+            }
+
+            .${this.options.wordClass}:hover .${this.options.tooltipClass} {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(-5px);
+            }
+
+            @media (max-width: 768px) {
+                .${this.options.tooltipClass} {
+                    position: fixed;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    max-width: 300px;
+                    font-size: 1em;
+                    padding: 12px 16px;
+                }
+
+                .${this.options.tooltipClass}::after {
+                    display: none;
+                }
+            } */
+        `;
+        
+        document.head.appendChild(style);
+    }
+
+    initTranslatableWords() {
+        const words = document.querySelectorAll(`[${this.options.dataAttribute}]`);
+        
+        words.forEach(word => {
+            // Добавляем класс если его нет
+            if (!word.classList.contains(this.options.wordClass)) {
+                word.classList.add(this.options.wordClass);
+            }
+            
+            // Создаем тултип
+            this.createTooltip(word);
+        });
+    }
+
+    createTooltip(wordElement) {
+        // Проверяем, есть ли уже тултип
+        if (wordElement.querySelector(`.${this.options.tooltipClass}`)) {
+            return;
+        }
+
+        const translation = wordElement.getAttribute(this.options.dataAttribute);
+        if (!translation) {
+            return;
+        }
+
+        const tooltip = document.createElement('div');
+        tooltip.className = this.options.tooltipClass;
+        tooltip.textContent = translation;
+        
+        wordElement.appendChild(tooltip);
+    }
+
+    addEventListeners() {
+        // Обработка для мобильных устройств (тап для показа/скрытия)
+        if (this.isMobile()) {
+            document.addEventListener('click', (e) => {
+                const clickedWord = e.target.closest(`.${this.options.wordClass}`);
+                
+                if (clickedWord) {
+                    e.preventDefault();
+                    this.toggleMobileTooltip(clickedWord);
+                } else {
+                    // Скрываем все активные тултипы
+                    this.hideAllMobileTooltips();
+                }
+            });
+        }
+
+        // Обработка динамически добавляемого контента
+        this.observeChanges();
+    }
+
+    toggleMobileTooltip(wordElement) {
+        const tooltip = wordElement.querySelector(`.${this.options.tooltipClass}`);
+        if (!tooltip) return;
+
+        // Скрываем все другие тултипы
+        this.hideAllMobileTooltips();
+
+        // Показываем текущий
+        tooltip.style.opacity = '1';
+        tooltip.style.visibility = 'visible';
+        tooltip.classList.add('mobile-active');
+
+        // Автоматически скрываем через 3 секунды
+        setTimeout(() => {
+            if (tooltip.classList.contains('mobile-active')) {
+                tooltip.style.opacity = '0';
+                tooltip.style.visibility = 'hidden';
+                tooltip.classList.remove('mobile-active');
+            }
+        }, 3000);
+    }
+
+    hideAllMobileTooltips() {
+        const activeTooltips = document.querySelectorAll(`.${this.options.tooltipClass}.mobile-active`);
+        activeTooltips.forEach(tooltip => {
+            tooltip.style.opacity = '0';
+            tooltip.style.visibility = 'hidden';
+            tooltip.classList.remove('mobile-active');
+        });
+    }
+
+    isMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+               window.innerWidth <= 768;
+    }
+
+    observeChanges() {
+        // Наблюдаем за изменениями в DOM для поддержки динамического контента
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        // Инициализируем новые переводимые слова
+                        const newWords = node.querySelectorAll(`[${this.options.dataAttribute}]`);
+                        newWords.forEach(word => {
+                            if (!word.classList.contains(this.options.wordClass)) {
+                                word.classList.add(this.options.wordClass);
+                                this.createTooltip(word);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    // Метод для добавления новых переводимых слов программно
+    addTranslatableWord(element, translation) {
+        element.setAttribute(this.options.dataAttribute, translation);
+        element.classList.add(this.options.wordClass);
+        this.createTooltip(element);
+    }
+
+    // Метод для удаления переводов
+    removeTranslation(element) {
+        element.classList.remove(this.options.wordClass);
+        element.removeAttribute(this.options.dataAttribute);
+        const tooltip = element.querySelector(`.${this.options.tooltipClass}`);
+        if (tooltip) {
+            tooltip.remove();
+        }
+    }
+
+    // Метод для обновления перевода
+    updateTranslation(element, newTranslation) {
+        element.setAttribute(this.options.dataAttribute, newTranslation);
+        const tooltip = element.querySelector(`.${this.options.tooltipClass}`);
+        if (tooltip) {
+            tooltip.textContent = newTranslation;
+        }
+    }
+
+    // Метод для массового добавления переводов из объекта
+    addTranslationsFromObject(translations) {
+        Object.keys(translations).forEach(word => {
+            const elements = document.querySelectorAll(`*:not(script):not(style)`);
+            elements.forEach(el => {
+                if (el.childNodes.length > 0) {
+                    el.childNodes.forEach(node => {
+                        if (node.nodeType === Node.TEXT_NODE && node.textContent.includes(word)) {
+                            const parent = node.parentNode;
+                            const text = node.textContent;
+                            const regex = new RegExp(`\\b${word}\\b`, 'gi');
+                            
+                            if (regex.test(text)) {
+                                const newHTML = text.replace(regex, 
+                                    `<span class="${this.options.wordClass}" ${this.options.dataAttribute}="${translations[word]}">${word}</span>`
+                                );
+                                
+                                const tempDiv = document.createElement('div');
+                                tempDiv.innerHTML = newHTML;
+                                
+                                while (tempDiv.firstChild) {
+                                    parent.insertBefore(tempDiv.firstChild, node);
+                                }
+                                parent.removeChild(node);
+                                
+                                // Инициализируем новые слова
+                                const newWords = parent.querySelectorAll(`[${this.options.dataAttribute}]`);
+                                newWords.forEach(newWord => this.createTooltip(newWord));
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    }
+
+    // Метод для получения статистики переводов
+    getStats() {
+        const words = document.querySelectorAll(`.${this.options.wordClass}`);
+        return {
+            totalWords: words.length,
+            uniqueWords: new Set(Array.from(words).map(w => w.textContent)).size,
+            wordsWithTranslations: Array.from(words).filter(w => w.getAttribute(this.options.dataAttribute)).length
+        };
+    }
+
+    // Метод для экспорта всех переводов
+    exportTranslations() {
+        const words = document.querySelectorAll(`.${this.options.wordClass}`);
+        const translations = {};
+        
+        words.forEach(word => {
+            const text = word.textContent.trim();
+            const translation = word.getAttribute(this.options.dataAttribute);
+            if (text && translation) {
+                translations[text] = translation;
+            }
+        });
+        
+        return translations;
+    }
+
+    // Метод для включения/выключения системы переводов
+    toggle(enabled = true) {
+        const words = document.querySelectorAll(`.${this.options.wordClass}`);
+        words.forEach(word => {
+            if (enabled) {
+                word.style.borderBottom = '1px dotted #4ecdc4';
+                word.style.cursor = 'help';
+            } else {
+                word.style.borderBottom = 'none';
+                word.style.cursor = 'default';
+            }
+        });
+    }
+
+    // Метод для изменения языка переводов
+    changeLanguage(newTranslations) {
+        const words = document.querySelectorAll(`.${this.options.wordClass}`);
+        words.forEach(word => {
+            const text = word.textContent.trim();
+            if (newTranslations[text]) {
+                this.updateTranslation(word, newTranslations[text]);
+            }
+        });
+    }
+}
+
+// Готовые словари переводов
+const TranslationDictionaries = {
+    // Базовый словарь для начинающих
+    beginner: {
+        "hello": "привет",
+        "goodbye": "до свидания",
+        "yes": "да",
+        "no": "нет",
+        "cat": "кот",
+        "dog": "собака",
+        "bird": "птица",
+        "tree": "дерево",
+        "house": "дом",
+        "car": "машина",
+        "book": "книга",
+        "water": "вода",
+        "food": "еда",
+        "happy": "счастливый",
+        "sad": "грустный",
+        "big": "большой",
+        "small": "маленький",
+        "good": "хороший",
+        "bad": "плохой",
+        "beautiful": "красивый"
+    },
+
+    // Экологический словарь
+    environmental: {
+        "environment": "окружающая среда",
+        "plastic": "пластик",
+        "recycle": "перерабатывать",
+        "pollution": "загрязнение",
+        "nature": "природа",
+        "green": "зеленый",
+        "clean": "чистый",
+        "dirty": "грязный",
+        "waste": "отходы",
+        "rubbish": "мусор",
+        "protect": "защищать",
+        "save": "спасать",
+        "earth": "земля",
+        "planet": "планета",
+        "eco-friendly": "экологичный",
+        "sustainable": "устойчивый",
+        "renewable": "возобновляемый",
+        "conservation": "сохранение",
+        "habitat": "среда обитания",
+        "ecosystem": "экосистема"
+    },
+
+    // Расширенный словарь
+    advanced: {
+        "extraordinary": "необыкновенный",
+        "adventure": "приключение",
+        "mysterious": "таинственный",
+        "discover": "открывать",
+        "explore": "исследовать",
+        "journey": "путешествие",
+        "challenge": "вызов",
+        "courage": "храбрость",
+        "wisdom": "мудрость",
+        "knowledge": "знание",
+        "experience": "опыт",
+        "achievement": "достижение",
+        "success": "успех",
+        "failure": "неудача",
+        "opportunity": "возможность",
+        "responsibility": "ответственность",
+        "independence": "независимость",
+        "creativity": "творчество",
+        "imagination": "воображение",
+        "inspiration": "вдохновение"
+    }
+};
+
+// Функция для быстрой инициализации
+function initTranslationSystem(options = {}, dictionary = null) {
+    const system = new TranslationSystem(options);
+    
+    if (dictionary && TranslationDictionaries[dictionary]) {
+        system.addTranslationsFromObject(TranslationDictionaries[dictionary]);
+    }
+    
+    return system;
+}
+
+// Автоматическая инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    // Проверяем, есть ли переводимые слова на странице
+    if (document.querySelector('[data-translation]')) {
+        window.translationSystem = new TranslationSystem();
+        console.log('Translation system initialized automatically');
+        console.log('Translation stats:', window.translationSystem.getStats());
+    }
+});
+
+// Экспортируем для использования в модулях
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { TranslationSystem, TranslationDictionaries, initTranslationSystem };
+}
+    </script>
+</body>
+</html>
