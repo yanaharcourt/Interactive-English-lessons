@@ -489,9 +489,8 @@
                     </div>
 
                     <div class="homework-result">
-                        <button onclick="checkTranslations()" class="check-btn">📝 Проверить переводы</button>
-                        <button onclick="resetTranslations()" class="reset-btn">🧹 Очистить</button>
-                        <div id="translationFeedback" class="creation-feedback"></div>
+                        <button onclick="checkTranslations()" class="check-btn">Проверить</button>
+                        <button onclick="resetTranslations()" class="reset-btn">Очистить</button>
                     </div>
                 </div>
             </div>
@@ -527,9 +526,8 @@
                     </div>
 
                     <div class="homework-result">
-                        <button onclick="checkConjugations()" class="check-btn">🔍 Проверить спряжения</button>
-                        <button onclick="resetConjugations()" class="reset-btn">🔄 Сброс</button>
-                        <div id="conjugationFeedback" class="creation-feedback"></div>
+                        <button onclick="checkConjugations()" class="check-btn">Проверить</button>
+                        <button onclick="resetConjugations()" class="reset-btn">Сброс</button>
                     </div>
                 </div>
             </div>
@@ -791,15 +789,6 @@
                 Incorrecto. ${currentQuestion.explanation}
             </div>`;
             }
-
-            if (exercise1Data.answered.every(a => a)) {
-                setTimeout(() => {
-                    feedbackEl.innerHTML += `
-                <div style="background: #d5f4e6; padding: 20px; border-radius: 15px; margin-top: 15px; border: 2px solid #27ae60;">
-                    🏆 ¡Ejercicio terminado! Resultado: ${exercise1Data.score}/8
-                </div>`;
-                }, 1000);
-            }
         }
 
         function nextQuestion1() {
@@ -980,15 +969,6 @@
             <div class="feedback incorrect">
                 Incorrecto. ${currentQuestion.explanation}
             </div>`;
-            }
-
-            if (exercise2Data.answered.every(a => a)) {
-                setTimeout(() => {
-                    feedbackEl.innerHTML += `
-                <div style="background: #d5f4e6; padding: 20px; border-radius: 15px; margin-top: 15px; border: 2px solid #27ae60;">
-                    🏆 ¡Ejercicio terminado! Resultado: ${exercise2Data.score}/6
-                </div>`;
-                }, 1000);
             }
         }
 

@@ -400,7 +400,7 @@
                         <p><strong>3.</strong> The childrens' playground is big.</p>
                         <div class="correction-row">
                             <input type="text" class="correction-input" placeholder="Напиши правильно..."
-                                data-correct="The children's playground is big.">
+                                data-correct="The childrens' playground is big.">
                             <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
                         </div>
                     </div>
@@ -546,9 +546,8 @@
                     </div>
 
                     <div class="homework-result">
-                        <button onclick="checkMatching()" class="check-btn">🔍 Проверить соответствия</button>
-                        <button onclick="resetMatching()" class="reset-btn">🔄 Сброс</button>
-                        <div id="matchingFeedback" class="matching-feedback"></div>
+                        <button onclick="checkMatching()" class="check-btn">Проверить</button>
+                        <button onclick="resetMatching()" class="reset-btn">Сброс</button>
                     </div>
                 </div>
             </div>
@@ -837,14 +836,7 @@
             </div>`;
             }
 
-            if (exercise1Data.answered.every(a => a)) {
-                setTimeout(() => {
-                    feedbackEl.innerHTML += `
-                <div style="background: #d5f4e6; padding: 20px; border-radius: 15px; margin-top: 15px; border: 2px solid #27ae60;">
-                    🏆 Все задания выполнены! Результат: ${exercise1Data.score}/8
-                </div>`;
-                }, 1000);
-            }
+            
         }
 
         function nextQuestion1() {
