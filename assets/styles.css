@@ -445,11 +445,9 @@ body {
 .nav-section {
     background: var(--background-white);
     padding: 20px 0;
-    box-shadow: var(--shadow-light);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 2px solid var(--border-light);
 }
 
 .nav-buttons {
