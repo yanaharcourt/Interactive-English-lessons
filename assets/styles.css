@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --primary-color: #ff6b6b;
     --secondary-color: #4ecdc4;
     --accent-color: #ffe66d;
@@ -22,6 +22,42 @@
     --orange-color: #e67e22;
     --pink-color: #e91e63;
     --teal-color: #1abc9c;
+} */
+:root {
+    /* Основные цвета сайта */
+    --primary-color: #667eea;           /* Главный акцент (синие элементы) */
+    --secondary-color: #f1c40f;         /* Второстепенный акцент, яркие детали */
+    --accent-color: #667eea;            /* Общие акцентные элементы */
+    --text-dark: #2c3e50;               /* Основной текст */
+    --text-light: #7f8c8d;              /* Второстепенный текст */
+    --text-muted: #95a5a6;              /* Подписи, заметки */
+    --background-main: #e1e8f7;         /* Основной фон страницы */
+    --background-light: #f8f9ff;        /* Фоны карточек и секций */
+    --background-white: #ffffff;        /* Чистый белый фон */
+    --border-light: #e8ecff;            /* Лёгкие рамки */
+    
+    /* Статусы */
+    --success-color: #27ae60;           /* Успешные действия, correct */
+    --error-color: #e74c3c;             /* Ошибки, danger */
+    --warning-color: #f1c40f;           /* Предупреждения, accent-gold */
+    --info-color: #667eea;              /* Информационные элементы */
+    
+    /* Акценты и кнопки */
+    --btn-color: #667eea;               /* Цвет кнопок */
+    --btn-text: #ffffff;                /* Текст на кнопках */
+    --purple-color: #764ba2;            /* Акцентные элементы, активные состояния */
+    --orange-color: #f1c40f;            /* Дополнительные акценты */
+    --pink-color: #e91e63;              /* Если нужны яркие элементы */
+    --teal-color: #1abc9c;              /* Доп. акцент или успешные элементы */
+    
+    /* Тени и переходы */
+    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.1);
+    --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.3);
+    --transition: 0.3s ease;
+    
+    /* Шрифты */
+    --font-family: 'Comic Neue', cursive;
 }
 
 * {
@@ -182,7 +218,7 @@ body {
 
 .lesson-card {
     background: var(--background-white);
-    border-radius: 20px;
+    border-radius: 50px;
     padding: 30px;
     box-shadow: var(--shadow-light);
     transition: all var(--transition);
@@ -282,7 +318,6 @@ body {
 }
 
 .lesson-card.grammar .topic-tag {
-    background: rgba(255, 107, 107, 0.1);
     border-color: var(--primary-color);
     color: var(--primary-color);
 }
@@ -327,7 +362,10 @@ body {
 }
 
 .lesson-card.grammar .lesson-button {
-    background: linear-gradient(135deg, var(--primary-color), #ff8a8a);
+    background: var(--background-light);
+    color: var(--text-dark);
+    border: 2px solid var(--border-light);
+    border-radius: 30px;
 }
 
 .lesson-card.vocabulary .lesson-button {
@@ -422,9 +460,10 @@ body {
 }
 
 .nav-btn {
+    width: 200px;
     background: var(--background-light);
     color: var(--text-dark);
-    padding: 12px 24px;
+    padding: 10px 24px;
     border: 2px solid var(--border-light);
     border-radius: 25px;
     text-decoration: none;
@@ -433,14 +472,14 @@ body {
     font-size: 1.1em;
     transition: all var(--transition);
     display: inline-flex;
-    align-items: center;
+     align-items: center;      
+    justify-content: center; 
     gap: 8px;
 }
 
 .nav-btn:hover {
-    background: var(--secondary-color);
+    background: var(--primary-color);
     color: white;
-    border-color: var(--secondary-color);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
 }
@@ -530,7 +569,7 @@ Bookshelf
 
 .book-card {
     background: var(--background-white);
-    border-radius: 20px;
+    border-radius: 50px;
     padding: 0;
     box-shadow: var(--shadow-light);
     transition: all var(--transition);
@@ -634,10 +673,10 @@ Bookshelf
 .read-button {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(135deg, var(--purple-color), var(--secondary-color));
-    color: white;
-    border: none;
-    border-radius: 10px;
+    background: var(--background-light);
+    color: var(--text-dark);
+    border: 2px solid var(--border-light);
+    border-radius: 30px;
     font-family: var(--font-family);
     font-size: 1.1em;
     font-weight: 700;
@@ -646,7 +685,6 @@ Bookshelf
 }
 
 .read-button:hover {
-    background: linear-gradient(135deg, var(--secondary-color), var(--purple-color));
     transform: translateY(-2px);
 }
 

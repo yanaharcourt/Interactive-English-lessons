@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📚 Interactive Bookshelf - English Stories</title>
+    <title>Bookshelf - English Stories</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
         </div>
         <div class="container">
             <h1>Bookshelf</h1>
-            <p>Discover amazing English stories with beautiful illustrations and audio</p>
+            <!-- <p>Discover amazing English stories with beautiful illustrations and audio</p> -->
         </div>
     </div>
 
@@ -27,7 +27,7 @@
         <div class="container">
             <div class="nav-buttons">
                 <a href="index.html" class="nav-btn">Home</a>
-                <a href="bookshelf.html" class="nav-btn active">Stories</a>
+                <a href="bookshelf.html" class="nav-btn active">Bookshelf</a>
                 <a href="https://yanaharcourt.dev/cambridge_voca/" class="nav-btn">Vocabulary</a>
             </div>
         </div>
@@ -50,25 +50,30 @@
 
             <div class="books-grid" id="booksGrid">
                 <!-- Beginner Level Books -->
+
+                <!-- Vadim's Green Quest -->
                 <div class="book-card beginner" data-level="beginner">
                     <div class="book-cover">
-                        <div class="book-cover-icon">🐱</div>
+                        <div class="book-cover-icon">🌍</div>
                         <div class="level-badge">Beginner</div>
                     </div>
                     <div class="book-content">
-                        <h3 class="book-title">The Little Cat's Adventure</h3>
-                        <p class="book-description">Follow a curious little cat as it explores the garden and meets new friends. Perfect for beginners with simple vocabulary and short sentences.</p>
+                        <h3 class="book-title">Vadim's Green Quest</h3>
+                        <p class="book-description">
+                            Join 9-year-old Vadim on his eco-adventure! After saving a bird, he learns about recycling, water conservation, and protecting nature...
+                        </p>
                         <div class="book-stats">
-                            <div class="book-stat">⏱️ 5 min</div>
-                            <div class="book-stat">📄 12 pages</div>
-                            <div class="book-stat">🔤 50 words</div>
+                            <div class="book-stat">⏱️ 15 min</div>
+                            <div class="book-stat">📄 19 pages</div>
+                            <div class="book-stat">🔤 ~250 words</div>
                         </div>
-                        <button class="read-button" onclick="openBook('cat-adventure')">📖 Read Story</button>
+                        <button class="read-button" onclick="openBook('./Bookshelf/vadims-green-quest.html')">Read Story</button>
                     </div>
                 </div>
 
+
                 <!-- Elementary Level Books -->
-                <div class="book-card elementary" data-level="elementary">
+                <!-- <div class="book-card elementary" data-level="elementary">
                     <div class="book-cover">
                         <div class="book-cover-icon">🏰</div>
                         <div class="level-badge">Elementary</div>
@@ -83,10 +88,10 @@
                         </div>
                         <button class="read-button" onclick="openBook('magic-castle')">📖 Read Story</button>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Intermediate Level Books -->
-                <div class="book-card intermediate" data-level="intermediate">
+                <!-- <div class="book-card intermediate" data-level="intermediate">
                     <div class="book-cover">
                         <div class="book-cover-icon">🌊</div>
                         <div class="level-badge">Intermediate</div>
@@ -101,7 +106,7 @@
                         </div>
                         <button class="read-button" onclick="openBook('ocean-mysteries')">📖 Read Story</button>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Advanced Level Books -->
                 <!-- <div class="book-card advanced coming-soon" data-level="advanced">
@@ -143,22 +148,17 @@
     </div>
 
     <script>
-        // Level filtering functionality
+        // function of: filtering books by level
         document.addEventListener('DOMContentLoaded', function() {
             const levelFilters = document.querySelectorAll('.level-filter');
             const bookCards = document.querySelectorAll('.book-card');
 
             levelFilters.forEach(filter => {
                 filter.addEventListener('click', function() {
-                    // Remove active class from all filters
                     levelFilters.forEach(f => f.classList.remove('active'));
-                    
-                    // Add active class to clicked filter
                     this.classList.add('active');
                     
                     const selectedLevel = this.getAttribute('data-level');
-                    
-                    // Show/hide books based on selected level
                     bookCards.forEach(card => {
                         if (selectedLevel === 'all' || card.getAttribute('data-level') === selectedLevel) {
                             card.style.display = 'flex';
@@ -170,7 +170,7 @@
                 });
             });
 
-            // Add hover effects to book cards
+            // function of: hover animation for cards
             bookCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     if (!this.classList.contains('coming-soon')) {
@@ -184,20 +184,12 @@
             });
         });
 
-        // Function to open a book (placeholder for now)
-        function openBook(bookId) {
-            // For now, show an alert. Later this will open the actual book reader
-            alert(`Opening "${bookId}" book reader. This feature will be implemented soon with beautiful illustrations and audio narration!`);
-            
-            // TODO: Implement book reader with:
-            // - Page by page navigation
-            // - Audio narration
-            // - Interactive elements
-            // - Progress tracking
-            // - Vocabulary highlights
+        // function of: opening a book
+        function openBook(path) {
+            window.open(path, '_blank');
         }
 
-        // Add fade-in animation
+        // function of: fade-in animation
         const style = document.createElement('style');
         style.textContent = `
             @keyframes fadeIn {
@@ -207,5 +199,6 @@
         `;
         document.head.appendChild(style);
     </script>
+
 </body>
 </html>
