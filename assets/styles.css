@@ -14,7 +14,7 @@
     --warning-color: #f39c12;
     --info-color: #3498db;
     --purple-color: #9b59b6;
-    --font-family: 'Comic Neue', cursive;
+    --font-family: 'Quicksand', cursive;
     --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
     --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.1);
     --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -24,40 +24,40 @@
     --teal-color: #1abc9c;
 } */
 :root {
-    /* Основные цвета сайта */
-    --primary-color: #667eea;           /* Главный акцент (синие элементы) */
-    --secondary-color: #f1c40f;         /* Второстепенный акцент, яркие детали */
-    --accent-color: #667eea;            /* Общие акцентные элементы */
-    --text-dark: #2c3e50;               /* Основной текст */
-    --text-light: #7f8c8d;              /* Второстепенный текст */
-    --text-muted: #95a5a6;              /* Подписи, заметки */
-    --background-main: #e1e8f7;         /* Основной фон страницы */
-    --background-light: #f8f9ff;        /* Фоны карточек и секций */
-    --background-white: #ffffff;        /* Чистый белый фон */
-    --border-light: #e8ecff;            /* Лёгкие рамки */
-    
+    --primary-color: #667eea;
+    --secondary-color: #f1c40f;
+    --accent-color: #667eea;
+    --text-dark: #2c3e50;
+    --text-light: #7f8c8d;
+    --text-muted: #95a5a6;
+    --background-main: #e1e8f7;
+    --background-light: #f8f9ff;
+    --background-white: #ffffff;
+    --border-light: #e8ecff;
+
     /* Статусы */
-    --success-color: #27ae60;           /* Успешные действия, correct */
-    --error-color: #e74c3c;             /* Ошибки, danger */
-    --warning-color: #f1c40f;           /* Предупреждения, accent-gold */
-    --info-color: #667eea;              /* Информационные элементы */
-    
+    --success-color: #27ae60;
+    --error-color: #e74c3c;
+    --warning-color: #f1c40f;
+    --info-color: #667eea;
+
     /* Акценты и кнопки */
-    --btn-color: #667eea;               /* Цвет кнопок */
-    --btn-text: #ffffff;                /* Текст на кнопках */
-    --purple-color: #764ba2;            /* Акцентные элементы, активные состояния */
-    --orange-color: #f1c40f;            /* Дополнительные акценты */
-    --pink-color: #e91e63;              /* Если нужны яркие элементы */
-    --teal-color: #1abc9c;              /* Доп. акцент или успешные элементы */
-    
+    --btn-color: #667eea;
+    --btn-text: #ffffff;
+    --purple-color: #764ba2;
+    --orange-color: #f1c40f;
+    --pink-color: #e91e63;
+    --teal-color: #1abc9c;
+
     /* Тени и переходы */
     --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
     --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.1);
     --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.3);
     --transition: 0.3s ease;
-    
+
     /* Шрифты */
-    --font-family: 'Comic Neue', 'Segoe UI', 'Arial', sans-serif;
+    --font-family: 'Quicksand', sans-serif;
+    --font-family-secondary: 'Inter', sans-serif;
 }
 
 * {
@@ -196,7 +196,8 @@ body {
 }
 
 .intro-section h2 {
-    font-size: 2.5em;
+    font-family: 'Quicksand', 'Roboto', 'Arial', sans-serif;
+    font-size: 2rem;
     color: var(--text-dark);
     margin-bottom: 20px;
     font-weight: 700;
@@ -302,6 +303,7 @@ body {
 }
 
 .lesson-topics {
+    font-size: 0.9rem;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -642,20 +644,24 @@ Bookshelf
     border-radius: 20px 20px 0 0;
 }
 
-.book-card.beginner .book-cover { 
-    background: linear-gradient(135deg, var(--success-color), var(--teal-color)); 
+.book-card.beginner .book-cover {
+    background: linear-gradient(135deg, var(--success-color), var(--teal-color));
 }
-.book-card.elementary .book-cover { 
-    background: linear-gradient(135deg, var(--info-color), var(--secondary-color)); 
+
+.book-card.elementary .book-cover {
+    background: linear-gradient(135deg, var(--info-color), var(--secondary-color));
 }
-.book-card.intermediate .book-cover { 
-    background: linear-gradient(135deg, var(--warning-color), var(--accent-color)); 
+
+.book-card.intermediate .book-cover {
+    background: linear-gradient(135deg, var(--warning-color), var(--accent-color));
 }
-.book-card.advanced .book-cover { 
-    background: linear-gradient(135deg, var(--error-color), var(--pink-color)); 
+
+.book-card.advanced .book-cover {
+    background: linear-gradient(135deg, var(--error-color), var(--pink-color));
 }
-.book-card.expert .book-cover { 
-    background: linear-gradient(135deg, var(--purple-color), var(--error-color)); 
+
+.book-card.expert .book-cover {
+    background: linear-gradient(135deg, var(--purple-color), var(--error-color));
 }
 
 .book-cover-icon {

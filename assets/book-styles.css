@@ -46,8 +46,8 @@ VARIABLES
 } */
 :root {
     /* Font Variables */
-    --font-family: 'Comic Neue', 'Segoe UI', 'Arial', sans-serif;
-    --font-family-secondary: 'Poppins', sans-serif;
+    --font-family: 'Quicksand', sans-serif;
+    --font-family-secondary: 'Inter', sans-serif;
     --font-family-book-body: 'EB Garamond', sans-serif;
 
     /* Basic Colors  */

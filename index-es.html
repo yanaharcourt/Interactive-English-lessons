@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive English Lessons</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <!--  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&subset=cyrillic,latin&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <!-- <div class="header">
+        <div class="decorative-elements">
+            <div class="floating-icon">📚</div>
+            <div class="floating-icon">✨</div>
+            <div class="floating-icon">🎯</div>
+            <div class="floating-icon">🌟</div>
+        </div>
+        <div class="container">
+            <h1>Interactive English </h1>
+        </div>
+    </div> -->
+
+    <div class="nav-section">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="#" class="nav-btn active">Home</a>
+                <a href="bookshelf.html" class="nav-btn">Bookshelf</a>
+                <a href="https://yanaharcourt.dev/cambridge_voca/" class="nav-btn">Vocabulary</a>
+            
+                <div class="language-switcher">
+                <a href="./index.html" class="language-btn" title="Swith to English">
+                    <span class="language-text">EN</span>
+                </a>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="intro-section">
+                <h2>Выбери презентацию для изучения</h2>
+            </div>
+
+            <div class="lessons-grid">
+                <!-- SER vs ESTAR -->
+                <div class="lesson-card grammar" onclick="openLesson('./Spanish presentations/Ser_estar.html')">
+                    <h3 class="lesson-title">SER vs ESTAR</h3>
+                    <p class="lesson-description">Learn the difference between two Spanish verbs meaning "to be" - when to use SER for permanent qualities and ESTAR for temporary states.</p>
+                    <div class="lesson-topics">
+                        <span class="topic-tag">SER - Permanent</span>
+                        <span class="topic-tag">ESTAR - Temporary</span>
+                        <span class="topic-tag">Conjugations</span>
+                    </div>
+                    <button class="lesson-button">Start Learning</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="footer">
+        <div class="container">
+            <p>🌟 Interactive English Lessons</p>
+        </div>
+    </div> -->
+
+    <script>
+        function openLesson(filename) {
+            window.location.href = filename;
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.lesson-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) rotate(1deg)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) rotate(0)';
+                });
+                
+                // Add click animation
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+
+        // Add floating animation to header icons
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingIcons = document.querySelectorAll('.floating-icon');
+            
+            floatingIcons.forEach((icon, index) => {
+                icon.style.animationDelay = `${index * 0.5}s`;
+            });
+        });
+    </script>
+</body>
+</html>
