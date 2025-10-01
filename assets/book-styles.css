@@ -404,39 +404,3 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-    .cover-page {
-        width: 400px;
-        height: 566px;
-        padding: 0 0 40px 0;
-    }
-
-    .book-page:not(.cover-page) {
-        width: 400px;
-        height: 566px;
-        padding: 20px 25px 30px 25px;
-    }
-
-    .cover-title {
-        font-size: 2em;
-    }
-
-    .book-spine {
-        width: 15px;
-    }
-
-    .book-navigation {
-        bottom: 10px;
-        padding: 10px 20px;
-    }
-
-    .nav-button {
-        padding: 10px 15px;
-        font-size: 0.9em;
-        min-width: 70px;
-    }
-
-    .page-number {
-        right: 25px;
-    }
-}
