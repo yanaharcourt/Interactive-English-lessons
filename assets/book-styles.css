@@ -46,7 +46,7 @@ VARIABLES
 } */
 :root {
     /* Font Variables */
-    --font-family: 'Comic Neue', cursive;
+    --font-family: 'Comic Neue', 'Segoe UI', 'Arial', sans-serif;
     --font-family-secondary: 'Poppins', sans-serif;
     --font-family-book-body: 'EB Garamond', sans-serif;
 
@@ -96,6 +96,7 @@ body {
     margin: 0;
     padding: 20px;
     font-family: var(--font-family-book-body);
+    font-style: normal;
 }
 
 .book-container {

@@ -10,7 +10,7 @@ VARIABLES
 ================================================================= */
 :root {
     /* Font Variables */
-    --font-family: 'Comic Neue', cursive;
+    --font-family: 'Comic Neue', 'Segoe UI', 'Arial', sans-serif;
     --font-family-secondary: 'Poppins', sans-serif;
 
     /* Basic Colors  */
@@ -111,6 +111,7 @@ RESET & BASE STYLES - БАЗОВЫЕ СТИЛИ
 
 body {
     font-family: var(--font-family);
+    font-style: normal;
     background: var(--background-main);
     color: var(--text-dark);
     margin: 0;
