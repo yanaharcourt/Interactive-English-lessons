@@ -1,46 +1,29 @@
 /* =================================================================
-UNIFIED PRESENTATION STYLES
-================================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-/* =================================================================
 VARIABLES 
 ================================================================= */
 :root {
-    /* Font Variables */
     --font-family: 'Quicksand', sans-serif;
     --font-family-secondary: 'Inter', sans-serif;
 
-    /* Basic Colors  */
-    --primary-color: #ff6b6b;
-    --secondary-color: #4ecdc4;
-    --accent-color: #ffe66d;
-    --purple-color: #9b59b6;
-    --past-color: #e67e22;
-
-    /* Text Colors */
+    --primary-color: #667eea;
+    --accent-color: #667eea;
     --text-dark: #2c3e50;
-    --text-light: #34495e;
-    --text-muted: #7f8c8d;
-
-    /* Background Colors */
-    --background-main: #f8f6f0;
-    --background-presentation: #faf8f3;
+    --text-light: #7f8c8d;
+    --text-muted: #95a5a6;
+    --background-main: #e1e8f7;
+    --background-presentation: #f8f9ff;
     --background-white: #ffffff;
-    --background-light: #f8f9fa;
-
-    /* Success & Error Colors */
     --success-color: #27ae60;
     --success-light: #d5f4e6;
-    --warning-color: #f39c12;
+    --warning-color: #f1c40f;
     --warning-light: #fff3cd;
     --error-color: #e74c3c;
     --error-light: #ffeaea;
+    --btn-color: #667eea;
+    --btn-text: #ffffff;
 
-    /* Border & Utils */
-    --border-light: #dee2e6;
+    /* Border & utils */
+    --border-light: #e8ecff;
     --border-medium: #bdc3c7;
     --border-dark: #e8e4d9;
     --border-radius-small: 8px;
@@ -48,57 +31,17 @@ VARIABLES
     --border-radius-large: 20px;
     --border-radius-xl: 25px;
 
-    /* Shadows */
-    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
-    --shadow-medium: 0 5px 20px rgba(0, 0, 0, 0.15);
-    --shadow-dark: 0 8px 20px rgba(0, 0, 0, 0.2);
-
-    /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-medium: 0.3s ease;
-    --transition-slow: 0.5s ease;
-
-    /* Cambridge Dictionary Colors */
-    --bg-color: #e1e8f7;
-    --heading-color: #2c3e50;
-    --text-hover: #667eea;
-    --body-1: #2c3e50;
-    --body-2: #7f8c8d;
-    --accent-primary: #667eea;
-    --tag-color: rgba(241, 196, 15, 0.15);
-    --accent-gold: #f1c40f;
-    --nav-bg: #e8ecff;
-    --nav-text: var(--body-1);
-    --nav-text-hover: #667eea;
-    --nav-text-active: #764ba2;
-    --btn-color: #667eea;
-    --btn-text: #ffffff;
-    --icon-color: var(--body-1);
-    --card-bg: #ffffff;
-    --card-stroke: #e8ecff;
-    --card-text-primary: #2c3e50;
-    --card-bg-secondary: #f8f9ff;
-    --card-stroke-secondary: #d1d8ff;
-    --card-text-secondary: #2c3e50;
-    --card-hover-secondary: rgba(102, 126, 234, 0.12);
-    --card-bg-tertiary: #e8ecff;
-    --card-stroke-tertiary: #c5ceff;
-    --card-text-tertiary: var(--body-2);
-    --card-hover-tertiary: rgba(102, 126, 234, 0.08);
-    --card-bg-hover: #f0f4f8;
-    --correct-bg: rgba(46, 204, 113, 0.25);
-    --correct-border: #2ecc71;
-    --correct-text: #27ae60;
-    --danger: #e74c3c;
-    --danger-bg: rgba(231, 76, 60, 0.25);
-    --danger-border: #e74c3c;
-    --danger-text: #c0392b;
-    --neutral-bg: rgba(127, 140, 141, 0.25);
-    --neutral-border: #7f8c8d;
-    --neutral-text: #95a5a6;
-    --note: rgba(102, 126, 234, 0.1);
-    --card-warning: #f1c40f;
+    /* --- font-size scale --- */
+    --fs-xxs: 0.75rem;   /* ~12px */
+    --fs-xs:  0.875rem;  /* ~14px */
+    --fs-sm:  1rem;      /* 16px */
+    --fs-md:  1.125rem;  /* 18px */
+    --fs-lg:  1.25rem;   /* 20px */
+    --fs-xl:  1.5rem;    /* 24px */
+    --fs-2xl: 2rem;      /* 32px */
+    --fs-3xl: 2.8rem;    /* ~44.8px */
 }
+
 
 /* =================================================================
 RESET & BASE STYLES - БАЗОВЫЕ СТИЛИ
@@ -172,7 +115,6 @@ SLIDES & NAVIGATION - СЛАЙДЫ И НАВИГАЦИЯ
     align-items: center;
     padding: 15px 40px;
     background: var(--background-main);
-    border-top: 3px solid var(--border-dark);
     flex-shrink: 0;
     position: relative;
     z-index: 1000;
@@ -189,12 +131,11 @@ SLIDES & NAVIGATION - СЛАЙДЫ И НАВИГАЦИЯ
     font-weight: 700;
     font-family: var(--font-family);
     transition: all var(--transition-medium);
-    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
 }
 
 .nav-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 2px 20px var(--btn-color);
 }
 
 .nav-btn:disabled {
@@ -207,11 +148,10 @@ SLIDES & NAVIGATION - СЛАЙДЫ И НАВИГАЦИЯ
 .slide-counter {
     color: var(--text-dark);
     font-weight: 700;
-    font-size: 1.2em;
+    font-size: 1rem;
     background: var(--background-white);
     padding: 10px 20px;
     border-radius: var(--border-radius-large);
-    border: 2px solid var(--border-dark);
 }
 
 /* =================================================================
@@ -240,7 +180,7 @@ h2 {
 
 h3 {
     color: var(--text-dark);
-    font-size: 1.8em;
+    font-size: 1.8rem;
     margin-bottom: 20px;
     font-weight: 600;
 }
@@ -289,7 +229,7 @@ p {
     right: -30px;
     width: 100px;
     height: 60px;
-    background: var(--secondary-color);
+    background: var(--accent-color);
     transform: rotate(45deg);
     opacity: 0.1;
     z-index: 0;
@@ -311,7 +251,7 @@ p {
 .star-2 {
     bottom: 20%;
     left: 10%;
-    color: var(--secondary-color);
+    color: var(--accent-color);
 }
 
 .star-3 {
@@ -339,7 +279,7 @@ p {
 .shape-circle {
     width: 60px;
     height: 60px;
-    background: var(--secondary-color);
+    background: var(--accent-color);
     border-radius: 50%;
     bottom: 25%;
     right: 8%;
@@ -463,7 +403,7 @@ p {
     background: var(--background-white);
     border: 3px solid var(--primary-color);
     padding: 35px;
-    border-radius: var(--border-radius-xl);
+    border-radius: 40px;
     text-align: center;
     margin: 30px 0;
     position: relative;
@@ -473,9 +413,9 @@ p {
 
 .example-box {
     background: var(--background-white);
-    border: 3px solid var(--secondary-color);
+    border: 3px solid var(--accent-color);
     padding: 25px;
-    border-radius: var(--border-radius-medium);
+    border-radius: 40px;
     margin: 20px 0;
     position: relative;
     z-index: 10;
@@ -484,9 +424,9 @@ p {
 
 .grammar-box {
     background: var(--background-white);
-    border: 3px solid var(--purple-color);
+    border: 3px solid var(--accent-color);
     padding: 35px;
-    border-radius: var(--border-radius-xl);
+    border-radius: 40px;
     text-align: center;
     margin: 30px 0;
     position: relative;
@@ -539,13 +479,16 @@ p {
 
 .personal-column {
     border-color: var(--primary-color);
+    border-radius: 40px;
 }
 
 .possessive-column {
-    border-color: var(--secondary-color);
+    border-radius: 40px;
+    border-color: var(--accent-color);
 }
 
 .demonstrative-column {
+    border-radius: 40px;
     border-color: var(--accent-color);
 }
 
@@ -559,16 +502,16 @@ p {
     padding: 8px 15px;
     background: #f8f9fa;
     border-radius: 8px;
-    border-left: 4px solid var(--secondary-color);
+    border-left: 4px solid var(--accent-color);
 }
 
 .possessive-examples li {
-    border-left-color: var(--secondary-color);
-    background: rgba(78, 205, 196, 0.1);
+    border-left-color: var(--accent-color);
+    background: #f8f9fa;
 }
 
 .possessive-examples li {
-    border-left-color: var(--secondary-color);
+    border-left-color: var(--accent-color);
 }
 
 .demonstrative-examples li {
@@ -588,7 +531,7 @@ p {
     background: var(--background-white);
     padding: 15px 20px;
     margin: 10px 0;
-    border-left: 5px solid var(--secondary-color);
+    border-left: 5px solid var(--accent-color);
     border-radius: var(--border-radius-small);
     box-shadow: var(--shadow-light);
     font-size: 1.1em;
@@ -626,13 +569,13 @@ p {
 }
 
 .pronoun.personal {
-    background: rgba(255, 107, 107, 0.2);
-    color: var(--primary-color);
+    background: var(--accent-color);
+    color: var(--background-white);
 }
 
 .pronoun.possessive {
-    background: rgba(78, 205, 196, 0.2);
-    color: var(--secondary-color);
+    background: var(--accent-color);
+    color: var(--background-white);
 }
 
 .pronoun.demonstrative {
@@ -682,7 +625,7 @@ p {
 
 .comparison-arrow {
     font-weight: 700;
-    color: var(--secondary-color);
+    color: var(--accent-color);
     font-size: 1.2em;
 }
 
@@ -735,7 +678,7 @@ p {
 
 .word-card {
     background: var(--background-white);
-    border: 3px solid var(--border-dark);
+    border: 3px solid var(--border-light);
     padding: 20px 10px;
     border-radius: var(--border-radius-medium);
     text-align: center;
@@ -748,13 +691,13 @@ p {
 
 .word-card:hover {
     transform: translateY(-5px);
-    border-color: var(--secondary-color);
+    border-color: var(--accent-color);
     box-shadow: var(--shadow-medium);
 }
 
 .word-card.selected {
     border-color: var(--primary-color);
-    background: rgba(255, 107, 107, 0.1);
+    background: var(--border-light);
     transform: translateY(-5px) scale(1.05);
 }
 
@@ -816,7 +759,7 @@ p {
 }
 
 .common-btn {
-    background: var(--secondary-color);
+    background: var(--accent-color);
     color: var(--background-white);
 }
 
@@ -872,11 +815,11 @@ p {
     line-height: 1.8;
     margin-bottom: 20px;
     padding: 15px;
-    background: rgb(248, 246, 240);
+    background: var(--border-light);
     border-radius: 12px;
     border-left-width: 4px;
     border-left-style: solid;
-    border-left-color: rgb(78, 205, 196);
+    border-left-color: var(--accent-color);
 }
 
 .story-blank {
@@ -885,18 +828,18 @@ p {
     padding: 5px 10px;
     margin: 0 3px;
     background: var(--background-white);
-    border: 2px dashed var(--border-medium);
-    border-radius: var(--border-radius-small);
+    border: 2px dashed var(--accent-color);
+    border-radius: 18px;
     text-align: center;
     cursor: pointer;
     font-weight: 700;
-    color: var(--text-muted);
+    color: var(--accent-color);
     transition: var(--transition-medium);
     position: relative;
 }
 
 .story-blank:hover {
-    border-color: var(--secondary-color);
+    border-color: var(--accent-color);
     background: var(--card-bg-secondary);
     transform: translateY(-2px);
 }
@@ -909,7 +852,7 @@ p {
 
 .story-blank.filled {
     background: var(--card-bg-secondary);
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--accent-color);
     color: var(--text-dark);
 }
 
@@ -935,7 +878,7 @@ p {
 }
 
 .current-word {
-    font-size: 3em;
+    font-size: 1.8rem;
     font-weight: 700;
     color: var(--text-dark);
     background: var(--background-white);
@@ -1681,15 +1624,18 @@ p {
 }
 
 .personal-pronoun-card {
-    border-color: var(--primary-color);
+    border-color: var(--accent-color);
+    border-radius: 40px;
 }
 
 .possessive-pronoun-card {
-    border-color: var(--secondary-color);
+    border-color: var(--accent-color);
+    border-radius: 40px;
 }
 
 .demonstrative-pronoun-card {
     border-color: var(--accent-color);
+    border-radius: 40px;
 }
 
 .pronoun-type-card h4 {
@@ -1789,7 +1735,7 @@ p {
 }
 
 .possessive-column-hw {
-    border-color: var(--secondary-color);
+    border-color: var(--accent-color);
 }
 
 .demonstrative-column-hw {
@@ -1877,12 +1823,12 @@ p {
 }
 
 .homework-result .check-btn {
-    background: var(--success-color);
+    background: var(--accent-color);
     color: var(--background-white);
 }
 
 .homework-result .reset-btn {
-    background: var(--warning-color);
+    background: var(--accent-color);
     color: var(--background-white);
 }
 
@@ -1958,7 +1904,7 @@ p {
 }
 
 .check-btn {
-    background: var(--success-color);
+    background: var(--btn-color);
     color: var(--background-white);
     border: none;
     padding: 12px 24px;
@@ -1970,12 +1916,12 @@ p {
 }
 
 .check-btn:hover {
-    background: var(--success-color);
+    background: var(--btn-color);
     transform: translateY(-2px);
 }
 
 .hint-btn {
-    background: var(--warning-color);
+    background: var(--accent-color);
     color: var(--background-white);
     border: none;
     padding: 12px 24px;
@@ -1987,7 +1933,7 @@ p {
 }
 
 .hint-btn:hover {
-    background: var(--warning-color);
+    background: var(--accent-color);
     transform: translateY(-2px);
 }
 
@@ -2145,7 +2091,7 @@ p {
 
 .option-card:hover {
     transform: translateY(-3px);
-    border-color: var(--secondary-color);
+    border-color: var(--accent-color);
     box-shadow: var(--shadow-medium);
 }
 
@@ -2170,7 +2116,7 @@ p {
 }
 
 .nav-question-btn {
-    background: var(--secondary-color);
+    background: var(--accent-color);
     color: var(--background-white);
     border: none;
     width: 160px;
@@ -2184,7 +2130,7 @@ p {
 }
 
 .nav-question-btn:hover:not(:disabled) {
-    background: var(--secondary-color);
+    background: var(--accent-color);
     transform: translateY(-2px);
 }
 
@@ -2209,13 +2155,13 @@ p {
 }
 
 .possessive-btn {
-    background: var(--secondary-color);
+    background: var(--accent-color);
     color: var(--background-white);
 }
 
 .demonstrative-btn {
     background: var(--accent-color);
-    color: var(--text-dark);
+    color: var(--background-white);
 }
 
 /* Text Styling Classes */
@@ -2263,13 +2209,13 @@ p {
 .example-note {
     margin-top: 20px;
     padding: 15px;
-    background: #fff9e6;
+    background: var(--background-main);
     border-radius: 10px;
 }
 
 .example-note-title {
     font-weight: 700;
-    color: #f39c12;
+    color: var(--accent-color);
 }
 
 .conclusion-text {
@@ -2292,7 +2238,7 @@ p {
 }
 
 .color-secondary {
-    color: var(--secondary-color);
+    color: var(--accent-color);
 }
 
 .color-accent {
@@ -2300,7 +2246,7 @@ p {
 }
 
 .color-purple {
-    color: var(--purple-color);
+    color: var(--accent-color);
 }
 
 .color-success {
@@ -2330,7 +2276,7 @@ p {
 }
 
 .color-size {
-    color: var(--secondary-color);
+    color: var(--accent-color);
 }
 
 .color-age {
@@ -2489,8 +2435,8 @@ p {
 }
 
 .matching-item.selected {
-    border-color: var(--secondary-color);
-    background: var(--secondary-color);
+    border-color: var(--accent-color);
+    background: var(--accent-color);
     color: white;
 }
 
@@ -2530,7 +2476,7 @@ p {
 
 .creation-input:focus {
     outline: none;
-    border-color: var(--secondary-color);
+    border-color: var(--accent-color);
     box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
 }
 
