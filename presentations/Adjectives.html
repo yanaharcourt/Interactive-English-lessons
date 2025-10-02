@@ -7,9 +7,8 @@
     <title>Comparative Adjectives - Comparing Things</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/presentation-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/new-presentation-styles.css">
 </head>
 
 <body>
@@ -258,7 +257,7 @@
 
             <div class="grammar-box">
                 <h2 class="info-title">Когда несколько прилагательных</h2>
-                <p class="info-main-text color-purple">
+                <p class="info-main-text color-accent">
                     Opinion → Size → Age → Color → Origin → Material → Purpose
                 </p>
                 <p class="info-sub-text">
@@ -314,7 +313,7 @@
             </div>
         </div>
 
-        <!-- Слайд 6: Задание 1 - Определи тип прилагательного -->
+        <!-- Слайд 6: Задание 1 -->
         <div class="slide">
             <div class="decorative-star star-1">🎯</div>
             <div class="decorative-star star-2">📝</div>
@@ -333,7 +332,7 @@
             <div id="exercise1" class="exercise-container">
                 <div class="score-board">
                     <span>Правильно: <strong id="score1">0</strong>/12</span>
-                    <button onclick="resetExercise1()" class="reset-btn">🔄 Начать заново</button>
+                    <button onclick="resetExercise1()" class="reset-btn">Начать заново</button>
                 </div>
 
                 <div class="words-grid">
@@ -369,7 +368,7 @@
             </div>
         </div>
 
-        <!-- Слайд 7: Задание 2 - Заполни пропуски -->
+        <!-- Слайд 7: Задание 2 -->
         <div class="slide">
             <div class="decorative-star star-1">✏️</div>
             <div class="decorative-star star-2">📝</div>
@@ -406,12 +405,10 @@
                     <button onclick="prevQuestion2()" class="nav-question-btn" id="prevQ2Btn">← Назад</button>
                     <button onclick="nextQuestion2()" class="nav-question-btn" id="nextQ2Btn">Вперёд →</button>
                 </div>
-
-                <div id="feedback2_inline" class="feedback"></div>
             </div>
         </div>
 
-        <!-- Слайд 8: Задание 3 - Расставь прилагательные в правильном порядке -->
+        <!-- Слайд 8: Задание 3 -->
         <div class="slide">
             <div class="decorative-star star-1">🔄</div>
             <div class="decorative-star star-2">⭐</div>
@@ -519,6 +516,7 @@
 
                     <div class="homework-result">
                         <button onclick="resetSorting()" class="reset-btn">Сбросить</button>
+                        <!-- <div id="sortingFeedback" class="correction-feedback"></div> -->
                     </div>
                 </div>
             </div>
@@ -565,10 +563,9 @@
                         </div>
                     </div>
 
-                    <div class="homework-result">
-                        <button onclick="checkCorrections()" class="check-btn"> Проверить все ответы</button>
-                        <button onclick="resetCorrections()" class="reset-btn"> Очистить</button>
-                        <!-- <div id="correctionFeedback" class="correction-feedback"></div> -->
+                    <div class="homework-result"> <button onclick="checkCorrections()" class="check-btn">Проверить все ответы</button>
+                        <button onclick="resetCorrections()" class="reset-btn">Очистить</button>
+                       <!--  <div id="correctionFeedback" class="correction-feedback"></div> -->
                     </div>
                 </div>
             </div>
@@ -583,7 +580,7 @@
 
                     <div class="story-container">
                         <div class="story-title">
-                            <h4>🌟 The Perfect Day</h4>
+                            <h4>The Perfect Day</h4>
                             <p class="color-text-muted">Идеальный день</p>
                         </div>
 
@@ -659,9 +656,8 @@
                             </div>
 
                             <div class="story-buttons">
-                                <button onclick="checkStory()" class="check-btn" id="checkStoryBtn"> Проверить
-                                    историю</button>
-                                <button onclick="showAllHints()" class="hint-btn"> Показать подсказки</button>
+                                <button onclick="checkStory()" class="check-btn" id="checkStoryBtn">Проверить</button>
+                                <button onclick="showAllHints()" class="hint-btn">Подсказки</button>
                             </div>
                         </div>
 
@@ -678,7 +674,7 @@
             <div class="decorative-shape shape-square"></div>
             <div class="decorative-shape shape-circle"></div>
 
-            <h1 class="title-decoration">🎉 Отлично!</h1>
+            <h1 class="title-decoration">Отлично!</h1>
             <h2>Что мы сегодня изучили</h2>
 
             <div class="pronoun-types-grid">
@@ -716,10 +712,10 @@
                     <strong class="color-primary">Descriptive</strong> = КАКОЙ? (качество)<br>
                     <strong class="color-secondary">Quantitative</strong> = СКОЛЬКО? (количество)<br>
                     <strong class="color-accent">Demonstrative</strong> = ЭТОТ? ТОТ? (указание)<br><br>
-                    <strong class="color-purple"></strong> Порядок: Opinion → Size → Age → Color → Material
+                    <strong class="color-accent">Порядок: Opinion → Size → Age → Color → Material</strong>
                 </p>
                 <p class="farewell-text">
-                    Увидимся на следующем уроке!
+                    Увидимся на следующем уроке! 👋
                 </p>
             </div>
         </div>
@@ -826,45 +822,20 @@
 
         function checkAnswer1(selectedType) {
             const correct = exercise1Data.currentWord.type === selectedType;
-            const feedbackEl = document.getElementById('feedback1');
 
             if (correct) {
                 exercise1Data.score++;
                 exercise1Data.currentWord.element.classList.add('correct');
-                let typeText = '';
-                if (selectedType === 'descriptive') typeText = 'Descriptive Adjective (описательное)';
-                else if (selectedType === 'quantitative') typeText = 'Quantitative Adjective (количественное)';
-                else if (selectedType === 'demonstrative') typeText = 'Demonstrative Adjective (указательное)';
-
-                feedbackEl.innerHTML = `
-            <div class="feedback correct">
-                🎉 Правильно! "${exercise1Data.currentWord.word}" - это ${typeText}!
-            </div>`;
             } else {
                 exercise1Data.currentWord.element.classList.add('incorrect');
-                let correctTypeText = '';
-                if (exercise1Data.currentWord.type === 'descriptive') correctTypeText = 'Descriptive Adjective (описательное)';
-                else if (exercise1Data.currentWord.type === 'quantitative') correctTypeText = 'Quantitative Adjective (количественное)';
-                else if (exercise1Data.currentWord.type === 'demonstrative') correctTypeText = 'Demonstrative Adjective (указательное)';
-
-                feedbackEl.innerHTML = `
-            <div class="feedback incorrect">
-                😅 Неправильно! "${exercise1Data.currentWord.word}" - это ${correctTypeText}!
-            </div>`;
             }
 
             exercise1Data.currentWord.element.classList.add('disabled');
             document.getElementById('score1').textContent = exercise1Data.score;
             document.getElementById('buttons1').style.display = 'none';
-
-            if (document.querySelectorAll('#exercise1 .word-card.disabled').length === 12) {
-                setTimeout(() => {
-                    feedbackEl.innerHTML += `
-                <div style="background: #d5f4e6; padding: 20px; border-radius: 15px; margin-top: 15px; border: 2px solid #27ae60;">
-                    🏆 Задание завершено! Результат: ${exercise1Data.score}/12
-                </div>`;
-                }, 1500);
-            }
+            
+            // Убираем весь feedback
+            document.getElementById('feedback1').innerHTML = '';
         }
 
         function resetExercise1() {
@@ -942,7 +913,10 @@
             const optionsContainer = document.getElementById('options2');
             optionsContainer.innerHTML = '';
 
-            currentQuestion.options.forEach(option => {
+            // Перемешиваем варианты ответов
+            const shuffledOptions = [...currentQuestion.options].sort(() => Math.random() - 0.5);
+
+            shuffledOptions.forEach(option => {
                 const optionEl = document.createElement('div');
                 optionEl.className = 'option-card';
                 optionEl.textContent = option;
@@ -965,7 +939,6 @@
             });
 
             updateNavButtons2();
-            updateFeedback2();
         }
 
         function checkAnswer2(selectedAnswer) {
@@ -992,42 +965,8 @@
                 document.getElementById('score2').textContent = exercise2Data.score;
             }
 
-            updateFeedback2();
             updateNavButtons2();
-        }
-
-        function updateFeedback2() {
-            const feedbackEl = document.getElementById('feedback2_inline');
-
-            if (!exercise2Data.answered[exercise2Data.currentIndex]) {
-                feedbackEl.innerHTML = '';
-                return;
-            }
-
-            const currentQuestion = exercise2Data.questions[exercise2Data.currentIndex];
-            const userAnswer = exercise2Data.userAnswers[exercise2Data.currentIndex];
-            const correct = userAnswer === currentQuestion.correct;
-
-            if (correct) {
-                feedbackEl.innerHTML = `
-            <div class="feedback correct">
-                🎉 Правильно! "${currentQuestion.correct}" подходит в это предложение!
-            </div>`;
-            } else {
-                feedbackEl.innerHTML = `
-            <div class="feedback incorrect">
-                😅 Неправильно! Правильный ответ: "${currentQuestion.correct}"
-            </div>`;
-            }
-
-            if (exercise2Data.answered.every(a => a)) {
-                setTimeout(() => {
-                    feedbackEl.innerHTML += `
-                <div style="background: #d5f4e6; padding: 20px; border-radius: 15px; margin-top: 15px; border: 2px solid #27ae60;">
-                    🏆 Все задания выполнены! Результат: ${exercise2Data.score}/6
-                </div>`;
-                }, 1000);
-            }
+            document.getElementById('feedback2_inline').innerHTML = '';
         }
 
         function nextQuestion2() {
@@ -1059,7 +998,6 @@
             exercise2Data.userAnswers = Array(6).fill(null);
 
             document.getElementById('score2').textContent = '0';
-            document.getElementById('feedback2_inline').innerHTML = '';
 
             showQuestion2();
         }
@@ -1070,6 +1008,8 @@
         let exercise3Data = {
             score: 0,
             currentIndex: 0,
+            answered: [],
+            userAnswers: [],
             questions: [
                 {
                     original: "A house (red, big, beautiful)",
@@ -1107,26 +1047,19 @@
         function initExercise3() {
             exercise3Data.currentIndex = 0;
             exercise3Data.score = 0;
+            exercise3Data.answered = Array(exercise3Data.questions.length).fill(false);
+            exercise3Data.userAnswers = Array(exercise3Data.questions.length).fill(null);
             document.getElementById('score3').textContent = '0';
-            showNextQuestion3();
+            showQuestion3();
         }
 
-        function showNextQuestion3() {
-            if (exercise3Data.currentIndex >= exercise3Data.questions.length) {
-                document.getElementById('feedback3').innerHTML = `
-            <div style="background: #d5f4e6; padding: 20px; border-radius: 15px; border: 2px solid #27ae60;">
-                🏆 Все задания выполнены! Результат: ${exercise3Data.score}/5<br>
-                <button onclick="resetExercise3()" style="margin-top: 15px; background: #4ecdc4; color: white; border: none; padding: 10px 20px; border-radius: 15px; cursor: pointer; font-family: 'Comic Neue', cursive; font-weight: 700;">Начать заново</button>
-            </div>`;
-                return;
-            }
-
+        function showQuestion3() {
             const currentQuestion = exercise3Data.questions[exercise3Data.currentIndex];
+            
             document.getElementById('currentSentence3').textContent = currentQuestion.original;
             document.getElementById('sentenceTask3').textContent = currentQuestion.task;
             document.getElementById('options3').style.display = 'grid';
-            document.getElementById('feedback3').innerHTML = '';
-
+            
             const optionsContainer = document.getElementById('options3');
             optionsContainer.innerHTML = '';
 
@@ -1136,16 +1069,35 @@
                 const optionEl = document.createElement('div');
                 optionEl.className = 'option-card';
                 optionEl.textContent = option;
-                optionEl.onclick = () => checkAnswer3(option);
+                
+                if (exercise3Data.answered[exercise3Data.currentIndex]) {
+                    optionEl.style.pointerEvents = 'none';
+                    if (option === currentQuestion.correct) {
+                        optionEl.classList.add('correct');
+                    } else if (option === exercise3Data.userAnswers[exercise3Data.currentIndex]) {
+                        optionEl.classList.add('incorrect');
+                    }
+                } else {
+                    optionEl.onclick = () => checkAnswer3(option);
+                }
+                
                 optionsContainer.appendChild(optionEl);
             });
+            
+            updateFeedback3();
+            updateNavButtons3();
         }
 
         function checkAnswer3(selectedAnswer) {
+            if (exercise3Data.answered[exercise3Data.currentIndex]) return;
+
             const currentQuestion = exercise3Data.questions[exercise3Data.currentIndex];
             const correct = selectedAnswer === currentQuestion.correct;
-            const options = document.querySelectorAll('#options3 .option-card');
+            
+            exercise3Data.answered[exercise3Data.currentIndex] = true;
+            exercise3Data.userAnswers[exercise3Data.currentIndex] = selectedAnswer;
 
+            const options = document.querySelectorAll('#options3 .option-card');
             options.forEach(option => {
                 option.style.pointerEvents = 'none';
                 if (option.textContent === currentQuestion.correct) {
@@ -1158,30 +1110,48 @@
             if (correct) {
                 exercise3Data.score++;
                 document.getElementById('score3').textContent = exercise3Data.score;
-                document.getElementById('feedback3').innerHTML = `
-            <div class="feedback correct">
-                🎉 Правильно! Прилагательные расставлены в правильном порядке!
-            </div>`;
-            } else {
-                document.getElementById('feedback3').innerHTML = `
-            <div class="feedback incorrect">
-                😅 Неправильно! Правильный ответ: "${currentQuestion.correct}"
-            </div>`;
             }
 
-            exercise3Data.currentIndex++;
-            setTimeout(() => {
-                showNextQuestion3();
-            }, 2500);
+            updateFeedback3();
+            updateNavButtons3();
+        }
+
+        function updateFeedback3() {
+            const feedbackEl = document.getElementById('feedback3');
+            if (!feedbackEl) return;
+            feedbackEl.innerHTML = ''; 
+        }
+
+        function nextQuestion3() {
+            if (exercise3Data.currentIndex < exercise3Data.questions.length - 1) {
+                exercise3Data.currentIndex++;
+                showQuestion3();
+            }
+        }
+
+        function prevQuestion3() {
+            if (exercise3Data.currentIndex > 0) {
+                exercise3Data.currentIndex--;
+                showQuestion3();
+            }
+        }
+
+        function updateNavButtons3() {
+            const prevBtn = document.getElementById('prevQ3Btn');
+            const nextBtn = document.getElementById('nextQ3Btn');
+
+            if (prevBtn) prevBtn.disabled = exercise3Data.currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = exercise3Data.currentIndex === exercise3Data.questions.length - 1;
         }
 
         function resetExercise3() {
             exercise3Data.score = 0;
             exercise3Data.currentIndex = 0;
+            exercise3Data.answered = Array(exercise3Data.questions.length).fill(false);
+            exercise3Data.userAnswers = Array(exercise3Data.questions.length).fill(null);
             document.getElementById('score3').textContent = '0';
             document.getElementById('feedback3').innerHTML = '';
-
-            showNextQuestion3();
+            showQuestion3();
         }
 
         /* =================================================================
@@ -1269,25 +1239,6 @@
         function updateScore() {
             const allDroppedWords = document.querySelectorAll('.dropped-word');
             const correctWords = document.querySelectorAll('.dropped-word.correct');
-
-            const feedback = document.getElementById('sortingFeedback');
-
-            if (allDroppedWords.length === 0) {
-                feedback.innerHTML = '';
-                return;
-            }
-
-            if (correctWords.length === 24 && allDroppedWords.length === 24) {
-                feedback.innerHTML = `🎉 Отлично! Все прилагательные отсортированы правильно! (${correctWords.length}/24)`;
-                feedback.style.background = '#d5f4e6';
-                feedback.style.color = '#27ae60';
-                feedback.style.border = '2px solid #27ae60';
-            } else {
-                feedback.innerHTML = `📝 Правильно: ${correctWords.length}/${allDroppedWords.length} прилагательных`;
-                feedback.style.background = '#fff3cd';
-                feedback.style.color = '#856404';
-                feedback.style.border = '2px solid #ffc107';
-            }
         }
 
         function resetSorting() {
@@ -1297,18 +1248,6 @@
             container.innerHTML = '';
 
             const wordsData = [
-                { word: 'beautiful', type: 'descriptive' },
-                { word: 'many', type: 'quantitative' },
-                { word: 'this', type: 'demonstrative' },
-                { word: 'big', type: 'descriptive' },
-                { word: 'few', type: 'quantitative' },
-                { word: 'those', type: 'demonstrative' },
-                { word: 'happy', type: 'descriptive' },
-                { word: 'all', type: 'quantitative' },
-                { word: 'that', type: 'demonstrative' },
-                { word: 'smart', type: 'descriptive' },
-                { word: 'some', type: 'quantitative' },
-                { word: 'these', type: 'demonstrative' },
                 { word: 'small', type: 'descriptive' },
                 { word: 'much', type: 'quantitative' },
                 { word: 'old', type: 'descriptive' },
@@ -1320,7 +1259,19 @@
                 { word: 'kind', type: 'descriptive' },
                 { word: 'both', type: 'quantitative' },
                 { word: 'tall', type: 'descriptive' },
-                { word: 'enough', type: 'quantitative' }
+                { word: 'enough', type: 'quantitative' },
+                { word: 'beautiful', type: 'descriptive' },
+                { word: 'many', type: 'quantitative' },
+                { word: 'big', type: 'descriptive' },
+                { word: 'few', type: 'quantitative' },
+                { word: 'happy', type: 'descriptive' },
+                { word: 'all', type: 'quantitative' },
+                { word: 'smart', type: 'descriptive' },
+                { word: 'some', type: 'quantitative' },
+                { word: 'this', type: 'demonstrative' },
+                { word: 'that', type: 'demonstrative' },
+                { word: 'these', type: 'demonstrative' },
+                { word: 'those', type: 'demonstrative' }
             ];
 
             wordsData.forEach(data => {
@@ -1357,7 +1308,7 @@
                 input.classList.add('correct');
                 input.classList.remove('incorrect');
                 feedback.classList.add('correct');
-                feedback.innerHTML = '🎉 Правильно!';
+                feedback.innerHTML = 'Правильно!';
                 button.classList.add('checked');
             } else {
                 input.classList.add('incorrect');
@@ -1387,19 +1338,6 @@
                     input.classList.remove('correct');
                 }
             });
-
-            const feedback = document.getElementById('correctionFeedback');
-            if (correct === inputs.length) {
-                feedback.innerHTML = `🎉 Отлично! Все предложения исправлены правильно!`;
-                feedback.style.background = '#d5f4e6';
-                feedback.style.color = '#27ae60';
-                feedback.style.border = '2px solid #27ae60';
-            } else {
-                feedback.innerHTML = `😅 Правильно: ${correct}/${inputs.length}. Проверь красные поля!`;
-                feedback.style.background = '#fff3cd';
-                feedback.style.color = '#856404';
-                feedback.style.border = '2px solid #ffc107';
-            }
         }
 
         function resetCorrections() {
@@ -1416,8 +1354,6 @@
             document.querySelectorAll('.check-single-btn').forEach(button => {
                 button.classList.remove('checked');
             });
-
-            document.getElementById('correctionFeedback').innerHTML = '';
         }
 
         /* =================================================================
@@ -1479,7 +1415,7 @@
 
             popup.style.opacity = '0';
             popup.style.transform = 'scale(0.8)';
-            popup.offsetHeight; // Trigger reflow
+            popup.offsetHeight;
             popup.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
             popup.style.opacity = '1';
             popup.style.transform = 'scale(1)';
@@ -1561,7 +1497,7 @@
             const checkBtn = document.getElementById('checkStoryBtn');
             if (storyData.completed === storyData.total) {
                 checkBtn.style.background = '#27ae60';
-                checkBtn.textContent = '✅ Проверить историю';
+                checkBtn.textContent = 'Проверить';
             }
         }
 
@@ -1581,24 +1517,6 @@
                     const hintEl = document.createElement('div');
                     hintEl.className = 'hint-display';
                     hintEl.textContent = hint;
-
-                    hintEl.style.cssText = `
-                    position: absolute;
-                    bottom: 100%;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background: #fff9e6;
-                    border: 2px solid #f39c12;
-                    border-radius: 8px;
-                    padding: 5px 10px;
-                    font-size: 0.8em;
-                    color: #d68910;
-                    white-space: nowrap;
-                    margin-bottom: 5px;
-                    z-index: 1000;
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
-                `;
 
                     blank.appendChild(hintEl);
 
@@ -1639,7 +1557,9 @@
             });
 
             storyData.score = correct;
-            showFeedback(correct);
+
+            const feedback = document.getElementById('storyFeedback');
+            if (feedback) feedback.innerHTML = '';
         }
 
         function showFeedback(correct) {
@@ -1653,42 +1573,15 @@
                 message = `🏆 Превосходно! ${correct}/${storyData.total} (${percentage}%) - Ты отлично знаешь прилагательные!`;
                 className = 'excellent';
             } else if (percentage >= 70) {
-                message = `🌟 Хорошо! ${correct}/${storyData.total} (${percentage}%) - Почти все правильно!`;
+                message = `Хорошо! ${correct}/${storyData.total} (${percentage}%) - Почти все правильно!`;
                 className = 'good';
             } else {
-                message = `📚 Нужно больше практики! ${correct}/${storyData.total} (${percentage}%) - Повтори правила и попробуй еще раз!`;
+                message = `Нужно больше практики! ${correct}/${storyData.total} (${percentage}%) - Повтори правила и попробуй еще раз!`;
                 className = 'needs-work';
             }
 
             feedback.textContent = message;
             feedback.className = `story-feedback ${className}`;
-        }
-
-        function resetStory() {
-            document.querySelectorAll('.options-popup').forEach(popup => {
-                popup.remove();
-            });
-
-            const blanks = document.querySelectorAll('.story-blank');
-
-            blanks.forEach(blank => {
-                blank.textContent = '____';
-                blank.classList.remove('filled', 'selected', 'correct', 'incorrect');
-
-                const hint = blank.querySelector('.hint-display');
-                if (hint) hint.remove();
-            });
-
-            storyData.completed = 0;
-            storyData.score = 0;
-
-            document.getElementById('storyProgress').textContent = '0';
-            document.getElementById('storyFeedback').textContent = '';
-            document.getElementById('storyFeedback').className = 'story-feedback';
-
-            const checkBtn = document.getElementById('checkStoryBtn');
-            checkBtn.style.background = '#27ae60';
-            checkBtn.textContent = '✅ Проверить историю';
         }
 
         /* =================================================================
@@ -1702,7 +1595,8 @@
             initExercise3();
             initDragAndDrop();
             initStory();
-        });</script>
+        });
+    </script>
 </body>
 
 </html>
