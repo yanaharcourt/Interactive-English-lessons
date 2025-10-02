@@ -905,6 +905,29 @@ p {
     margin: var(--space-sm) 0;
 }
 
+.sort-columns-two {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--space-lg);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sort-columns-two .sort-column {
+    padding: var(--space-md);
+    min-height: 280px;
+}
+
+.sort-columns-two .drop-zone {
+    min-height: 200px;
+}
+
+@media (max-width: 768px) {
+    .sort-columns,
+    .sort-columns-two {
+        grid-template-columns: 1fr;
+    }
+}
+
 .sort-column {
     background: var(--color-bg-white);
     border: 2px solid var(--color-border-light);
@@ -991,13 +1014,11 @@ p {
 }
 
 .reset-btn {
-    background: #e8e5f5;
     color: var(--color-primary);
     border: 2px solid var(--color-primary);
 }
 
 .reset-btn:hover {
-    background: #ddd8f0;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
 }
