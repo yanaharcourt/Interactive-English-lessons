@@ -731,20 +731,23 @@ body {
         display: none !important;
     }
 }
-@media (max-width: 1199px) {
+
+@media (min-width: 769px) and (max-width: 1199px) {
     .nav-buttons {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: row !important;
+        justify-content: flex-end;
         align-items: center;
+        gap: 40px;
     }
 
     .nav-btn {
-        width: 100%;
-        text-align: center;
-        padding: 12px 0;
-        font-size: 1.1em;
+        width: auto !important;
+        text-align: left !important;
+        padding: 8px 0 !important;
+        font-size: 1em !important;
     }
 }
+
 
 
 /* =================================
