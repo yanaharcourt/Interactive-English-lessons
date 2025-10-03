@@ -559,7 +559,178 @@ body {
     font-weight: 600;
     font-size: var(--font-text-small);
 }
+/* Бургер-кнопка СПРАВА */
+.burger-btn {
+    display: none;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+    z-index: 1001;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: auto;
+}
 
+.burger-line {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: var(--text-dark);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    left: 0;
+}
+
+.burger-line:nth-child(1) {
+    top: 0;
+}
+
+.burger-line:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.burger-line:nth-child(3) {
+    bottom: 0;
+}
+
+/* Анимация превращения в крестик */
+.burger-btn.active .burger-line:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.burger-btn.active .burger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-btn.active .burger-line:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+}
+
+/* Мобильное меню выезжает СЛЕВА (как на твоем красивом сайте) */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: var(--background-white);
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    padding: 80px 0 30px 0;
+    overflow-y: auto;
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+}
+
+.mobile-nav-btn {
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-family: var(--font-family);
+    font-size: 1.1em;
+    text-decoration: none;
+    padding: 18px 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    display: block;
+}
+
+.mobile-nav-btn.active {
+    color: var(--accent-color);
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.mobile-nav-btn:hover {
+    background: rgba(102, 126, 234, 0.08);
+    color: var(--accent-color);
+}
+
+.mobile-language-btn {
+    margin: 30px;
+    display: block;
+    text-align: center;
+    padding: 14px 20px;
+    background: var(--accent-color);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.mobile-language-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Overlay */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 998;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+    .nav-buttons {
+        display: none;
+    }
+
+    .burger-btn {
+        display: block;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-menu,
+    .menu-overlay,
+    .burger-btn {
+        display: none !important;
+    }
+}
 @media (max-width: 1199px) {
     .nav-buttons {
         flex-direction: column;

@@ -12,28 +12,50 @@
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-    <!-- <div class="header">
-        <div class="decorative-elements">
-            <div class="floating-icon">📚</div>
-            <div class="floating-icon">✨</div>
-            <div class="floating-icon">🌟</div>
-            <div class="floating-icon">📖</div>
-        </div>
-        <div class="container">
-            <h1>Bookshelf</h1>
-        </div>
-    </div> -->
-
+    <!-- =================================
+    Navigation 
+    ================================= -->
     <div class="nav-section">
         <div class="container">
-            <div class="nav-buttons">
-                <a href="index.html" class="nav-btn">Home</a>
-                <a href="bookshelf.html" class="nav-btn active">Bookshelf</a>
-                <a href="https://yanaharcourt.dev/cambridge_voca/" class="nav-btn">Vocabulary</a>
+            <div class="nav-content">
+                <div class="nav-buttons">
+                    <a href="#" class="nav-btn active">Home</a>
+                    <a href="bookshelf.html" class="nav-btn">Bookshelf</a>
+                    <a href="https://yanaharcourt.dev/cambridge_voca/" class="nav-btn">Vocabulary</a>
+                
+                   <!--  <div class="language-switcher">
+                        <a href="./index-es.html" class="language-btn" title="Cambiar a Español">
+                            <span class="language-text">ES</span>
+                        </a>
+                    </div> -->
+                </div>
+                
+                <!-- Бургер-кнопка -->
+                <button class="burger-btn" id="burgerBtn">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                </button>
             </div>
         </div>
     </div>
 
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+            <a href="#" class="mobile-nav-btn active">Home</a>
+            <a href="bookshelf.html" class="mobile-nav-btn">Bookshelf</a>
+            <a href="https://yanaharcourt.dev/cambridge_voca/" class="mobile-nav-btn">Vocabulary</a>
+        </div>
+        <a href="./index-es.html" class="mobile-language-btn">ES</a>
+    </div>
+
+    <!-- Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- =================================
+    Main 
+    ================================= -->
     <div class="main-content">
         <div class="container">
             <!-- <div class="intro-section">
@@ -201,5 +223,44 @@
         document.head.appendChild(style);
     </script>
 
+    <!-- =================================
+    Mobile Menu 
+    ================================= -->
+    <script>
+        const burgerBtn = document.getElementById('burgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const body = document.body;
+
+        function toggleMenu() {
+            burgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            
+            if (mobileMenu.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
+        }
+
+        burgerBtn.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
+        mobileNavBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                mobileNavBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                toggleMenu();
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    </script>
 </body>
 </html>
