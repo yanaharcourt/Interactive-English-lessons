@@ -228,6 +228,8 @@ body {
     overflow: hidden;
     border: 3px solid transparent;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .lesson-card::before {
@@ -362,6 +364,7 @@ body {
     transition: all var(--transition);
     text-transform: uppercase;
     letter-spacing: 1px;
+    margin-top: auto; 
 }
 
 .lesson-card.grammar .lesson-button {

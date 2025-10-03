@@ -645,8 +645,8 @@ p {
 }
 
 /* =================================================================
-   TYPE CARDS GRID
-   ================================================================= */
+TYPE CARDS GRID
+================================================================= */
 .pronoun-types-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -669,6 +669,7 @@ p {
 .pronoun-type-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-md);
+    transform: translateY(-10px) rotate(1deg);
 }
 
 .personal-pronoun-card,
@@ -944,24 +945,45 @@ p {
 }
 
 .sort-columns-two {
-    grid-template-columns: repeat(2, 1fr) !important;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
-    margin-left: auto;
-    margin-right: auto;
+    margin: var(--space-lg) auto;
 }
 
 .sort-columns-two .sort-column {
+    background: var(--color-bg-white);
+    border: 2px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm);
     padding: var(--space-md);
     min-height: 280px;
 }
 
-.sort-columns-two .drop-zone {
-    min-height: 200px;
+.sort-columns-two .sort-column h4 {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: var(--space-sm);
+    font-size: var(--fs-lg);
 }
 
-@media (max-width: 768px) {
+.sort-columns-two .drop-zone {
+    min-height: 200px;
+    padding: var(--space-xs);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 2px dashed var(--color-border-light);
+    border-radius: var(--radius-sm);
+}
 
-    .sort-columns,
+.sort-columns-two .drop-zone.drag-over {
+    background: rgba(78, 205, 196, 0.1);
+    border-color: var(--color-primary);
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
     .sort-columns-two {
         grid-template-columns: 1fr;
     }
@@ -1853,9 +1875,10 @@ p {
 }
 
 .match-word-card.selected {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    border-color: var(--color-primary) !important;
+    background: #e3f2fd !important;
+    box-shadow: 0 8px 20px rgba(78, 205, 196, 0.4);
     color: white;
-    border-color: var(--color-secondary);
     transform: scale(1.05);
 }
 
