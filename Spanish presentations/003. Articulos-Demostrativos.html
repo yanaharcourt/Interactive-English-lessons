@@ -288,60 +288,21 @@
             <div id="exercise1" class="exercise-container">
                 <div class="score-board">
                     <span>Правильно: <strong id="score1">0</strong>/10</span>
+                    <span>Вопрос <strong id="currentQ1">1</strong>/10</span>
                     <button onclick="resetExercise1()" class="reset-btn">Начать заново</button>
                 </div>
 
-                <div class="words-grid-two">
-                    <div class="word-card" data-sentence="___ perro es grande" data-correct="el" data-translation="Собака (конкретная) большая">
-                        ___ perro es grande
-                    </div>
-                    <div class="word-card" data-sentence="Tengo ___ gato" data-correct="un" data-translation="У меня есть кот (какой-то)">
-                        Tengo ___ gato
-                    </div>
-                    <div class="word-card" data-sentence="___ gato es negro (указываю на кота рядом)" data-correct="este" data-translation="ЭТОТ кот чёрный">
-                        ___ gato es negro (указываю на кота рядом)
-                    </div>
-                    <div class="word-card" data-sentence="Veo ___ pájaros" data-correct="unos" data-translation="Вижу каких-то птиц">
-                        Veo ___ pájaros
-                    </div>
-                    <div class="word-card" data-sentence="___ gatos son bonitos" data-correct="los" data-translation="Кошки (конкретные) красивые">
-                        ___ gatos son bonitos
-                    </div>
-                    <div class="word-card" data-sentence="___ perro allí es grande (далеко)" data-correct="aquel" data-translation="ТОТ пёс вдалеке большой">
-                        ___ perro allí es grande (далеко)
-                    </div>
-                    <div class="word-card" data-sentence="Quiero ___ casa" data-correct="una" data-translation="Хочу дом (какой-то)">
-                        Quiero ___ casa
-                    </div>
-                    <div class="word-card" data-sentence="___ casa es bonita (указываю около тебя)" data-correct="esa" data-translation="ТОТ дом красивый">
-                        ___ casa es bonita (указываю около тебя)
-                    </div>
-                    <div class="word-card" data-sentence="___ mesa es grande" data-correct="la" data-translation="Стол (конкретный) большой">
-                        ___ mesa es grande
-                    </div>
-                    <div class="word-card" data-sentence="___ libros aquí son míos (рядом со мной)" data-correct="estos" data-translation="ЭТИ книги здесь мои">
-                        ___ libros aquí son míos (рядом со мной)
-                    </div>
+                <div class="current-word-display">
+                    <div id="currentSentence1" class="current-word">___ perro es grande</div>
+                    <div id="sentenceTranslation1" class="word-translation">Собака (конкретная) большая</div>
                 </div>
 
-                <div id="buttons1" class="choice-buttons" style="display: none;">
-                    <button onclick="checkAnswer1('el')" class="choice-btn personal-btn">el</button>
-                    <button onclick="checkAnswer1('la')" class="choice-btn personal-btn">la</button>
-                    <button onclick="checkAnswer1('los')" class="choice-btn personal-btn">los</button>
-                    <button onclick="checkAnswer1('las')" class="choice-btn personal-btn">las</button>
-                    <button onclick="checkAnswer1('un')" class="choice-btn possessive-btn">un</button>
-                    <button onclick="checkAnswer1('una')" class="choice-btn possessive-btn">una</button>
-                    <button onclick="checkAnswer1('unos')" class="choice-btn possessive-btn">unos</button>
-                    <button onclick="checkAnswer1('unas')" class="choice-btn possessive-btn">unas</button>
-                    <button onclick="checkAnswer1('este')" class="choice-btn demonstrative-btn">este</button>
-                    <button onclick="checkAnswer1('esta')" class="choice-btn demonstrative-btn">esta</button>
-                    <button onclick="checkAnswer1('ese')" class="choice-btn demonstrative-btn">ese</button>
-                    <button onclick="checkAnswer1('esa')" class="choice-btn demonstrative-btn">esa</button>
-                    <button onclick="checkAnswer1('aquel')" class="choice-btn demonstrative-btn">aquel</button>
-                    <button onclick="checkAnswer1('estos')" class="choice-btn demonstrative-btn">estos</button>
+                <div id="options1" class="options-grid"></div>
+                
+                <div class="question-navigation">
+                    <button onclick="prevQuestion1()" class="nav-question-btn" id="prevQ1Btn">← Назад</button>
+                    <button onclick="nextQuestion1()" class="nav-question-btn" id="nextQ1Btn">Вперёд →</button>
                 </div>
-
-                <div id="feedback1" class="feedback"></div>
             </div>
         </div>
 
@@ -748,67 +709,116 @@
         ЗАДАНИЕ 1: Выбери правильное слово
         ================================================================= */
         let exercise1Data = {
-            currentIndex: 0,
-            score: 0,
-            currentSentence: null
+    score: 0,
+    currentIndex: 0,
+    answered: Array(10).fill(false),
+    userAnswers: Array(10).fill(null),
+    questions: [
+        { sentence: "___ perro es grande", translation: "Собака (конкретная) большая", options: ["el", "un", "este"], correct: "el" },
+        { sentence: "Tengo ___ gato", translation: "У меня есть кот (какой-то)", options: ["el", "un", "este"], correct: "un" },
+        { sentence: "___ gato es negro (указываю на кота рядом)", translation: "ЭТОТ кот чёрный", options: ["el", "un", "este"], correct: "este" },
+        { sentence: "Veo ___ pájaros", translation: "Вижу каких-то птиц", options: ["los", "unos", "estos"], correct: "unos" },
+        { sentence: "___ gatos son bonitos", translation: "Кошки (конкретные) красивые", options: ["los", "unos", "estos"], correct: "los" },
+        { sentence: "___ perro allí es grande (далеко)", translation: "ТОТ пёс вдалеке большой", options: ["el", "ese", "aquel"], correct: "aquel" },
+        { sentence: "Quiero ___ casa", translation: "Хочу дом (какой-то)", options: ["la", "una", "esta"], correct: "una" },
+        { sentence: "___ casa es bonita (указываю около тебя)", translation: "ТОТ дом красивый", options: ["la", "una", "esa"], correct: "esa" },
+        { sentence: "___ mesa es grande", translation: "Стол (конкретный) большой", options: ["la", "una", "esta"], correct: "la" },
+        { sentence: "___ libros aquí son míos (рядом со мной)", translation: "ЭТИ книги здесь мои", options: ["los", "unos", "estos"], correct: "estos" }
+    ]
+};
+
+function initExercise1() {
+    showQuestion1();
+}
+
+function showQuestion1() {
+    const currentQuestion = exercise1Data.questions[exercise1Data.currentIndex];
+    document.getElementById('currentSentence1').textContent = currentQuestion.sentence;
+    document.getElementById('sentenceTranslation1').textContent = currentQuestion.translation;
+    document.getElementById('currentQ1').textContent = exercise1Data.currentIndex + 1;
+
+    const optionsContainer = document.getElementById('options1');
+    optionsContainer.innerHTML = '';
+    const shuffledOptions = [...currentQuestion.options].sort(() => Math.random() - 0.5);
+
+    shuffledOptions.forEach(option => {
+        const optionEl = document.createElement('div');
+        optionEl.className = 'option-card';
+        optionEl.textContent = option;
+        optionEl.onclick = function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            checkAnswer1(option);
         };
 
-        function initExercise1() {
-            const wordCards = document.querySelectorAll('#exercise1 .word-card');
-            wordCards.forEach(card => {
-                card.addEventListener('click', function () {
-                    if (this.classList.contains('disabled')) return;
-
-                    wordCards.forEach(c => c.classList.remove('selected'));
-                    this.classList.add('selected');
-
-                    exercise1Data.currentSentence = {
-                        element: this,
-                        sentence: this.dataset.sentence,
-                        correct: this.dataset.correct,
-                        translation: this.dataset.translation
-                    };
-
-                    document.getElementById('buttons1').style.display = 'flex';
-                    /* document.getElementById('feedback1').innerHTML = `
-                    <div style="background: #f0f4f8; padding: 15px; border-radius: 15px; border: 2px solid #4ecdc4;">
-                    Предложение: <strong>${this.dataset.sentence}</strong><br>
-                    ${this.dataset.translation}<br>
-                    Какое слово правильное?
-                </div>`; */
-                });
-            });
-        }
-
-        function checkAnswer1(selectedType) {
-            const correct = exercise1Data.currentSentence.correct === selectedType;
-
-            if (correct) {
-                exercise1Data.score++;
-                exercise1Data.currentSentence.element.classList.add('correct');
-            } else {
-                exercise1Data.currentSentence.element.classList.add('incorrect');
+        if (exercise1Data.answered[exercise1Data.currentIndex]) {
+            optionEl.style.pointerEvents = 'none';
+            if (option === currentQuestion.correct) {
+                optionEl.classList.add('correct');
+            } else if (option === exercise1Data.userAnswers[exercise1Data.currentIndex]) {
+                optionEl.classList.add('incorrect');
             }
-
-            exercise1Data.currentSentence.element.classList.add('disabled');
-            document.getElementById('score1').textContent = exercise1Data.score;
-            document.getElementById('buttons1').style.display = 'none';
-            
-            document.getElementById('feedback1').innerHTML = '';
         }
+        optionsContainer.appendChild(optionEl);
+    });
+    updateNavButtons1();
+}
 
-        function resetExercise1() {
-            exercise1Data.score = 0;
-            exercise1Data.currentSentence = null;
-            document.getElementById('score1').textContent = '0';
-            document.getElementById('buttons1').style.display = 'none';
-            document.getElementById('feedback1').innerHTML = '';
+function checkAnswer1(selectedAnswer) {
+    if (exercise1Data.answered[exercise1Data.currentIndex]) return;
+    
+    const currentQuestion = exercise1Data.questions[exercise1Data.currentIndex];
+    const correct = selectedAnswer === currentQuestion.correct;
+    const options = document.querySelectorAll('#options1 .option-card');
 
-            const wordCards = document.querySelectorAll('#exercise1 .word-card');
-            wordCards.forEach(card => {
-                card.classList.remove('selected', 'correct', 'incorrect', 'disabled');
-            });
+    exercise1Data.answered[exercise1Data.currentIndex] = true;
+    exercise1Data.userAnswers[exercise1Data.currentIndex] = selectedAnswer;
+
+    options.forEach(option => {
+        option.style.pointerEvents = 'none';
+        if (option.textContent === currentQuestion.correct) {
+            option.classList.add('correct');
+        } else if (option.textContent === selectedAnswer && !correct) {
+            option.classList.add('incorrect');
         }
+    });
+
+    if (correct) {
+        exercise1Data.score++;
+        document.getElementById('score1').textContent = exercise1Data.score;
+    }
+    updateNavButtons1();
+}
+
+function nextQuestion1() {
+    if (exercise1Data.currentIndex < exercise1Data.questions.length - 1) {
+        exercise1Data.currentIndex++;
+        showQuestion1();
+    }
+}
+
+function prevQuestion1() {
+    if (exercise1Data.currentIndex > 0) {
+        exercise1Data.currentIndex--;
+        showQuestion1();
+    }
+}
+
+function updateNavButtons1() {
+    const prevBtn = document.getElementById('prevQ1Btn');
+    const nextBtn = document.getElementById('nextQ1Btn');
+    if (prevBtn) prevBtn.disabled = exercise1Data.currentIndex === 0;
+    if (nextBtn) nextBtn.disabled = exercise1Data.currentIndex === exercise1Data.questions.length - 1;
+}
+
+function resetExercise1() {
+    exercise1Data.score = 0;
+    exercise1Data.currentIndex = 0;
+    exercise1Data.answered = Array(10).fill(false);
+    exercise1Data.userAnswers = Array(10).fill(null);
+    document.getElementById('score1').textContent = '0';
+    showQuestion1();
+}
 
         /* =================================================================
         ЗАДАНИЕ 2: ЗАПОЛНИ ПРОПУСКИ
