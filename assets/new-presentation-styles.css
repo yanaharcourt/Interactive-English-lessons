@@ -538,6 +538,13 @@ p {
     margin: var(--space-sm) 0;
 }
 
+.words-grid-two {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-sm);
+    margin: var(--space-sm) 0;
+}
+
 .word-card {
     background: var(--color-bg-white);
     border: 3px solid var(--color-border-light);
@@ -689,8 +696,8 @@ TYPE CARDS GRID
 }
 
 /* =================================================================
-   OPTIONS GRID
-   ================================================================= */
+OPTIONS GRID
+================================================================= */
 .options-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -1878,7 +1885,7 @@ TYPE CARDS GRID
     border-color: var(--color-primary) !important;
     background: #e3f2fd !important;
     box-shadow: 0 8px 20px rgba(78, 205, 196, 0.4);
-    color: white;
+    color: var(--color-primary);
     transform: scale(1.05);
 }
 
