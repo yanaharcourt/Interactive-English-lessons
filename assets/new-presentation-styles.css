@@ -1312,7 +1312,7 @@ OPTIONS GRID
     border-radius: var(--radius-sm);
     cursor: pointer;
     font-family: var(--font-primary);
-    font-size: 16px;
+    font-size: 16px!important;
     font-weight: 600;
     transition: all var(--transition-fast);
 }
