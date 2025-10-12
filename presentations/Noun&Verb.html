@@ -1,1198 +1,867 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Части речи</title>
+    <title>Nouns & Verbs - Building Blocks of English Sentences</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Comic Neue', cursive;
-            background: #f8f6f0;
-            color: #2c3e50;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
-
-        .presentation {
-            background: #faf8f3;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-        }
-        
-        body {
-            font-family: 'Comic Neue', cursive;
-            background: #f8f6f0;
-            color: #2c3e50;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .presentation {
-            background: #faf8f3;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .slide {
-            display: none;
-            padding: 40px;
-            flex: 1;
-            overflow-y: auto;
-            animation: slideIn 0.5s ease-in-out;
-        }
-
-        .slide.active {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-            background: #f8f6f0;
-            border-top: 3px solid #e8e4d9;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 1000;
-        }
-
-        /* Collage decorative elements */
-        .slide::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            width: 80px;
-            height: 80px;
-            background: #ff6b6b;
-            border-radius: 50%;
-            opacity: 0.1;
-            z-index: 0;
-        }
-
-        .slide::after {
-            content: '';
-            position: absolute;
-            bottom: -30px;
-            right: -30px;
-            width: 100px;
-            height: 60px;
-            background: #4ecdc4;
-            transform: rotate(45deg);
-            opacity: 0.1;
-            z-index: 0;
-        }
-
-        .decorative-star {
-            position: absolute;
-            font-size: 2em;
-            opacity: 0.3;
-            z-index: 0;
-        }
-
-        .star-1 {
-            top: 10%;
-            right: 15%;
-            color: #ff6b6b;
-        }
-
-        .star-2 {
-            bottom: 20%;
-            left: 10%;
-            color: #4ecdc4;
-        }
-
-        .star-3 {
-            top: 50%;
-            right: 5%;
-            color: #ffe66d;
-        }
-
-        .decorative-shape {
-            position: absolute;
-            z-index: 0;
-            opacity: 0.2;
-        }
-
-        .shape-triangle {
-            width: 0;
-            height: 0;
-            border-left: 25px solid transparent;
-            border-right: 25px solid transparent;
-            border-bottom: 40px solid #ff6b6b;
-            top: 15%;
-            left: 5%;
-        }
-
-        .shape-circle {
-            width: 60px;
-            height: 60px;
-            background: #4ecdc4;
-            border-radius: 50%;
-            bottom: 25%;
-            right: 8%;
-        }
-
-        .shape-square {
-            width: 40px;
-            height: 40px;
-            background: #ffe66d;
-            transform: rotate(45deg);
-            top: 30%;
-            left: 85%;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        h1 {
-            color: #2c3e50;
-            font-size: 2.8em;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 700;
-            position: relative;
-            z-index: 10;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: #34495e;
-            font-size: 2.2em;
-            margin-bottom: 25px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-
-        h3 {
-            color: #2c3e50;
-            font-size: 1.6em;
-            margin-bottom: 20px;
-            margin-top: 25px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .parts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-            position: relative;
-            z-index: 10;
-        }
-
-        .part-card {
-            background: #fff;
-            border: 3px solid #e8e4d9;
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            transform: translateY(0);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .part-card::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 30px;
-            height: 30px;
-            background: #ff6b6b;
-            border-radius: 50%;
-            opacity: 0.3;
-        }
-
-        .part-card:nth-child(2)::before {
-            background: #4ecdc4;
-        }
-
-        .part-card:nth-child(3)::before {
-            background: #ffe66d;
-        }
-
-        .part-card:hover {
-            transform: translateY(-8px) rotate(1deg);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            border-color: #ff6b6b;
-        }
-
-        .part-card h4 {
-            font-size: 1.4em;
-            margin-bottom: 15px;
-            color: #2c3e50;
-            font-weight: 700;
-        }
-
-        .part-card p {
-            font-size: 1.1em;
-            line-height: 1.5;
-        }
-
-        .comparison-table {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 30px 0;
-            position: relative;
-            z-index: 10;
-        }
-
-        .lang-column {
-            background: #fff;
-            padding: 30px;
-            border-radius: 20px;
-            border: 3px solid #e8e4d9;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .lang-column::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffe66d);
-        }
-
-        .lang-column h4 {
-            color: #2c3e50;
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        .verb-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-            position: relative;
-            z-index: 10;
-        }
-
-        .verb-card {
-            background: #fff;
-            border: 3px solid #e8e4d9;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .verb-card::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            width: 60px;
-            height: 60px;
-            background: #4ecdc4;
-            border-radius: 50%;
-            opacity: 0.2;
-        }
-
-        .verb-card:nth-child(2)::before {
-            background: #ff6b6b;
-            top: -15px;
-            right: -15px;
-            left: auto;
-        }
-
-        .example-box {
-            background: #fff;
-            border: 3px solid #4ecdc4;
-            border-radius: 20px;
-            padding: 25px;
-            margin: 20px 0;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .example-box::before {
-            content: '✨';
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            background: #fff;
-            padding: 5px 10px;
-            border-radius: 50%;
-            font-size: 1.2em;
-        }
-
-        .irregular-verbs {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin: 25px 0;
-            background: #fff;
-            padding: 30px;
-            border-radius: 20px;
-            border: 3px solid #e8e4d9;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .irregular-verbs div {
-            text-align: center;
-            padding: 12px;
-            background: #f8f6f0;
-            border-radius: 12px;
-            margin: 5px 0;
-            border: 2px solid #e8e4d9;
-            font-weight: 600;
-        }
-
-        .irregular-verbs div:nth-child(3n+1) {
-            background: #ffe6e6;
-            border-color: #ff6b6b;
-        }
-
-        .irregular-verbs div:nth-child(3n+2) {
-            background: #e6f7f7;
-            border-color: #4ecdc4;
-        }
-
-        .irregular-verbs div:nth-child(3n) {
-            background: #fffbe6;
-            border-color: #ffe66d;
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 40px;
-            background: #f8f6f0;
-            border-top: 3px solid #e8e4d9;
-        }
-
-        .nav-btn {
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1.1em;
-            font-weight: 700;
-            font-family: 'Comic Neue', cursive;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-        }
-
-        .nav-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
-        }
-
-        .nav-btn:disabled {
-            background: #bdc3c7;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .slide-counter {
-            color: #2c3e50;
-            font-weight: 700;
-            font-size: 1.2em;
-            background: #fff;
-            padding: 10px 20px;
-            border-radius: 20px;
-            border: 2px solid #e8e4d9;
-        }
-
-        .highlight {
-            background: linear-gradient(120deg, #ffe66d 0%, #ff6b6b 100%);
-            padding: 3px 8px;
-            border-radius: 8px;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
-            position: relative;
-            z-index: 10;
-        }
-
-        li {
-            margin: 12px 0;
-            padding: 12px 20px;
-            background: #f8f6f0;
-            border-radius: 15px;
-            border: 2px solid #e8e4d9;
-            font-weight: 600;
-            position: relative;
-        }
-
-        li::before {
-            content: '🌟';
-            margin-right: 10px;
-        }
-
-        .title-decoration {
-            position: relative;
-            z-index: 10;
-        }
-
-        .title-decoration::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffe66d);
-            border-radius: 2px;
-        }
-        /* =================================================================
-        Задания
-        ================================================================= */
-        .exercise-container {
-            margin: 20px 0;
-        }
-
-        .score-board {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #f8f6f0;
-            padding: 15px 25px;
-            border-radius: 15px;
-            border: 2px solid #e8e4d9;
-            margin-bottom: 25px;
-            font-size: 1.2em;
-            font-weight: 600;
-        }
-
-        .reset-btn, .start-btn {
-            background: #ffe66d;
-            color: #2c3e50;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: 700;
-            font-family: 'Comic Neue', cursive;
-            transition: all 0.3s ease;
-        }
-
-        .reset-btn:hover, .start-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 230, 109, 0.4);
-        }
-
-        .words-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-            margin: 25px 0;
-        }
-
-        .word-card {
-            background: #fff;
-            border: 3px solid #e8e4d9;
-            padding: 20px 10px;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            font-size: 1.2em;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .word-card:hover {
-            transform: translateY(-5px);
-            border-color: #4ecdc4;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .word-card.selected {
-            border-color: #ff6b6b;
-            background: #ffe6e6;
-            transform: translateY(-5px) scale(1.05);
-        }
-
-        .word-card.correct {
-            border-color: #27ae60;
-            background: #d5f4e6;
-            animation: bounce 0.6s ease;
-        }
-
-        .word-card.incorrect {
-            border-color: #e74c3c;
-            background: #ffeaea;
-            animation: shake 0.6s ease;
-        }
-
-        .word-card.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 60%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            80% { transform: translateY(-5px); }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
-        }
-
-        .choice-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin: 25px 0;
-        }
-
-        .choice-btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 20px;
-            font-size: 1.2em;
-            font-weight: 700;
-            font-family: 'Comic Neue', cursive;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .noun-btn {
-            background: #4ecdc4;
-            color: white;
-        }
-
-        .verb-btn {
-            background: #ff6b6b;
-            color: white;
-        }
-
-        .regular-btn {
-            background: #4ecdc4;
-            color: white;
-        }
-
-        .irregular-btn {
-            background: #ff6b6b;
-            color: white;
-        }
-
-        .choice-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-
-        .feedback {
-            text-align: center;
-            font-size: 1.3em;
-            font-weight: 700;
-            margin: 20px 0;
-            padding: 15px;
-            border-radius: 15px;
-            min-height: 50px;
-        }
-
-        .feedback.correct {
-            background: #d5f4e6;
-            color: #27ae60;
-            border: 2px solid #27ae60;
-        }
-
-        .feedback.incorrect {
-            background: #ffeaea;
-            color: #e74c3c;
-            border: 2px solid #e74c3c;
-        }
-
-        .current-word-display {
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .current-word {
-            font-size: 3em;
-            font-weight: 700;
-            color: #2c3e50;
-            background: #fff;
-            border: 3px solid #4ecdc4;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 15px;
-            display: inline-block;
-            min-width: 200px;
-        }
-
-        .word-translation {
-            font-size: 1.3em;
-            color: #7f8c8d;
-            font-weight: 600;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 25px 0;
-        }
-
-        .option-card {
-            background: #fff;
-            border: 3px solid #e8e4d9;
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            cursor: pointer;
-            font-size: 1.4em;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-
-        .option-card:hover {
-            transform: translateY(-5px);
-            border-color: #4ecdc4;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .option-card.correct {
-            border-color: #27ae60;
-            background: #d5f4e6;
-            animation: bounce 0.6s ease;
-        }
-
-        .option-card.incorrect {
-            border-color: #e74c3c;
-            background: #ffeaea;
-            animation: shake 0.6s ease;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/new-presentation-styles.css">
 </head>
 
 <body>
     <div class="presentation">
-        <!-- Слайд 1: Части речи на русском -->
+        <!-- Slide 1: Introduction -->
         <div class="slide active">
-            <div class="decorative-star star-1">⭐</div>
+            <div class="decorative-star star-1">📚</div>
             <div class="decorative-star star-2">✨</div>
             <div class="decorative-shape shape-triangle"></div>
             <div class="decorative-shape shape-circle"></div>
 
-            <h1 class="title-decoration">🎯 Части речи</h1>
-            <h2>Что это такое?</h2>
+            <h1 class="title-decoration">Nouns & Verbs</h1>
+            <h2>The Building Blocks of English Sentences</h2>
 
-            <p
-                style="font-size: 1.3em; text-align: center; margin: 30px 0; position: relative; z-index: 10; font-weight: 600;">
-                <strong>Части речи</strong> — это группы слов, которые работают одинаково в предложении.
+            <p class="intro-text">
+                Today we will learn about NOUNS and VERBS -<br>
+                the two most important parts of every English sentence!
             </p>
 
-            <div class="parts-grid">
-                <div class="part-card">
-                    <h4>🏠 Существительное</h4>
-                    <p><strong>Что?</strong> или <strong>Кто?</strong></p>
-                    <p style="color: #7f8c8d; margin-top: 10px;">дом, кот, Вадим</p>
+            <div class="pronoun-types-grid">
+                <div class="pronoun-type-card personal-pronoun-card">
+                    <h4>NOUNS</h4>
+                    <p><strong>People, Places, Things</strong></p>
+                    <p class="card-subtitle">cat, school, book, Maria</p>
+                    <p class="card-description color-primary">Words that name something</p>
                 </div>
 
-                <div class="part-card">
-                    <h4>🏃‍♂️ Глагол</h4>
-                    <p><strong>Что делать?</strong></p>
-                    <p style="color: #7f8c8d; margin-top: 10px;">бегать, читать, играть</p>
-                </div>
-
-                <div class="part-card">
-                    <h4>🌈 Прилагательное</h4>
-                    <p><strong>Какой?</strong></p>
-                    <p style="color: #7f8c8d; margin-top: 10px;">красивый, большой, умный</p>
+                <div class="pronoun-type-card possessive-pronoun-card">
+                    <h4>VERBS</h4>
+                    <p><strong>Actions & States</strong></p>
+                    <p class="card-subtitle">run, eat, is, have</p>
+                    <p class="card-description color-secondary">Words that show action or being</p>
                 </div>
             </div>
 
             <div class="example-box">
-                <h3>🌟 Пример:</h3>
-                <p style="font-size: 1.4em; text-align: center; font-weight: 700;">
-                    <span class="highlight">Умный</span> <span class="highlight">мальчик</span> <span
-                        class="highlight">читает</span> книгу.
-                </p>
-                <p style="text-align: center; margin-top: 15px; color: #7f8c8d;">
-                    (какой?) + (кто?) + (что делает?)
+                <h3>🌟 Main Rule</h3>
+                <p class="example-text">
+                    Every complete sentence needs:<br>
+                    <span class="color-primary">NOUN</span> (who/what) + <span class="color-secondary">VERB</span> (does/is)
                 </p>
             </div>
         </div>
 
-        <!-- Слайд 2: Части речи на английском -->
+        <!-- Slide 2: What is a NOUN? -->
+        <div class="slide">
+            <div class="decorative-star star-1">🎨</div>
+            <div class="decorative-star star-2">🌈</div>
+            <div class="decorative-shape shape-circle"></div>
+            <div class="decorative-shape shape-square"></div>
+
+            <h1 class="title-decoration">What is a NOUN?</h1>
+            <h2>A noun names a person, place, thing, or idea</h2>
+
+            <div class="info-box">
+                <h2 class="info-title">Definition</h2>
+                <p class="info-main-text color-primary">
+                    A NOUN is a word that names something
+                </p>
+                <p class="info-sub-text">
+                    If you can point to it, see it, or think about it - it's probably a noun!
+                </p>
+            </div>
+
+            <div class="comparison-table">
+                <div class="comparison-column personal-column">
+                    <h4>Types of Nouns</h4>
+                    <p class="section-subtitle">What nouns name</p>
+                    <ul class="examples-list personal-examples">
+                        <li>👤 <strong>People:</strong> boy, teacher, Maria</li>
+                        <li>🏫 <strong>Places:</strong> school, park, London</li>
+                        <li>📚 <strong>Things:</strong> book, car, apple</li>
+                        <li>💭 <strong>Ideas:</strong> love, freedom, happiness</li>
+                        <li>🐕 <strong>Animals:</strong> dog, cat, elephant</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-column personal-column">
+                    <h4>Easy Test</h4>
+                    <p class="section-subtitle">How to find a noun</p>
+                    <ul class="examples-list personal-examples">
+                        <li>✅ Can you see it? → NOUN</li>
+                        <li>✅ Can you touch it? → NOUN</li>
+                        <li>✅ Can you count it? → NOUN</li>
+                        <li>✅ Can you put "a" or "the" before it? → NOUN</li>
+                        <li>✅ Does it answer "What?" or "Who?" → NOUN</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sentence-examples">
+                <div class="sentence-example">
+                    The <span class="pronoun personal">cat</span> is sleeping. → cat = NOUN (animal)
+                </div>
+                <div class="sentence-example">
+                    <span class="pronoun personal">Maria</span> goes to <span class="pronoun personal">school</span>. → Maria = NOUN (person), school = NOUN (place)
+                </div>
+                <div class="sentence-example">
+                    I love <span class="pronoun personal">chocolate</span>. → chocolate = NOUN (thing)
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Common vs Proper Nouns -->
+        <div class="slide">
+            <div class="decorative-star star-1">😊</div>
+            <div class="decorative-star star-2">🌡️</div>
+            <div class="decorative-shape shape-triangle"></div>
+            <div class="decorative-shape shape-circle"></div>
+
+            <h1 class="title-decoration">Common & Proper Nouns</h1>
+            <h2>Two types of nouns</h2>
+
+            <div class="info-box">
+                <h2 class="info-title">The Difference</h2>
+                <p class="info-main-text color-secondary">
+                    Common nouns are general. Proper nouns are specific names.
+                </p>
+                <p class="info-sub-text">
+                    Proper nouns ALWAYS start with a CAPITAL LETTER!
+                </p>
+            </div>
+
+            <div class="comparison-table">
+                <div class="comparison-column possessive-column">
+                    <h4>Common Nouns</h4>
+                    <p class="section-subtitle">General names (lowercase)</p>
+                    <ul class="examples-list possessive-examples">
+                        <li><strong>boy</strong> - any boy</li>
+                        <li><strong>city</strong> - any city</li>
+                        <li><strong>dog</strong> - any dog</li>
+                        <li><strong>school</strong> - any school</li>
+                        <li><strong>country</strong> - any country</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-column possessive-column">
+                    <h4>Proper Nouns</h4>
+                    <p class="section-subtitle">Specific names (CAPITAL)</p>
+                    <ul class="examples-list possessive-examples">
+                        <li><strong>Tom</strong> - a specific boy</li>
+                        <li><strong>London</strong> - a specific city</li>
+                        <li><strong>Rex</strong> - a specific dog</li>
+                        <li><strong>Cambridge School</strong> - a specific school</li>
+                        <li><strong>England</strong> - a specific country</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sentence-examples">
+                <div class="sentence-example">
+                    My <span class="pronoun possessive">friend</span> lives in a <span class="pronoun possessive">city</span>. → common nouns
+                </div>
+                <div class="sentence-example">
+                    <span class="pronoun possessive">Anna</span> lives in <span class="pronoun possessive">Paris</span>. → proper nouns (capitals!)
+                </div>
+                <div class="sentence-example">
+                    The <span class="pronoun possessive">teacher</span> is called <span class="pronoun possessive">Mr. Smith</span>. → common + proper
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Singular & Plural Nouns -->
         <div class="slide">
             <div class="decorative-star star-1">⚡</div>
+            <div class="decorative-star star-2">💡</div>
+            <div class="decorative-shape shape-square"></div>
+            <div class="decorative-shape shape-triangle"></div>
+
+            <h1 class="title-decoration">Singular & Plural</h1>
+            <h2>One or Many?</h2>
+
+            <div class="grammar-box">
+                <h2 class="info-title">The Rule</h2>
+                <p class="info-main-text color-accent">
+                    Singular = ONE thing. Plural = TWO or MORE things.
+                </p>
+            </div>
+
+            <div class="comparison-table">
+                <div class="comparison-column personal-column">
+                    <h4>How to Make Plurals</h4>
+                    <p class="section-subtitle">Basic rules</p>
+                    <ul class="examples-list personal-examples">
+                        <li><strong>Add -s:</strong> cat → cats</li>
+                        <li><strong>Add -es:</strong> box → boxes</li>
+                        <li><strong>-y → -ies:</strong> baby → babies</li>
+                        <li><strong>-f → -ves:</strong> leaf → leaves</li>
+                        <li><strong>Irregular:</strong> child → children</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-column possessive-column">
+                    <h4>Examples</h4>
+                    <p class="section-subtitle">Singular → Plural</p>
+                    <ul class="examples-list possessive-examples">
+                        <li>book → <strong>books</strong></li>
+                        <li>dish → <strong>dishes</strong></li>
+                        <li>city → <strong>cities</strong></li>
+                        <li>knife → <strong>knives</strong></li>
+                        <li>man → <strong>men</strong></li>
+                        <li>foot → <strong>feet</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sentence-examples">
+                <div class="sentence-example">
+                    I have one <span class="pronoun personal">book</span>. → singular
+                </div>
+                <div class="sentence-example">
+                    I have three <span class="pronoun possessive">books</span>. → plural (add -s)
+                </div>
+                <div class="sentence-example">
+                    The <span class="pronoun demonstrative">children</span> are playing. → irregular plural
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: What is a VERB? -->
+        <div class="slide">
+            <div class="decorative-star star-1">🎯</div>
+            <div class="decorative-star star-2">📚</div>
+            <div class="decorative-shape shape-circle"></div>
+            <div class="decorative-shape shape-square"></div>
+
+            <h1 class="title-decoration">What is a VERB?</h1>
+            <h2>Action words and state of being</h2>
+
+            <div class="info-box">
+                <h2 class="info-title">Definition</h2>
+                <p class="info-main-text color-accent">
+                    A VERB is a word that shows action or state of being
+                </p>
+            </div>
+
+            <div class="pronoun-types-grid">
+                <div class="pronoun-type-card personal-pronoun-card">
+                    <h4>Action Verbs</h4>
+                    <p><strong>Things you DO</strong></p>
+                    <p class="card-subtitle">Physical or mental actions</p>
+                    <p class="card-description color-primary">run, jump, eat, think<br>write, play, sing, read</p>
+                </div>
+
+                <div class="pronoun-type-card possessive-pronoun-card">
+                    <h4>State of Being Verbs</h4>
+                    <p><strong>How things ARE</strong></p>
+                    <p class="card-subtitle">Being, not doing</p>
+                    <p class="card-description color-secondary">am, is, are, was, were<br>be, being, been</p>
+                </div>
+            </div>
+
+            <div class="comparison-table">
+                <div class="comparison-column demonstrative-column">
+                    <h4>Easy Test for Verbs</h4>
+                    <ul class="examples-list demonstrative-examples">
+                        <li>✅ Can you DO it? → Action Verb</li>
+                        <li>✅ Does it show a state? → Being Verb</li>
+                        <li>✅ Can you add -ing? → Verb (running, eating)</li>
+                        <li>✅ Does it change with time? → Verb (walk/walked)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sentence-examples">
+                <div class="sentence-example">
+                    The dog <span class="pronoun personal">runs</span> fast. → action verb
+                </div>
+                <div class="sentence-example">
+                    She <span class="pronoun possessive">is</span> happy. → being verb
+                </div>
+                <div class="sentence-example">
+                    We <span class="pronoun demonstrative">play</span> football. → action verb
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Action Verbs -->
+        <div class="slide">
+            <div class="decorative-star star-1">🎯</div>
+            <div class="decorative-star star-2">🎮</div>
+            <div class="decorative-shape shape-triangle"></div>
+            <div class="decorative-shape shape-circle"></div>
+
+            <h1 class="title-decoration">Action Verbs</h1>
+            <h2>Verbs that show what someone DOES</h2>
+
+            <div class="info-box">
+                <p class="example-text">
+                    Action verbs tell us what is happening!
+                </p>
+            </div>
+
+            <div class="comparison-table">
+                <div class="comparison-column personal-column">
+                    <h4>Physical Actions</h4>
+                    <p class="section-subtitle">Things you can see</p>
+                    <ul class="examples-list personal-examples">
+                        <li><strong>run</strong> - He runs every day.</li>
+                        <li><strong>jump</strong> - The cat jumps high.</li>
+                        <li><strong>eat</strong> - We eat lunch at noon.</li>
+                        <li><strong>write</strong> - She writes a letter.</li>
+                        <li><strong>dance</strong> - They dance together.</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-column possessive-column">
+                    <h4>Mental Actions</h4>
+                    <p class="section-subtitle">Things you can't see</p>
+                    <ul class="examples-list possessive-examples">
+                        <li><strong>think</strong> - I think about you.</li>
+                        <li><strong>know</strong> - She knows the answer.</li>
+                        <li><strong>believe</strong> - We believe in magic.</li>
+                        <li><strong>understand</strong> - He understands English.</li>
+                        <li><strong>remember</strong> - I remember that day.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sentence-examples">
+                <div class="sentence-example">
+                    The bird <span class="pronoun personal">flies</span> in the sky. → physical action
+                </div>
+                <div class="sentence-example">
+                    Maria <span class="pronoun possessive">loves</span> chocolate. → mental action
+                </div>
+                <div class="sentence-example">
+                    They <span class="pronoun personal">play</span> games every weekend. → physical action
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Being Verbs (To Be) -->
+        <div class="slide">
+            <div class="decorative-star star-1">✏️</div>
+            <div class="decorative-star star-2">📝</div>
+            <div class="decorative-shape shape-square"></div>
+            <div class="decorative-shape shape-circle"></div>
+
+            <h1 class="title-decoration">Being Verbs</h1>
+            <h2>The verb "TO BE"</h2>
+
+            <div class="info-box">
+                <p class="example-text">
+                    Being verbs don't show action - they show a STATE or CONDITION
+                </p>
+            </div>
+
+            <div class="comparison-table">
+                <div class="comparison-column personal-column">
+                    <h4>Present Tense (Now)</h4>
+                    <p class="section-subtitle">Forms of "be"</p>
+                    <ul class="examples-list personal-examples">
+                        <li><strong>I am</strong> - I am happy.</li>
+                        <li><strong>You are</strong> - You are tall.</li>
+                        <li><strong>He/She/It is</strong> - She is smart.</li>
+                        <li><strong>We are</strong> - We are friends.</li>
+                        <li><strong>They are</strong> - They are students.</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-column possessive-column">
+                    <h4>Past Tense (Before)</h4>
+                    <p class="section-subtitle">Forms of "be"</p>
+                    <ul class="examples-list possessive-examples">
+                        <li><strong>I was</strong> - I was tired.</li>
+                        <li><strong>You were</strong> - You were late.</li>
+                        <li><strong>He/She/It was</strong> - He was sick.</li>
+                        <li><strong>We were</strong> - We were at home.</li>
+                        <li><strong>They were</strong> - They were happy.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sentence-examples">
+                <div class="sentence-example">
+                    I <span class="pronoun personal">am</span> a student. → present being
+                </div>
+                <div class="sentence-example">
+                    She <span class="pronoun possessive">was</span> at school yesterday. → past being
+                </div>
+                <div class="sentence-example">
+                    They <span class="pronoun demonstrative">are</span> my friends. → present being
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Nouns + Verbs = Sentences! -->
+        <div class="slide">
+            <div class="decorative-star star-1">🔄</div>
+            <div class="decorative-star star-2">⭐</div>
+            <div class="decorative-shape shape-triangle"></div>
+            <div class="decorative-shape shape-square"></div>
+
+            <h1 class="title-decoration">Making Sentences</h1>
+            <h2>NOUN + VERB = Complete Sentence!</h2>
+
+            <div class="info-box">
+                <p class="example-text">
+                    Every sentence needs a NOUN (who/what) and a VERB (does/is)
+                </p>
+            </div>
+
+            <div class="example-box">
+                <h3>📝 Sentence Formula</h3>
+                <p class="example-text">
+                    <span class="color-primary">NOUN</span> + <span class="color-secondary">VERB</span> = <span class="color-success">SENTENCE</span><br><br>
+                    <span class="color-primary">Dogs</span> + <span class="color-secondary">bark</span> = <span class="color-success">Dogs bark.</span><br>
+                    <span class="color-primary">She</span> + <span class="color-secondary">runs</span> = <span class="color-success">She runs.</span><br>
+                    <span class="color-primary">We</span> + <span class="color-secondary">are</span> = <span class="color-success">We are students.</span>
+                </p>
+            </div>
+
+            <div class="comparison-table">
+                <div class="comparison-column demonstrative-column">
+                    <h4>Examples</h4>
+                    <ul class="examples-list demonstrative-examples">
+                        <li><span class="color-primary">Birds</span> <span class="color-secondary">fly</span>.</li>
+                        <li><span class="color-primary">Maria</span> <span class="color-secondary">reads</span> books.</li>
+                        <li><span class="color-primary">The cat</span> <span class="color-secondary">is</span> sleeping.</li>
+                        <li><span class="color-primary">Children</span> <span class="color-secondary">play</span> games.</li>
+                        <li><span class="color-primary">I</span> <span class="color-secondary">love</span> chocolate.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sentence-examples">
+                <div class="sentence-example">
+                    <span class="pronoun personal">The dog</span> <span class="pronoun possessive">barks</span> loudly. → NOUN + VERB
+                </div>
+                <div class="sentence-example">
+                    <span class="pronoun personal">Students</span> <span class="pronoun possessive">study</span> every day. → NOUN + VERB
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Exercise 1 -->
+        <div class="slide">
+            <div class="decorative-star star-1">🎯</div>
+            <div class="decorative-star star-2">🎮</div>
+            <div class="decorative-shape shape-triangle"></div>
+            <div class="decorative-shape shape-circle"></div>
+
+            <h1 class="title-decoration">Exercise 1</h1>
+            <h2>Is it a NOUN or a VERB?</h2>
+
+            <div class="info-box">
+                <p class="example-text">
+                    Read each word and decide if it's a NOUN or a VERB!
+                </p>
+            </div>
+
+            <div id="exercise1" class="exercise-container">
+                <div class="score-board">
+                    <span>Correct: <strong id="score1">0</strong>/10</span>
+                    <span>Question <strong id="currentQ1">1</strong>/10</span>
+                    <button onclick="resetExercise1()" class="reset-btn">Start Over</button>
+                </div>
+
+                <div class="current-word-display">
+                    <div id="currentSentence1" class="current-word">teacher</div>
+                    <div id="sentenceTranslation1" class="word-translation">Is this a NOUN or a VERB?</div>
+                </div>
+
+                <div id="options1" class="options-grid">
+                    <div class="option-card" onclick="checkAnswer1('NOUN')">NOUN</div>
+                    <div class="option-card" onclick="checkAnswer1('VERB')">VERB</div>
+                </div>
+                <div class="question-navigation">
+                    <button onclick="prevQuestion1()" class="nav-question-btn" id="prevQ1Btn">← Back</button>
+                    <button onclick="nextQuestion1()" class="nav-question-btn" id="nextQ1Btn">Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Exercise 2 -->
+        <div class="slide">
+            <div class="decorative-star star-1">✏️</div>
+            <div class="decorative-star star-2">📝</div>
+            <div class="decorative-shape shape-square"></div>
+            <div class="decorative-shape shape-circle"></div>
+
+            <h1 class="title-decoration">Exercise 2</h1>
+            <h2>Find the NOUN and VERB</h2>
+
+            <div class="info-box">
+                <p class="example-text">
+                    Read the sentence and identify the NOUN and VERB!
+                </p>
+            </div>
+
+            <div id="exercise2" class="exercise-container">
+                <div class="score-board">
+                    <span>Correct: <strong id="score2">0</strong>/8</span>
+                    <span>Question <strong id="currentQ2">1</strong>/8</span>
+                    <button onclick="resetExercise2()" class="reset-btn">Start Over</button>
+                </div>
+
+                <div class="current-word-display">
+                    <div id="currentSentence2" class="current-word">The cat sleeps.</div>
+                    <div id="sentenceTranslation2" class="word-translation">What is the NOUN?</div>
+                </div>
+
+                <div id="options2" class="options-grid">
+                    <div class="option-card" onclick="checkAnswer2('cat')">cat</div>
+                    <div class="option-card" onclick="checkAnswer2('sleeps')">sleeps</div>
+                </div>
+                <div class="question-navigation">
+                    <button onclick="prevQuestion2()" class="nav-question-btn" id="prevQ2Btn">← Back</button>
+                    <button onclick="nextQuestion2()" class="nav-question-btn" id="nextQ2Btn">Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Exercise 3 -->
+         <div class="slide">
+            <div class="decorative-star star-1">🔄</div>
+            <div class="decorative-star star-2">⭐</div>
+            <div class="decorative-shape shape-triangle"></div>
+            <div class="decorative-shape shape-square"></div>
+
+            <h1 class="title-decoration">Exercise 3</h1>
+            <h2>Make Complete Sentences</h2>
+
+            <div class="info-box">
+                <p class="example-text">
+                    Choose the correct word to complete the sentence!
+                </p>
+            </div>
+
+            <div id="exercise3" class="exercise-container">
+                <div class="score-board">
+                    <span>Correct: <strong id="score3">0</strong>/6</span>
+                    <button onclick="resetExercise3()" class="reset-btn">Start Over</button>
+                </div>
+
+                <div class="current-word-display">
+                    <div id="currentSentence3" class="current-word" style="font-size: 1.8em;">Dogs ___ in the park.</div>
+                    <div id="sentenceTask3" class="word-translation">Choose the correct VERB</div>
+                </div>
+
+                <div id="options3" class="options-grid">
+                    <div class="option-card" onclick="checkAnswer3('run')">run</div>
+                    <div class="option-card" onclick="checkAnswer3('teacher')">teacher</div>
+                </div>
+                <div class="question-navigation">
+                    <button onclick="prevQuestion3()" class="nav-question-btn" id="prevQ3Btn">← Back</button>
+                    <button onclick="nextQuestion3()" class="nav-question-btn" id="nextQ3Btn">Next →</button>
+                </div>
+                <div id="feedback3" class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Homework -->
+        <div class="slide">
+            <div class="decorative-star star-1">🏠</div>
+            <div class="decorative-star star-2">📚</div>
+            <div class="decorative-shape shape-circle"></div>
+            <div class="decorative-shape shape-triangle"></div>
+
+            <h1 class="title-decoration">Homework</h1>
+            <h2>Practice Nouns & Verbs</h2>
+
+            <!-- Task 1: Drag and Drop -->
+            <div class="homework-section">
+                <h3>📋 Task 1: Sort the words</h3>
+                <div class="homework-task">
+
+                    <!-- Words to sort -->
+                    <div class="words-to-sort">
+                        <h4>Drag these words:</h4>
+                        <div class="draggable-words">
+                            <div class="draggable-word" draggable="true" data-type="noun">teacher</div>
+                            <div class="draggable-word" draggable="true" data-type="verb">run</div>
+                            <div class="draggable-word" draggable="true" data-type="noun">book</div>
+                            <div class="draggable-word" draggable="true" data-type="verb">sing</div>
+                            <div class="draggable-word" draggable="true" data-type="noun">dog</div>
+                            <div class="draggable-word" draggable="true" data-type="verb">jump</div>
+                            <div class="draggable-word" draggable="true" data-type="noun">school</div>
+                            <div class="draggable-word" draggable="true" data-type="verb">eat</div>
+                            <div class="draggable-word" draggable="true" data-type="noun">car</div>
+                            <div class="draggable-word" draggable="true" data-type="verb">sleep</div>
+                        </div>
+                    </div>
+
+                    <!-- Sortcolumns -->
+                    <div class="sort-columns" style="grid-template-columns: repeat(2, 1fr);">
+                        <div class="sort-column personal-column-hw" id="nounColumn">
+                            <h4>NOUNS</h4>
+                            <p style="text-align: center; color: var(--color-text-muted); font-size: 0.9em;">People, Places, Things</p>
+                            <div class="drop-zone" data-type="noun">
+                                <p>Drag nouns here</p>
+                            </div>
+                        </div>
+
+                        <div class="sort-column possessive-column-hw" id="verbColumn">
+                            <h4>VERBS</h4>
+                            <p style="text-align: center; color: var(--color-text-muted); font-size: 0.9em;">Actions & Being</p>
+                            <div class="drop-zone" data-type="verb">
+                                <p>Drag verbs here</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="homework-result">
+                        <button onclick="resetSorting()" class="reset-btn">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task 2: Fix the mistakes - 8 SENTENCES -->
+            <div class="homework-section">
+                <h3>✏️ Task 2: Fix the mistakes</h3>
+                <div class="homework-task">
+                    <div class="correction-exercises">
+                        <div class="correction-item">
+                            <p><strong>1.</strong> The dog run fast.</p>
+                            <div class="correction-row">
+                                <input type="text" class="correction-input" placeholder="Write correctly..."
+                                    data-correct="The dog runs fast.">
+                                <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>2.</strong> maria lives in london.</p>
+                            <div class="correction-row">
+                                <input type="text" class="correction-input" placeholder="Write correctly..."
+                                    data-correct="Maria lives in London.">
+                                <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>3.</strong> She have three book.</p>
+                            <div class="correction-row">
+                                <input type="text" class="correction-input" placeholder="Write correctly..."
+                                    data-correct="She has three books.">
+                                <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>4.</strong> The childs plays outside.</p>
+                            <div class="correction-row">
+                                <input type="text" class="correction-input" placeholder="Write correctly..."
+                                    data-correct="The children play outside.">
+                                <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>5.</strong> They is happy.</p>
+                            <div class="correction-row">
+                                <input type="text" class="correction-input" placeholder="Write correctly..."
+                                    data-correct="They are happy.">
+                                <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>6.</strong> My teacher teach english.</p>
+                            <div class="correction-row">
+                                <input type="text" class="correction-input" placeholder="Write correctly..."
+                                    data-correct="My teacher teaches English.">
+                                <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>7.</strong> The cat and the dog was friends.</p>
+                            <div class="correction-row">
+                                <input type="text" class="correction-input" placeholder="Write correctly..."
+                                    data-correct="The cat and the dog were friends.">
+                                <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>8.</strong> I goes to school every day.</p>
+                            <div class="correction-row">
+                                <input type="text" class="correction-input" placeholder="Write correctly..."
+                                    data-correct="I go to school every day.">
+                                <button onclick="checkSingleCorrection(this)" class="check-single-btn">✅</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="homework-result">
+                        <button onclick="checkCorrections()" class="check-btn">Check All</button>
+                        <button onclick="resetCorrections()" class="reset-btn">Clear</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task 3: Complete the story -->
+            <div class="homework-section">
+                <h3>📚 Task 3: Complete the story</h3>
+                <div class="homework-task">
+                    <p class="info-sub-text">
+                        Read the story and choose the correct nouns and verbs
+                    </p>
+
+                    <div class="story-container">
+                        <div class="story-title">
+                            <h4>A Day at School</h4>
+                            <p class="color-text-muted">Complete with nouns and verbs</p>
+                        </div>
+
+                        <div class="story-text" id="storyText">
+                            <p class="story-paragraph">
+                                Every morning, <span class="story-blank" data-options='["Tom", "run", "happy"]'
+                                    data-correct="Tom" data-hint="person name - NOUN">____</span> <span class="story-blank" data-options='["wakes", "school", "teacher"]'
+                                    data-correct="wakes" data-hint="action - VERB">____</span> up early.
+                            </p>
+
+                            <p class="story-paragraph">
+                                He <span class="story-blank" data-options='["eats", "breakfast", "quickly"]'
+                                    data-correct="eats" data-hint="action - VERB">____</span> <span class="story-blank" data-options='["happy", "breakfast", "runs"]'
+                                    data-correct="breakfast" data-hint="meal - NOUN">____</span> with his family.
+                            </p>
+
+                            <p class="story-paragraph">
+                                Then Tom <span class="story-blank" data-options='["walks", "fast", "school"]'
+                                    data-correct="walks" data-hint="action - VERB">____</span> to <span class="story-blank" data-options='["quickly", "school", "reads"]'
+                                    data-correct="school" data-hint="place - NOUN">____</span>.
+                            </p>
+
+                            <p class="story-paragraph">
+                                At school, his <span class="story-blank" data-options='["teacher", "teaches", "smart"]'
+                                    data-correct="teacher" data-hint="person - NOUN">____</span> <span class="story-blank" data-options='["classroom", "teaches", "happy"]'
+                                    data-correct="teaches" data-hint="action - VERB">____</span> many subjects.
+                            </p>
+
+                            <p class="story-paragraph">
+                                Tom <span class="story-blank" data-options='["loves", "math", "difficult"]'
+                                    data-correct="loves" data-hint="feeling - VERB">____</span> <span class="story-blank" data-options='["studies", "math", "hard"]'
+                                    data-correct="math" data-hint="subject - NOUN">____</span> class.
+                            </p>
+
+                            <p class="story-paragraph">
+                                During lunch, <span class="story-blank" data-options='["students", "eat", "hungry"]'
+                                    data-correct="students" data-hint="people - NOUN">____</span> <span class="story-blank" data-options='["lunch", "play", "food"]'
+                                    data-correct="play" data-hint="action - VERB">____</span> in the playground.
+                            </p>
+
+                            <p class="story-paragraph">
+                                Tom and his <span class="story-blank" data-options='["play", "friends", "happy"]'
+                                    data-correct="friends" data-hint="people - NOUN">____</span> <span class="story-blank" data-options='["play", "ball", "fun"]'
+                                    data-correct="play" data-hint="action - VERB">____</span> football.
+                            </p>
+
+                            <p class="story-paragraph">
+                                After school, Tom <span class="story-blank" data-options='["goes", "home", "tired"]'
+                                    data-correct="goes" data-hint="action - VERB">____</span> <span class="story-blank" data-options='["quickly", "home", "walks"]'
+                                    data-correct="home" data-hint="place - NOUN">____</span>.
+                            </p>
+
+                            <p class="story-paragraph">
+                                He <span class="story-blank" data-options='["does", "homework", "difficult"]'
+                                    data-correct="does" data-hint="action - VERB">____</span> his homework and then he <span class="story-blank" data-options='["reads", "book", "interesting"]'
+                                    data-correct="reads" data-hint="action - VERB">____</span> a book.
+                            </p>
+                        </div>
+
+                        <div class="story-controls">
+                            <div class="story-progress">
+                                <span>Filled: <strong id="storyProgress">0</strong>/17 blanks</span>
+                            </div>
+
+                            <div class="story-buttons">
+                                <button onclick="checkStory()" class="check-btn" id="checkStoryBtn">Check</button>
+                                <button onclick="showAllHints()" class="hint-btn">Hints</button>
+                            </div>
+                        </div>
+
+                        <div id="storyFeedback" class="story-feedback"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Conclusion -->
+        <div class="slide">
+            <div class="decorative-star star-1">🎉</div>
             <div class="decorative-star star-2">🌟</div>
             <div class="decorative-shape shape-square"></div>
             <div class="decorative-shape shape-circle"></div>
 
-            <h1 class="title-decoration">🎯 Parts of Speech</h1>
-            <h2>What are they?</h2>
+            <h1 class="title-decoration">Excellent Work!</h1>
+            <h2>What We Learned Today</h2>
 
-            <p
-                style="font-size: 1.3em; text-align: center; margin: 30px 0; position: relative; z-index: 10; font-weight: 600;">
-                <strong>Parts of speech</strong> are groups of words that work the same way in a sentence.
-            </p>
-
-            <div class="parts-grid">
-                <div class="part-card">
-                    <h4>🏠 Noun</h4>
-                    <p><strong>What?</strong> or <strong>Who?</strong></p>
-                    <p style="color: #7f8c8d; margin-top: 10px;">house, cat, Vadim</p>
-                </div>
-
-                <div class="part-card">
-                    <h4>🏃‍♂️ Verb</h4>
-                    <p><strong>What to do?</strong></p>
-                    <p style="color: #7f8c8d; margin-top: 10px;">run, read, play</p>
-                </div>
-
-                <div class="part-card">
-                    <h4>🌈 Adjective</h4>
-                    <p><strong>What kind?</strong></p>
-                    <p style="color: #7f8c8d; margin-top: 10px;">beautiful, big, smart</p>
-                </div>
-            </div>
-
-            <div class="example-box">
-                <h3>🌟 Example:</h3>
-                <p style="font-size: 1.4em; text-align: center; font-weight: 700;">
-                    The <span class="highlight">smart</span> <span class="highlight">boy</span> <span
-                        class="highlight">reads</span> a book.
-                </p>
-                <p style="text-align: center; margin-top: 15px; color: #7f8c8d;">
-                    (what kind?) + (who?) + (what does?)
-                </p>
-            </div>
-        </div>
-
-        <!-- Слайд 3: Сравнение русского и английского -->
-        <div class="slide">
-            <div class="decorative-star star-1">🔄</div>
-            <div class="decorative-star star-2">💫</div>
-            <div class="decorative-shape shape-triangle"></div>
-
-            <h1 class="title-decoration">🔄 Сравнение языков</h1>
-
-            <div class="comparison-table">
-                <div class="lang-column">
-                    <h4>Русский язык</h4>
-                    <ul>
-                        <li><strong>Существительное:</strong> дом, мама, собака</li>
-                        <li><strong>Глагол:</strong> играю, читаю, бегаю</li>
-                        <li><strong>Прилагательное:</strong> красивый, большой</li>
+            <div class="pronoun-types-grid">
+                <div class="pronoun-type-card personal-pronoun-card">
+                    <h4>NOUNS</h4>
+                    <ul class="examples-list personal-examples">
+                        <li>Name people, places, things, ideas</li>
+                        <li>Common nouns (lowercase)</li>
+                        <li>Proper nouns (CAPITAL)</li>
+                        <li>Singular & Plural</li>
+                        <li>Answer: Who? What?</li>
                     </ul>
                 </div>
 
-                <div class="lang-column">
-                    <h4>🇬🇧 English</h4>
-                    <ul>
-                        <li><strong>Noun:</strong> house, mom, dog</li>
-                        <li><strong>Verb:</strong> play, read, run</li>
-                        <li><strong>Adjective:</strong> beautiful, big</li>
+                <div class="pronoun-type-card possessive-pronoun-card">
+                    <h4>VERBS</h4>
+                    <ul class="examples-list possessive-examples">
+                        <li>Show action or being</li>
+                        <li>Action verbs (run, eat, think)</li>
+                        <li>Being verbs (am, is, are, was, were)</li>
+                        <li>Physical & Mental actions</li>
+                        <li>Answer: What does? What is?</li>
                     </ul>
                 </div>
             </div>
 
             <div class="example-box">
-                <h3>🎯 Главное сходство:</h3>
-                <p style="font-size: 1.3em; text-align: center; font-weight: 600;">
-                    В обоих языках слова отвечают на одинаковые вопросы!<br><br>
-                    <strong>Кто? Что? = Who? What?</strong><br>
-                    <strong>Что делать? = What to do?</strong><br>
-                    <strong>Какой? = What kind?</strong>
-                </p>
-            </div>
-        </div>
-
-        <!-- Слайд 4: Акцент на глаголах -->
-        <div class="slide">
-            <div class="decorative-star star-1">🏃‍♂️</div>
-            <div class="decorative-star star-2">💨</div>
-            <div class="decorative-shape shape-circle"></div>
-            <div class="decorative-shape shape-square"></div>
-
-            <h1 class="title-decoration">🏃‍♂️ Глаголы / Verbs</h1>
-
-            <div
-                style="background: #fff; border: 3px solid #4ecdc4; padding: 35px; border-radius: 25px; text-align: center; margin: 30px 0; position: relative; z-index: 10; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
-                <h2 style="color: #2c3e50; margin-bottom: 20px;">Что такое глагол?</h2>
-                <p style="font-size: 1.4em; font-weight: 700; color: #4ecdc4;">
-                    Глагол — это слово, которое показывает <strong style="color: #ff6b6b;">ДЕЙСТВИЕ</strong>
-                </p>
-            </div>
-
-            <div class="comparison-table">
-                <div class="lang-column">
-                    <h4>🇷🇺 Русский</h4>
-                    <p style="font-weight: 700; margin-bottom: 15px;"><strong>Вопрос:</strong> Что делать?</p>
-                    <ul>
-                        <li>играть</li>
-                        <li>читать</li>
-                        <li>бежать</li>
-                        <li>кушать</li>
-                    </ul>
-                </div>
-
-                <div class="lang-column">
-                    <h4>🇬🇧 English</h4>
-                    <p style="font-weight: 700; margin-bottom: 15px;"><strong>Question:</strong> What to do?</p>
-                    <ul>
-                        <li>play</li>
-                        <li>read</li>
-                        <li>run</li>
-                        <li>eat</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="example-box">
-                <h3>🌟 Примеры в предложениях:</h3>
-                <p style="font-size: 1.2em; margin: 10px 0; font-weight: 600;">🇷🇺 Вадим <strong
-                        style="color: #ff6b6b;">играет</strong> в футбол.</p>
-                <p style="font-size: 1.2em; margin: 10px 0; font-weight: 600;">🇬🇧 Vadim <strong
-                        style="color: #ff6b6b;">plays</strong> football.</p>
-            </div>
-        </div>
-
-        <!-- Слайд 5: Виды глаголов -->
-        <div class="slide">
-            <div class="decorative-star star-1">📚</div>
-            <div class="decorative-star star-2">🎭</div>
-            <div class="decorative-shape shape-triangle"></div>
-            <div class="decorative-shape shape-circle"></div>
-
-            <h1 class="title-decoration">📚 Виды глаголов</h1>
-
-            <div class="verb-types">
-                <div class="verb-card">
-                    <h4 style="color: #4ecdc4; font-size: 1.5em;">✅ Правильные глаголы</h4>
-                    <p style="font-size: 1.2em; font-weight: 700; margin: 15px 0;"><strong>Regular Verbs</strong></p>
-                    <p style="font-size: 1.1em;">Меняются по правилу: +ED</p>
-                    <div style="margin-top: 20px; background: #e6f7f7; padding: 15px; border-radius: 15px;">
-                        <p style="font-weight: 700;">play → play<strong style="color: #ff6b6b;">ed</strong></p>
-                        <p style="font-weight: 700;">walk → walk<strong style="color: #ff6b6b;">ed</strong></p>
+                <h3>🎯 Remember</h3>
+                <div class="sentence-examples">
+                    <div class="sentence-example">
+                        <strong>NOUN + VERB = SENTENCE</strong>
                     </div>
-                </div>
-
-                <div class="verb-card">
-                    <h4 style="color: #ff6b6b; font-size: 1.5em;">❗ Неправильные глаголы</h4>
-                    <p style="font-size: 1.2em; font-weight: 700; margin: 15px 0;"><strong>Irregular Verbs</strong></p>
-                    <p style="font-size: 1.1em;">Меняются особенно</p>
-                    <div style="margin-top: 20px; background: #ffe6e6; padding: 15px; border-radius: 15px;">
-                        <p style="font-weight: 700;">go → <strong style="color: #4ecdc4;">went</strong></p>
-                        <p style="font-weight: 700;">eat → <strong style="color: #4ecdc4;">ate</strong></p>
+                    <div class="sentence-example">
+                        Every sentence needs both!
+                    </div>
+                    <div class="sentence-example">
+                        <span class="color-primary">The dog</span> <span class="color-secondary">runs</span> fast.
+                    </div>
+                    <div class="sentence-example">
+                        <span class="color-primary">Maria</span> <span class="color-secondary">is</span> happy.
                     </div>
                 </div>
             </div>
 
-            <div class="example-box">
-                <h3>🎯 Запомни:</h3>
-                <p style="font-size: 1.3em; text-align: center; font-weight: 700;">
-                    <strong style="color: #4ecdc4;">Правильные глаголы</strong> — как по инструкции 📖<br><br>
-                    <strong style="color: #ff6b6b;">Неправильные глаголы</strong> — нужно запомнить! 🧠
+            <div class="info-box" style="margin-top: 30px;">
+                <p class="example-text">
+                    🌟 Great job! Now you understand the building blocks of English sentences!
                 </p>
-            </div>
-        </div>
-
-        <!-- Слайд 6: Правильные глаголы в прошедшем времени -->
-        <div class="slide">
-            <div class="decorative-star star-1">✅</div>
-            <div class="decorative-star star-2">📝</div>
-            <div class="decorative-shape shape-square"></div>
-            <div class="decorative-shape shape-circle"></div>
-
-            <h1 class="title-decoration">✅ Правильные глаголы</h1>
-            <h2>Regular Verbs in Past Tense</h2>
-
-            <div
-                style="background: #fff; border: 3px solid #4ecdc4; padding: 30px; border-radius: 25px; text-align: center; margin: 30px 0; position: relative; z-index: 10; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
-                <h3 style="color: #2c3e50; margin-bottom: 20px;">📝 Простое правило:</h3>
-                <p style="font-size: 1.6em; font-weight: 700; color: #4ecdc4;">
-                    Глагол + <strong style="color: #ff6b6b;">ED</strong> = Прошедшее время
-                </p>
-            </div>
-
-            <div class="parts-grid">
-                <div class="part-card">
-                    <h4 style="color: #4ecdc4;">play → played</h4>
-                    <p style="color: #7f8c8d;">играть → играл</p>
-                </div>
-                <div class="part-card">
-                    <h4 style="color: #4ecdc4;">walk → walked</h4>
-                    <p style="color: #7f8c8d;">идти → шёл</p>
-                </div>
-                <div class="part-card">
-                    <h4 style="color: #4ecdc4;">watch → watched</h4>
-                    <p style="color: #7f8c8d;">смотреть → смотрел</p>
-                </div>
-                <div class="part-card">
-                    <h4 style="color: #4ecdc4;">listen → listened</h4>
-                    <p style="color: #7f8c8d;">слушать → слушал</p>
-                </div>
-            </div>
-
-            <div class="example-box">
-                <h3>🌟 Примеры:</h3>
-                <p style="font-size: 1.2em; font-weight: 600;">Сегодня: I <strong style="color: #4ecdc4;">play</strong>
-                    football. (Я играю в футбол)</p>
-                <p style="font-size: 1.2em; font-weight: 600;">Вчера: I <strong style="color: #ff6b6b;">played</strong>
-                    football. (Я играл в футбол)</p>
-            </div>
-        </div>
-
-        <!-- Слайд 7: Неправильные глаголы -->
-        <div class="slide">
-            <div class="decorative-star star-1">❗</div>
-            <div class="decorative-star star-2">🧠</div>
-            <div class="decorative-shape shape-triangle"></div>
-            <div class="decorative-shape shape-square"></div>
-
-            <h1 class="title-decoration">❗ Неправильные глаголы</h1>
-            <h2>Irregular Verbs in Past Tense</h2>
-
-            <div
-                style="background: #fff; border: 3px solid #ff6b6b; padding: 30px; border-radius: 25px; text-align: center; margin: 30px 0; position: relative; z-index: 10; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
-                <h3 style="color: #2c3e50; margin-bottom: 20px;">🧠 Нужно запомнить!</h3>
-                <p style="font-size: 1.4em; font-weight: 700; color: #ff6b6b;">
-                    Эти глаголы меняются по-особенному
-                </p>
-            </div>
-
-            <h3 style="text-align: center; position: relative; z-index: 10;">📖 Самые важные неправильные глаголы:</h3>
-            <div class="irregular-verbs">
-                <div style="font-weight: 700; font-size: 1.1em;"><strong>Настоящее</strong></div>
-                <div style="font-weight: 700; font-size: 1.1em;"><strong>Прошедшее</strong></div>
-                <div style="font-weight: 700; font-size: 1.1em;"><strong>Перевод</strong></div>
-
-                <div>go</div>
-                <div>went</div>
-                <div>идти</div>
-
-                <div>eat</div>
-                <div>ate</div>
-                <div>кушать</div>
-
-                <div>see</div>
-                <div>saw</div>
-                <div>видеть</div>
-
-                <div>come</div>
-                <div>came</div>
-                <div>приходить</div>
-
-                <div>take</div>
-                <div>took</div>
-                <div>брать</div>
-
-                <div>make</div>
-                <div>made</div>
-                <div>делать</div>
-            </div>
-
-            <div class="example-box">
-                <h3>🌟 Примеры:</h3>
-                <p style="font-size: 1.2em; font-weight: 600;">Сегодня: I <strong style="color: #4ecdc4;">go</strong> to
-                    school. (Я иду в школу)</p>
-                <p style="font-size: 1.2em; font-weight: 600;">Вчера: I <strong style="color: #ff6b6b;">went</strong> to
-                    school. (Я ходил в школу)</p>
             </div>
         </div>
 
         <div class="navigation">
-            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Назад</button>
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Back</button>
             <span class="slide-counter">
-                <span id="currentSlide">1</span> из <span id="totalSlides">7</span>
+                <span id="currentSlide">1</span> of <span id="totalSlides">13</span>
             </span>
-            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Вперёд →</button>
-        </div>
-        <!-- Слайд 8: Задание 1 - Найди существительные и глаголы -->
-        <div class="slide">
-            <div class="decorative-star star-1">🎯</div>
-            <div class="decorative-star star-2">📝</div>
-            <div class="decorative-shape shape-triangle"></div>
-            <div class="decorative-shape shape-circle"></div>
-        
-            <h1 class="title-decoration">🎯 Задание 1</h1>
-            <h2>Найди существительные и глаголы</h2>
-        
-            <div
-                style="background: #fff; border: 3px solid #4ecdc4; padding: 20px; border-radius: 20px; margin: 20px 0; position: relative; z-index: 10;">
-                <p style="font-size: 1.2em; text-align: center; font-weight: 600;">
-                    Нажми на слово и выбери: это <strong style="color: #ff6b6b;">ГЛАГОЛ</strong> или <strong
-                        style="color: #4ecdc4;">СУЩЕСТВИТЕЛЬНОЕ</strong>?
-                </p>
-            </div>
-        
-            <div id="exercise1" class="exercise-container" style="position: relative; z-index: 10;">
-                <div class="score-board">
-                    <span>Правильно: <strong id="score1">0</strong>/10</span>
-                    <button onclick="resetExercise1()" class="reset-btn">🔄 Начать заново</button>
-                </div>
-        
-                <div class="words-grid">
-                    <div class="word-card" data-word="cat" data-type="noun" data-translation="кот">cat</div>
-                    <div class="word-card" data-word="run" data-type="verb" data-translation="бегать">run</div>
-                    <div class="word-card" data-word="book" data-type="noun" data-translation="книга">book</div>
-                    <div class="word-card" data-word="play" data-type="verb" data-translation="играть">play</div>
-                    <div class="word-card" data-word="house" data-type="noun" data-translation="дом">house</div>
-                    <div class="word-card" data-word="eat" data-type="verb" data-translation="кушать">eat</div>
-                    <div class="word-card" data-word="dog" data-type="noun" data-translation="собака">dog</div>
-                    <div class="word-card" data-word="read" data-type="verb" data-translation="читать">read</div>
-                    <div class="word-card" data-word="school" data-type="noun" data-translation="школа">school</div>
-                    <div class="word-card" data-word="jump" data-type="verb" data-translation="прыгать">jump</div>
-                </div>
-        
-                <div id="buttons1" class="choice-buttons" style="display: none;">
-                    <button onclick="checkAnswer1('noun')" class="choice-btn noun-btn">🏠 СУЩЕСТВИТЕЛЬНОЕ</button>
-                    <button onclick="checkAnswer1('verb')" class="choice-btn verb-btn">🏃‍♂️ ГЛАГОЛ</button>
-                </div>
-        
-                <div id="feedback1" class="feedback"></div>
-            </div>
-        </div>
-        
-        <!-- Слайд 9: Задание 2 - Правильные и неправильные глаголы -->
-        <div class="slide">
-            <div class="decorative-star star-1">⚡</div>
-            <div class="decorative-star star-2">🎭</div>
-            <div class="decorative-shape shape-square"></div>
-            <div class="decorative-shape shape-circle"></div>
-        
-            <h1 class="title-decoration">⚡ Задание 2</h1>
-            <h2>Правильные или неправильные?</h2>
-        
-            <div
-                style="background: #fff; border: 3px solid #ff6b6b; padding: 20px; border-radius: 20px; margin: 20px 0; position: relative; z-index: 10;">
-                <p style="font-size: 1.2em; text-align: center; font-weight: 600;">
-                    Это <strong style="color: #4ecdc4;">ПРАВИЛЬНЫЙ</strong> или <strong
-                        style="color: #ff6b6b;">НЕПРАВИЛЬНЫЙ</strong> глагол?
-                </p>
-            </div>
-        
-            <div id="exercise2" class="exercise-container" style="position: relative; z-index: 10;">
-                <div class="score-board">
-                    <span>Правильно: <strong id="score2">0</strong>/10</span>
-                    <button onclick="resetExercise2()" class="reset-btn">🔄 Начать заново</button>
-                </div>
-        
-                <div class="words-grid">
-                    <div class="word-card" data-word="walk" data-type="regular" data-past="walked">walk</div>
-                    <div class="word-card" data-word="go" data-type="irregular" data-past="went">go</div>
-                    <div class="word-card" data-word="play" data-type="regular" data-past="played">play</div>
-                    <div class="word-card" data-word="eat" data-type="irregular" data-past="ate">eat</div>
-                    <div class="word-card" data-word="watch" data-type="regular" data-past="watched">watch</div>
-                    <div class="word-card" data-word="see" data-type="irregular" data-past="saw">see</div>
-                    <div class="word-card" data-word="listen" data-type="regular" data-past="listened">listen</div>
-                    <div class="word-card" data-word="take" data-type="irregular" data-past="took">take</div>
-                    <div class="word-card" data-word="cook" data-type="regular" data-past="cooked">cook</div>
-                    <div class="word-card" data-word="come" data-type="irregular" data-past="came">come</div>
-                </div>
-        
-                <div id="buttons2" class="choice-buttons" style="display: none;">
-                    <button onclick="checkAnswer2('regular')" class="choice-btn regular-btn">✅ ПРАВИЛЬНЫЙ (+ED)</button>
-                    <button onclick="checkAnswer2('irregular')" class="choice-btn irregular-btn">❗ НЕПРАВИЛЬНЫЙ</button>
-                </div>
-        
-                <div id="feedback2" class="feedback"></div>
-            </div>
-        </div>
-        
-        <!-- Слайд 10: Задание 3 - Образуй прошедшее время -->
-        <div class="slide">
-            <div class="decorative-star star-1">🕐</div>
-            <div class="decorative-star star-2">⏰</div>
-            <div class="decorative-shape shape-triangle"></div>
-            <div class="decorative-shape shape-square"></div>
-        
-            <h1 class="title-decoration">🕐 Задание 3</h1>
-            <h2>Образуй прошедшее время</h2>
-        
-            <div
-                style="background: #fff; border: 3px solid #ffe66d; padding: 20px; border-radius: 20px; margin: 20px 0; position: relative; z-index: 10;">
-                <p style="font-size: 1.2em; text-align: center; font-weight: 600;">
-                    Как этот глагол будет в <strong style="color: #ff6b6b;">ПРОШЕДШЕМ ВРЕМЕНИ</strong>?
-                </p>
-            </div>
-        
-            <div id="exercise3" class="exercise-container" style="position: relative; z-index: 10;">
-                <div class="score-board">
-                    <span>Правильно: <strong id="score3">0</strong>/10</span>
-                    <button onclick="resetExercise3()" class="reset-btn">🔄 Начать заново</button>
-                </div>
-        
-                <div class="current-word-display">
-                    <div id="currentWord3" class="current-word">🎮 Готов начать?</div>
-                    <div id="wordTranslation3" class="word-translation">Нажми кнопку ниже!</div>
-                </div>
-        
-                <button id="startBtn3" onclick="startExercise3()"
-                    style="width: 300px; display: block; margin: 30px auto; padding: 20px 40px; font-size: 1.4em; background: #ffe66d; color: #2c3e50; border: none; border-radius: 25px; font-weight: 700; font-family: 'Comic Neue', cursive; cursor: pointer; text-align: center; box-shadow: 0 8px 20px rgba(255, 230, 109, 0.4); transition: all 0.3s ease;">🎮
-                    Начать задание</button>
-        
-                <div id="options3" class="options-grid" style="display: none;"></div>
-        
-                <div id="feedback3" class="feedback"></div>
-            </div>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
         </div>
     </div>
     
-
+    <!-- =================================================================
+    MAIN NAVIGATION
+    ================================================================= -->
     <script>
         let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slide');
@@ -1216,258 +885,449 @@
             showSlide(currentSlideIndex);
         }
 
-        // Инициализация
-        showSlide(0);
-
-        // Навигация клавишами
         document.addEventListener('keydown', function (e) {
             if (e.key === 'ArrowLeft') changeSlide(-1);
             if (e.key === 'ArrowRight') changeSlide(1);
         });
-    </script>
 
-    <script>
-        // Задание 1: Существительные и глаголы
+        /* =================================================================
+        EXERCISE 1: NOUN or VERB?
+        ================================================================= */
         let exercise1Data = {
-            currentIndex: 0,
             score: 0,
-            currentWord: null,
-            words: [
-                { word: "cat", type: "noun", translation: "кот" },
-                { word: "run", type: "verb", translation: "бегать" },
-                { word: "book", type: "noun", translation: "книга" },
-                { word: "play", type: "verb", translation: "играть" },
-                { word: "house", type: "noun", translation: "дом" },
-                { word: "eat", type: "verb", translation: "кушать" },
-                { word: "dog", type: "noun", translation: "собака" },
-                { word: "read", type: "verb", translation: "читать" },
-                { word: "school", type: "noun", translation: "школа" },
-                { word: "jump", type: "verb", translation: "прыгать" }
+            currentIndex: 0,
+            answered: Array(10).fill(false),
+            userAnswers: Array(10).fill(null),
+            questions: [
+                {
+                    sentence: "teacher",
+                    translation: "Is this a NOUN or a VERB?",
+                    options: ["NOUN", "VERB"],
+                    correct: "NOUN"
+                },
+                {
+                    sentence: "run",
+                    translation: "Is this a NOUN or a VERB?",
+                    options: ["NOUN", "VERB"],
+                    correct: "VERB"
+                },
+                {
+                    sentence: "London",
+                    translation: "Is this a NOUN or a VERB?",
+                    options: ["NOUN", "VERB"],
+                    correct: "NOUN"
+                },
+                {
+                    sentence: "jump",
+                    translation: "Is this a NOUN or a VERB?",
+                    options: ["NOUN", "VERB"],
+                    correct: "VERB"
+                },
+                {
+                    sentence: "book",
+                    translation: "Is this a NOUN or a VERB?",
+                    options: ["NOUN", "VERB"],
+                    correct: "NOUN"
+                },
+                {
+                    sentence: "think",
+                    translation: "Is this a NOUN or a VERB?",
+                    options: ["NOUN", "VERB"],
+                    correct: "VERB"
+                },
+                {
+                    sentence: "happiness",
+                    translation: "Is this a NOUN or a VERB?",
+                    options: ["NOUN", "VERB"],
+                    correct: "NOUN"
+                },
+                {
+                    sentence: "sleep",
+                    translation: "Is this a NOUN or a VERB?",
+                    options: ["NOUN", "VERB"],
+                    correct: "VERB"
+                },
+                {
+                    sentence: "dog",
+                    translation: "Is this a NOUN or a VERB?",
+                    options: ["NOUN", "VERB"],
+                    correct: "NOUN"
+                },
+                {
+                    sentence: "write",
+                    translation: "Is this a NOUN or a VERB?",
+                    options: ["NOUN", "VERB"],
+                    correct: "VERB"
+                }
             ]
         };
 
         function initExercise1() {
-            const wordCards = document.querySelectorAll('#exercise1 .word-card');
-            wordCards.forEach(card => {
-                card.addEventListener('click', function () {
-                    if (this.classList.contains('disabled')) return;
-
-                    // Убираем выделение с других карточек
-                    wordCards.forEach(c => c.classList.remove('selected'));
-                    // Выделяем текущую карточку
-                    this.classList.add('selected');
-
-                    exercise1Data.currentWord = {
-                        element: this,
-                        word: this.dataset.word,
-                        type: this.dataset.type,
-                        translation: this.dataset.translation
-                    };
-
-                    // Показываем кнопки выбора
-                    document.getElementById('buttons1').style.display = 'flex';
-                    document.getElementById('feedback1').innerHTML = `
-                    <div style="background: #f0f4f8; padding: 15px; border-radius: 15px; border: 2px solid #4ecdc4;">
-                        Слово: <strong>${this.dataset.word}</strong> (${this.dataset.translation})<br>
-                        Выбери правильный ответ!
-                    </div>`;
-                });
-            });
+            showQuestion1();
         }
 
-        function checkAnswer1(selectedType) {
-            const correct = exercise1Data.currentWord.type === selectedType;
-            const feedbackEl = document.getElementById('feedback1');
+        function showQuestion1() {
+            const currentQuestion = exercise1Data.questions[exercise1Data.currentIndex];
 
-            if (correct) {
-                exercise1Data.score++;
-                exercise1Data.currentWord.element.classList.add('correct');
-                feedbackEl.innerHTML = `
-                <div class="feedback correct">
-                    🎉 Правильно! "${exercise1Data.currentWord.word}" - это ${selectedType === 'noun' ? 'существительное' : 'глагол'}!
-                </div>`;
-            } else {
-                exercise1Data.currentWord.element.classList.add('incorrect');
-                feedbackEl.innerHTML = `
-                <div class="feedback incorrect">
-                    😅 Неправильно! "${exercise1Data.currentWord.word}" - это ${exercise1Data.currentWord.type === 'noun' ? 'существительное' : 'глагол'}!
-                </div>`;
-            }
+            document.getElementById('currentSentence1').textContent = currentQuestion.sentence;
+            document.getElementById('sentenceTranslation1').textContent = currentQuestion.translation;
+            document.getElementById('currentQ1').textContent = exercise1Data.currentIndex + 1;
 
-            exercise1Data.currentWord.element.classList.add('disabled');
-            document.getElementById('score1').textContent = exercise1Data.score;
-            document.getElementById('buttons1').style.display = 'none';
-
-            // Проверяем, закончено ли задание
-            if (document.querySelectorAll('#exercise1 .word-card.disabled').length === 10) {
-                setTimeout(() => {
-                    feedbackEl.innerHTML += `
-                    <div style="background: #d5f4e6; padding: 20px; border-radius: 15px; margin-top: 15px; border: 2px solid #27ae60;">
-                        🏆 Задание завершено! Результат: ${exercise1Data.score}/10
-                    </div>`;
-                }, 1500);
-            }
-        }
-
-        function resetExercise1() {
-            exercise1Data.score = 0;
-            exercise1Data.currentWord = null;
-            document.getElementById('score1').textContent = '0';
-            document.getElementById('buttons1').style.display = 'none';
-            document.getElementById('feedback1').innerHTML = '';
-
-            const wordCards = document.querySelectorAll('#exercise1 .word-card');
-            wordCards.forEach(card => {
-                card.classList.remove('selected', 'correct', 'incorrect', 'disabled');
-            });
-        }
-
-        // Задание 2: Правильные и неправильные глаголы
-        let exercise2Data = {
-            score: 0,
-            currentWord: null
-        };
-
-        function initExercise2() {
-            const wordCards = document.querySelectorAll('#exercise2 .word-card');
-            wordCards.forEach(card => {
-                card.addEventListener('click', function () {
-                    if (this.classList.contains('disabled')) return;
-
-                    wordCards.forEach(c => c.classList.remove('selected'));
-                    this.classList.add('selected');
-
-                    exercise2Data.currentWord = {
-                        element: this,
-                        word: this.dataset.word,
-                        type: this.dataset.type,
-                        past: this.dataset.past
-                    };
-
-                    document.getElementById('buttons2').style.display = 'flex';
-                    document.getElementById('feedback2').innerHTML = `
-                    <div style="background: #f0f4f8; padding: 15px; border-radius: 15px; border: 2px solid #ff6b6b;">
-                        Глагол: <strong>${this.dataset.word}</strong><br>
-                        Правильный или неправильный?
-                    </div>`;
-                });
-            });
-        }
-
-        function checkAnswer2(selectedType) {
-            const correct = exercise2Data.currentWord.type === selectedType;
-            const feedbackEl = document.getElementById('feedback2');
-
-            if (correct) {
-                exercise2Data.score++;
-                exercise2Data.currentWord.element.classList.add('correct');
-                feedbackEl.innerHTML = `
-                <div class="feedback correct">
-                    🎉 Правильно! "${exercise2Data.currentWord.word}" → "${exercise2Data.currentWord.past}"
-                </div>`;
-            } else {
-                exercise2Data.currentWord.element.classList.add('incorrect');
-                const explanation = exercise2Data.currentWord.type === 'regular' ?
-                    `Правильный глагол: +ED = ${exercise2Data.currentWord.past}` :
-                    `Неправильный глагол: особая форма = ${exercise2Data.currentWord.past}`;
-                feedbackEl.innerHTML = `
-                <div class="feedback incorrect">
-                    😅 Неправильно! ${explanation}
-                </div>`;
-            }
-
-            exercise2Data.currentWord.element.classList.add('disabled');
-            document.getElementById('score2').textContent = exercise2Data.score;
-            document.getElementById('buttons2').style.display = 'none';
-
-            if (document.querySelectorAll('#exercise2 .word-card.disabled').length === 10) {
-                setTimeout(() => {
-                    feedbackEl.innerHTML += `
-                    <div style="background: #d5f4e6; padding: 20px; border-radius: 15px; margin-top: 15px; border: 2px solid #27ae60;">
-                        🏆 Задание завершено! Результат: ${exercise2Data.score}/10
-                    </div>`;
-                }, 1500);
-            }
-        }
-
-        function resetExercise2() {
-            exercise2Data.score = 0;
-            exercise2Data.currentWord = null;
-            document.getElementById('score2').textContent = '0';
-            document.getElementById('buttons2').style.display = 'none';
-            document.getElementById('feedback2').innerHTML = '';
-
-            const wordCards = document.querySelectorAll('#exercise2 .word-card');
-            wordCards.forEach(card => {
-                card.classList.remove('selected', 'correct', 'incorrect', 'disabled');
-            });
-        }
-
-        // Задание 3: Прошедшее время
-        let exercise3Data = {
-            score: 0,
-            currentIndex: 0,
-            words: [
-                { word: "play", past: "played", type: "regular", translation: "играть", options: ["played", "playd", "playied", "play"] },
-                { word: "go", past: "went", type: "irregular", translation: "идти", options: ["went", "goed", "wented", "goes"] },
-                { word: "walk", past: "walked", type: "regular", translation: "идти", options: ["walked", "walkt", "walkd", "walking"] },
-                { word: "eat", past: "ate", type: "irregular", translation: "кушать", options: ["ate", "eated", "ated", "eating"] },
-                { word: "watch", past: "watched", type: "regular", translation: "смотреть", options: ["watched", "watchd", "watcht", "watching"] },
-                { word: "see", past: "saw", type: "irregular", translation: "видеть", options: ["saw", "seed", "seen", "seeing"] },
-                { word: "cook", past: "cooked", type: "regular", translation: "готовить", options: ["cooked", "cookd", "cookt", "cooking"] },
-                { word: "take", past: "took", type: "irregular", translation: "брать", options: ["took", "taked", "tooked", "taking"] },
-                { word: "listen", past: "listened", type: "regular", translation: "слушать", options: ["listened", "listend", "listenned", "listening"] },
-                { word: "come", past: "came", type: "irregular", translation: "приходить", options: ["came", "comed", "camed", "coming"] }
-            ]
-        };
-
-        function startExercise3() {
-            exercise3Data.currentIndex = 0;
-            exercise3Data.score = 0;
-            document.getElementById('score3').textContent = '0';
-            document.getElementById('startBtn3').style.display = 'none';
-            showNextWord3();
-        }
-
-        function showNextWord3() {
-            if (exercise3Data.currentIndex >= exercise3Data.words.length) {
-                document.getElementById('feedback3').innerHTML = `
-                <div style="background: #d5f4e6; padding: 20px; border-radius: 15px; border: 2px solid #27ae60;">
-                    🏆 Все задания выполнены! Результат: ${exercise3Data.score}/10<br>
-                    <button onclick="resetExercise3()" style="margin-top: 15px; background: #4ecdc4; color: white; border: none; padding: 10px 20px; border-radius: 15px; cursor: pointer;">Начать заново</button>
-                </div>`;
-                return;
-            }
-
-            const currentWord = exercise3Data.words[exercise3Data.currentIndex];
-            document.getElementById('currentWord3').textContent = currentWord.word;
-            document.getElementById('wordTranslation3').textContent = `(${currentWord.translation})`;
-            document.getElementById('options3').style.display = 'grid';
-            document.getElementById('feedback3').innerHTML = '';
-
-            const optionsContainer = document.getElementById('options3');
+            const optionsContainer = document.getElementById('options1');
             optionsContainer.innerHTML = '';
 
-            // Перемешиваем варианты ответов
-            const shuffledOptions = [...currentWord.options].sort(() => Math.random() - 0.5);
+            const shuffledOptions = [...currentQuestion.options].sort(() => Math.random() - 0.5);
 
             shuffledOptions.forEach(option => {
                 const optionEl = document.createElement('div');
                 optionEl.className = 'option-card';
                 optionEl.textContent = option;
-                optionEl.onclick = () => checkAnswer3(option);
+                optionEl.onclick = function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    checkAnswer1(option);
+                };
+
+                if (exercise1Data.answered[exercise1Data.currentIndex]) {
+                    optionEl.style.pointerEvents = 'none';
+                    if (option === currentQuestion.correct) {
+                        optionEl.classList.add('correct');
+                    } else if (option === exercise1Data.userAnswers[exercise1Data.currentIndex]) {
+                        optionEl.classList.add('incorrect');
+                    }
+                }
+
                 optionsContainer.appendChild(optionEl);
             });
+
+            updateNavButtons1();
         }
 
-        function checkAnswer3(selectedAnswer) {
-            const currentWord = exercise3Data.words[exercise3Data.currentIndex];
-            const correct = selectedAnswer === currentWord.past;
-            const options = document.querySelectorAll('#options3 .option-card');
+        function checkAnswer1(selectedAnswer) {
+            if (exercise1Data.answered[exercise1Data.currentIndex]) return;
+
+            const currentQuestion = exercise1Data.questions[exercise1Data.currentIndex];
+            const correct = selectedAnswer === currentQuestion.correct;
+            const options = document.querySelectorAll('#options1 .option-card');
+
+            exercise1Data.answered[exercise1Data.currentIndex] = true;
+            exercise1Data.userAnswers[exercise1Data.currentIndex] = selectedAnswer;
 
             options.forEach(option => {
                 option.style.pointerEvents = 'none';
-                if (option.textContent === currentWord.past) {
+                if (option.textContent === currentQuestion.correct) {
+                    option.classList.add('correct');
+                } else if (option.textContent === selectedAnswer && !correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            if (correct) {
+                exercise1Data.score++;
+                document.getElementById('score1').textContent = exercise1Data.score;
+            }
+
+            updateNavButtons1();
+        }
+
+        function nextQuestion1() {
+            if (exercise1Data.currentIndex < exercise1Data.questions.length - 1) {
+                exercise1Data.currentIndex++;
+                showQuestion1();
+            }
+        }
+
+        function prevQuestion1() {
+            if (exercise1Data.currentIndex > 0) {
+                exercise1Data.currentIndex--;
+                showQuestion1();
+            }
+        }
+
+        function updateNavButtons1() {
+            const prevBtn = document.getElementById('prevQ1Btn');
+            const nextBtn = document.getElementById('nextQ1Btn');
+
+            if (prevBtn) prevBtn.disabled = exercise1Data.currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = exercise1Data.currentIndex === exercise1Data.questions.length - 1;
+        }
+
+        function resetExercise1() {
+            exercise1Data.score = 0;
+            exercise1Data.currentIndex = 0;
+            exercise1Data.answered = Array(10).fill(false);
+            exercise1Data.userAnswers = Array(10).fill(null);
+
+            document.getElementById('score1').textContent = '0';
+
+            showQuestion1();
+        }
+
+        /* =================================================================
+        EXERCISE 2: Find NOUN and VERB
+        ================================================================= */
+        let exercise2Data = {
+            score: 0,
+            currentIndex: 0,
+            answered: Array(8).fill(false),
+            userAnswers: Array(8).fill(null),
+            questions: [
+                {
+                    sentence: "The cat sleeps.",
+                    translation: "What is the NOUN?",
+                    options: ["cat", "sleeps"],
+                    correct: "cat"
+                },
+                {
+                    sentence: "The cat sleeps.",
+                    translation: "What is the VERB?",
+                    options: ["cat", "sleeps"],
+                    correct: "sleeps"
+                },
+                {
+                    sentence: "Maria reads books.",
+                    translation: "What is the proper NOUN?",
+                    options: ["Maria", "reads"],
+                    correct: "Maria"
+                },
+                {
+                    sentence: "Maria reads books.",
+                    translation: "What is the VERB?",
+                    options: ["books", "reads"],
+                    correct: "reads"
+                },
+                {
+                    sentence: "Children play outside.",
+                    translation: "What is the NOUN?",
+                    options: ["Children", "play"],
+                    correct: "Children"
+                },
+                {
+                    sentence: "The dog is happy.",
+                    translation: "What is the being VERB?",
+                    options: ["dog", "is"],
+                    correct: "is"
+                },
+                {
+                    sentence: "They jump high.",
+                    translation: "What is the action VERB?",
+                    options: ["They", "jump"],
+                    correct: "jump"
+                },
+                {
+                    sentence: "My teacher teaches English.",
+                    translation: "What is the common NOUN?",
+                    options: ["teacher", "teaches"],
+                    correct: "teacher"
+                }
+            ]
+        };
+
+        function initExercise2() {
+            showQuestion2();
+        }
+
+        function showQuestion2() {
+            const currentQuestion = exercise2Data.questions[exercise2Data.currentIndex];
+
+            document.getElementById('currentSentence2').textContent = currentQuestion.sentence;
+            document.getElementById('sentenceTranslation2').textContent = currentQuestion.translation;
+            document.getElementById('currentQ2').textContent = exercise2Data.currentIndex + 1;
+
+            const optionsContainer = document.getElementById('options2');
+            optionsContainer.innerHTML = '';
+
+            const shuffledOptions = [...currentQuestion.options].sort(() => Math.random() - 0.5);
+
+            shuffledOptions.forEach(option => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'option-card';
+                optionEl.textContent = option;
+                optionEl.onclick = function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    checkAnswer2(option);
+                };
+
+                if (exercise2Data.answered[exercise2Data.currentIndex]) {
+                    optionEl.style.pointerEvents = 'none';
+                    if (option === currentQuestion.correct) {
+                        optionEl.classList.add('correct');
+                    } else if (option === exercise2Data.userAnswers[exercise2Data.currentIndex]) {
+                        optionEl.classList.add('incorrect');
+                    }
+                }
+
+                optionsContainer.appendChild(optionEl);
+            });
+
+            updateNavButtons2();
+        }
+
+        function checkAnswer2(selectedAnswer) {
+            if (exercise2Data.answered[exercise2Data.currentIndex]) return;
+
+            const currentQuestion = exercise2Data.questions[exercise2Data.currentIndex];
+            const correct = selectedAnswer === currentQuestion.correct;
+            const options = document.querySelectorAll('#options2 .option-card');
+
+            exercise2Data.answered[exercise2Data.currentIndex] = true;
+            exercise2Data.userAnswers[exercise2Data.currentIndex] = selectedAnswer;
+
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                if (option.textContent === currentQuestion.correct) {
+                    option.classList.add('correct');
+                } else if (option.textContent === selectedAnswer && !correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            if (correct) {
+                exercise2Data.score++;
+                document.getElementById('score2').textContent = exercise2Data.score;
+            }
+
+            updateNavButtons2();
+        }
+
+        function nextQuestion2() {
+            if (exercise2Data.currentIndex < exercise2Data.questions.length - 1) {
+                exercise2Data.currentIndex++;
+                showQuestion2();
+            }
+        }
+
+        function prevQuestion2() {
+            if (exercise2Data.currentIndex > 0) {
+                exercise2Data.currentIndex--;
+                showQuestion2();
+            }
+        }
+
+        function updateNavButtons2() {
+            const prevBtn = document.getElementById('prevQ2Btn');
+            const nextBtn = document.getElementById('nextQ2Btn');
+
+            if (prevBtn) prevBtn.disabled = exercise2Data.currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = exercise2Data.currentIndex === exercise2Data.questions.length - 1;
+        }
+
+        function resetExercise2() {
+            exercise2Data.score = 0;
+            exercise2Data.currentIndex = 0;
+            exercise2Data.answered = Array(8).fill(false);
+            exercise2Data.userAnswers = Array(8).fill(null);
+
+            document.getElementById('score2').textContent = '0';
+
+            showQuestion2();
+        }
+
+        /* =================================================================
+        EXERCISE 3: Complete Sentences
+        ================================================================= */
+        let exercise3Data = {
+            score: 0,
+            currentIndex: 0,
+            answered: [],
+            userAnswers: [],
+            questions: [
+                {
+                    original: "Dogs ___ in the park.",
+                    task: "Choose the correct VERB",
+                    options: ["run", "teacher"],
+                    correct: "run"
+                },
+                {
+                    original: "The ___ is red.",
+                    task: "Choose the correct NOUN",
+                    options: ["car", "jump"],
+                    correct: "car"
+                },
+                {
+                    original: "Maria ___ to school.",
+                    task: "Choose the correct VERB",
+                    options: ["goes", "happy"],
+                    correct: "goes"
+                },
+                {
+                    original: "My ___ teaches English.",
+                    task: "Choose the correct NOUN",
+                    options: ["teacher", "sleep"],
+                    correct: "teacher"
+                },
+                {
+                    original: "Birds ___ in the sky.",
+                    task: "Choose the correct VERB",
+                    options: ["fly", "cloud"],
+                    correct: "fly"
+                },
+                {
+                    original: "The ___ are playing.",
+                    task: "Choose the correct NOUN",
+                    options: ["children", "run"],
+                    correct: "children"
+                }
+            ]
+        };
+
+        function initExercise3() {
+            exercise3Data.currentIndex = 0;
+            exercise3Data.score = 0;
+            exercise3Data.answered = Array(exercise3Data.questions.length).fill(false);
+            exercise3Data.userAnswers = Array(exercise3Data.questions.length).fill(null);
+            document.getElementById('score3').textContent = '0';
+            showQuestion3();
+        }
+
+        function showQuestion3() {
+            const currentQuestion = exercise3Data.questions[exercise3Data.currentIndex];
+            
+            document.getElementById('currentSentence3').textContent = currentQuestion.original;
+            document.getElementById('sentenceTask3').textContent = currentQuestion.task;
+            
+            const optionsContainer = document.getElementById('options3');
+            optionsContainer.innerHTML = '';
+
+            const shuffledOptions = [...currentQuestion.options].sort(() => Math.random() - 0.5);
+
+            shuffledOptions.forEach(option => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'option-card';
+                optionEl.textContent = option;
+                
+                if (exercise3Data.answered[exercise3Data.currentIndex]) {
+                    optionEl.style.pointerEvents = 'none';
+                    if (option === currentQuestion.correct) {
+                        optionEl.classList.add('correct');
+                    } else if (option === exercise3Data.userAnswers[exercise3Data.currentIndex]) {
+                        optionEl.classList.add('incorrect');
+                    }
+                } else {
+                    optionEl.onclick = () => checkAnswer3(option);
+                }
+                
+                optionsContainer.appendChild(optionEl);
+            });
+            
+            updateFeedback3();
+            updateNavButtons3();
+        }
+
+        function checkAnswer3(selectedAnswer) {
+            if (exercise3Data.answered[exercise3Data.currentIndex]) return;
+
+            const currentQuestion = exercise3Data.questions[exercise3Data.currentIndex];
+            const correct = selectedAnswer === currentQuestion.correct;
+            
+            exercise3Data.answered[exercise3Data.currentIndex] = true;
+            exercise3Data.userAnswers[exercise3Data.currentIndex] = selectedAnswer;
+
+            const options = document.querySelectorAll('#options3 .option-card');
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                if (option.textContent === currentQuestion.correct) {
                     option.classList.add('correct');
                 } else if (option.textContent === selectedAnswer && !correct) {
                     option.classList.add('incorrect');
@@ -1477,44 +1337,468 @@
             if (correct) {
                 exercise3Data.score++;
                 document.getElementById('score3').textContent = exercise3Data.score;
-                document.getElementById('feedback3').innerHTML = `
-                <div class="feedback correct">
-                    🎉 Правильно! ${currentWord.word} → ${currentWord.past}
-                </div>`;
-            } else {
-                const explanation = currentWord.type === 'regular' ?
-                    `Правильный глагол: ${currentWord.word} + ED = ${currentWord.past}` :
-                    `Неправильный глагол: ${currentWord.word} → ${currentWord.past} (нужно запомнить!)`;
-                document.getElementById('feedback3').innerHTML = `
-                <div class="feedback incorrect">
-                    😅 Неправильно!<br>${explanation}
-                </div>`;
             }
 
-            exercise3Data.currentIndex++;
-            setTimeout(() => {
-                showNextWord3();
-            }, 2500);
+            updateFeedback3();
+            updateNavButtons3();
+        }
+
+        function updateFeedback3() {
+            const feedbackEl = document.getElementById('feedback3');
+            if (!feedbackEl) return;
+            feedbackEl.innerHTML = ''; 
+        }
+
+        function nextQuestion3() {
+            if (exercise3Data.currentIndex < exercise3Data.questions.length - 1) {
+                exercise3Data.currentIndex++;
+                showQuestion3();
+            }
+        }
+
+        function prevQuestion3() {
+            if (exercise3Data.currentIndex > 0) {
+                exercise3Data.currentIndex--;
+                showQuestion3();
+            }
+        }
+
+        function updateNavButtons3() {
+            const prevBtn = document.getElementById('prevQ3Btn');
+            const nextBtn = document.getElementById('nextQ3Btn');
+
+            if(prevBtn) prevBtn.disabled = exercise3Data.currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = exercise3Data.currentIndex === exercise3Data.questions.length - 1;
         }
 
         function resetExercise3() {
             exercise3Data.score = 0;
             exercise3Data.currentIndex = 0;
+            exercise3Data.answered = Array(exercise3Data.questions.length).fill(false);
+            exercise3Data.userAnswers = Array(exercise3Data.questions.length).fill(null);
             document.getElementById('score3').textContent = '0';
-            document.getElementById('currentWord3').textContent = 'Нажми "Начать"';
-            document.getElementById('wordTranslation3').textContent = '';
-            document.getElementById('options3').style.display = 'none';
             document.getElementById('feedback3').innerHTML = '';
-            document.getElementById('startBtn3').style.display = 'block';
+            showQuestion3();
         }
 
-        // Инициализация при загрузке
+        /* =================================================================
+        HOMEWORK 1: DRAG & DROP
+        ================================================================= */
+        let draggedElement = null;
+
+        function addDragListeners(element) {
+            element.addEventListener('dragstart', function (e) {
+                draggedElement = this;
+                this.classList.add('dragging');
+                e.dataTransfer.effectAllowed = 'move';
+            });
+
+            element.addEventListener('dragend', function () {
+                this.classList.remove('dragging');
+                draggedElement = null;
+            });
+        }
+
+        function initDragAndDrop() {
+            const draggableWords = document.querySelectorAll('.draggable-word');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            draggableWords.forEach(word => {
+                addDragListeners(word);
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', function (e) {
+                    e.preventDefault();
+                    this.classList.add('drag-over');
+                });
+
+                zone.addEventListener('dragleave', function () {
+                    this.classList.remove('drag-over');
+                });
+
+                zone.addEventListener('drop', function (e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+
+                    if (draggedElement) {
+                        const droppedWord = document.createElement('div');
+                        droppedWord.className = 'dropped-word';
+                        droppedWord.textContent = draggedElement.textContent;
+                        droppedWord.dataset.type = draggedElement.dataset.type;
+                        droppedWord.dataset.originalType = draggedElement.dataset.type;
+
+                        const correctZone = this.dataset.type === draggedElement.dataset.type;
+                        if (correctZone) {
+                            droppedWord.classList.add('correct');
+                            droppedWord.style.borderColor = '#27ae60';
+                            droppedWord.style.backgroundColor = '#d5f4e6';
+                        } else {
+                            droppedWord.classList.add('incorrect');
+                            droppedWord.style.borderColor = '#e74c3c';
+                            droppedWord.style.backgroundColor = '#ffeaea';
+                        }
+
+                        droppedWord.addEventListener('click', function () {
+                            if (this.parentNode) {
+                                const originalWord = document.createElement('div');
+                                originalWord.className = 'draggable-word';
+                                originalWord.textContent = this.textContent;
+                                originalWord.dataset.type = this.dataset.originalType;
+                                originalWord.draggable = true;
+
+                                addDragListeners(originalWord);
+
+                                document.querySelector('.draggable-words').appendChild(originalWord);
+                                this.remove();
+                            }
+                        });
+
+                        this.appendChild(droppedWord);
+                        draggedElement.remove();
+                    }
+                });
+            });
+        }
+
+        function resetSorting() {
+            document.querySelectorAll('.dropped-word').forEach(word => word.remove());
+
+            const container = document.querySelector('.draggable-words');
+            container.innerHTML = '';
+
+            const wordsData = [
+                { word: 'teacher', type: 'noun' },
+                { word: 'run', type: 'verb' },
+                { word: 'book', type: 'noun' },
+                { word: 'sing', type: 'verb' },
+                { word: 'dog', type: 'noun' },
+                { word: 'jump', type: 'verb' },
+                { word: 'school', type: 'noun' },
+                { word: 'eat', type: 'verb' },
+                { word: 'car', type: 'noun' },
+                { word: 'sleep', type: 'verb' }
+            ];
+
+            wordsData.forEach(data => {
+                const wordElement = document.createElement('div');
+                wordElement.className = 'draggable-word';
+                wordElement.textContent = data.word;
+                wordElement.dataset.type = data.type;
+                wordElement.draggable = true;
+                addDragListeners(wordElement);
+                container.appendChild(wordElement);
+            });
+        }
+
+        /* =================================================================
+        HOMEWORK 2: FIX MISTAKES
+        ================================================================= */
+        function checkSingleCorrection(button) {
+            const correctionItem = button.closest('.correction-item');
+            const input = correctionItem.querySelector('.correction-input');
+            const userAnswer = input.value.trim();
+            const correctAnswer = input.dataset.correct;
+
+            const existingFeedback = correctionItem.querySelector('.single-feedback');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+
+            const feedback = document.createElement('div');
+            feedback.className = 'single-feedback';
+
+            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                input.classList.add('correct');
+                input.classList.remove('incorrect');
+                feedback.classList.add('correct');
+                feedback.innerHTML = '✅ Correct!';
+                button.classList.add('checked');
+            } else {
+                input.classList.add('incorrect');
+                input.classList.remove('correct');
+                feedback.classList.add('incorrect');
+                feedback.innerHTML = `❌ Incorrect! Correct answer: "${correctAnswer}"`;
+                button.classList.remove('checked');
+            }
+
+            correctionItem.appendChild(feedback);
+        }
+
+        function checkCorrections() {
+            const inputs = document.querySelectorAll('.correction-input');
+            let correct = 0;
+
+            inputs.forEach(input => {
+                const userAnswer = input.value.trim();
+                const correctAnswer = input.dataset.correct;
+
+                if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                    correct++;
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            });
+        }
+
+        function resetCorrections() {
+            const inputs = document.querySelectorAll('.correction-input');
+            inputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('correct', 'incorrect');
+            });
+
+            document.querySelectorAll('.single-feedback').forEach(feedback => {
+                feedback.remove();
+            });
+
+            document.querySelectorAll('.check-single-btn').forEach(button => {
+                button.classList.remove('checked');
+            });
+        }
+
+        /* =================================================================
+        HOMEWORK 3: STORY WITH BLANKS
+        ================================================================= */
+        let currentBlank = null;
+        let storyData = {
+            completed: 0,
+            total: 17,
+            score: 0
+        };
+
+        function initStory() {
+            const blanks = document.querySelectorAll('.story-blank');
+
+            blanks.forEach(blank => {
+                blank.addEventListener('click', function () {
+                    document.querySelectorAll('.options-popup').forEach(popup => {
+                        popup.remove();
+                    });
+
+                    document.querySelectorAll('.story-blank').forEach(b => b.classList.remove('selected'));
+
+                    this.classList.add('selected');
+                    currentBlank = this;
+
+                    showOptionsPopup(this);
+                });
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.story-blank') && !e.target.closest('.options-popup')) {
+                    document.querySelectorAll('.options-popup').forEach(popup => {
+                        popup.remove();
+                    });
+                    document.querySelectorAll('.story-blank').forEach(blank => {
+                        blank.classList.remove('selected');
+                    });
+                }
+            });
+        }
+
+        function showOptionsPopup(blank) {
+            const options = JSON.parse(blank.dataset.options);
+
+            const popup = document.createElement('div');
+            popup.className = 'options-popup';
+
+            options.forEach(option => {
+                const optionEl = document.createElement('button');
+                optionEl.className = 'option-item';
+                optionEl.textContent = option;
+                optionEl.onclick = () => selectOption(blank, option, popup);
+                popup.appendChild(optionEl);
+            });
+
+            document.body.appendChild(popup);
+            positionPopup(blank, popup);
+
+            popup.style.opacity = '0';
+            popup.style.transform = 'scale(0.8)';
+            popup.offsetHeight;
+            popup.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            popup.style.opacity = '1';
+            popup.style.transform = 'scale(1)';
+        }
+
+        function positionPopup(blank, popup) {
+            const blankRect = blank.getBoundingClientRect();
+            const popupRect = popup.getBoundingClientRect();
+
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+            let left = blankRect.left + scrollLeft + (blankRect.width / 2) - (popupRect.width / 2);
+            let top = blankRect.bottom + scrollTop + 5;
+
+            if (left + popupRect.width > windowWidth + scrollLeft) {
+                left = windowWidth + scrollLeft - popupRect.width - 10;
+            }
+
+            if (left < scrollLeft + 10) {
+                left = scrollLeft + 10;
+            }
+
+            if (top + popupRect.height > windowHeight + scrollTop) {
+                top = blankRect.top + scrollTop - popupRect.height - 5;
+
+                if (top < scrollTop + 10) {
+                    top = scrollTop + (windowHeight - popupRect.height) / 2;
+                }
+            }
+
+            popup.style.left = Math.round(left) + 'px';
+            popup.style.top = Math.round(top) + 'px';
+        }
+
+        function selectOption(blank, option, popup) {
+            const wasAlreadyFilled = blank.classList.contains('filled');
+
+            popup.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+            popup.style.opacity = '0';
+            popup.style.transform = 'scale(0.8)';
+
+            setTimeout(() => {
+                if (popup && popup.parentNode) {
+                    popup.remove();
+                }
+            }, 200);
+
+            blank.textContent = option;
+            blank.classList.add('filled');
+            blank.classList.remove('selected');
+
+            if (!wasAlreadyFilled) {
+                updateProgress();
+            }
+        }
+
+        function handleWindowEvents() {
+            const popup = document.querySelector('.options-popup');
+            const selectedBlank = document.querySelector('.story-blank.selected');
+
+            if (popup && selectedBlank) {
+                positionPopup(selectedBlank, popup);
+            }
+        }
+
+        window.addEventListener('resize', handleWindowEvents);
+        window.addEventListener('scroll', handleWindowEvents);
+
+        function updateProgress() {
+            const filledBlanks = document.querySelectorAll('.story-blank.filled');
+            storyData.completed = filledBlanks.length;
+
+            document.getElementById('storyProgress').textContent = storyData.completed;
+
+            const checkBtn = document.getElementById('checkStoryBtn');
+            if (storyData.completed === storyData.total) {
+                checkBtn.style.background = '#27ae60';
+                checkBtn.textContent = 'Check';
+            }
+        }
+
+        function showAllHints() {
+            const blanks = document.querySelectorAll('.story-blank');
+
+            blanks.forEach(blank => {
+                const hint = blank.dataset.hint;
+                if (hint && !blank.classList.contains('filled')) {
+
+                    const existingHint = blank.querySelector('.hint-display');
+                    if (existingHint) {
+                        existingHint.remove();
+                        return;
+                    }
+
+                    const hintEl = document.createElement('div');
+                    hintEl.className = 'hint-display';
+                    hintEl.textContent = hint;
+
+                    blank.appendChild(hintEl);
+
+                    setTimeout(() => {
+                        hintEl.style.opacity = '1';
+                    }, 10);
+
+                    setTimeout(() => {
+                        if (hintEl.parentNode) {
+                            hintEl.style.opacity = '0';
+                            setTimeout(() => {
+                                if (hintEl.parentNode) {
+                                    hintEl.remove();
+                                }
+                            }, 300);
+                        }
+                    }, 8000);
+                }
+            });
+        }
+
+        function checkStory() {
+            const blanks = document.querySelectorAll('.story-blank');
+            let correct = 0;
+
+            blanks.forEach(blank => {
+                const userAnswer = blank.textContent.trim();
+                const correctAnswer = blank.dataset.correct;
+
+                blank.classList.remove('correct', 'incorrect');
+
+                if (userAnswer === correctAnswer) {
+                    blank.classList.add('correct');
+                    correct++;
+                } else if (blank.classList.contains('filled')) {
+                    blank.classList.add('incorrect');
+                }
+            });
+
+            storyData.score = correct;
+            showFeedback(correct);
+        }
+
+        function showFeedback(correct) {
+            const feedback = document.getElementById('storyFeedback');
+            const percentage = Math.round((correct / storyData.total) * 100);
+
+            let message = '';
+            let className = '';
+
+            if (percentage >= 90) {
+                message = `🏆 Excellent! ${correct}/${storyData.total} (${percentage}%) - You understand nouns and verbs perfectly!`;
+                className = 'excellent';
+            } else if (percentage >= 70) {
+                message = `👍 Good job! ${correct}/${storyData.total} (${percentage}%) - Almost perfect!`;
+                className = 'good';
+            } else {
+                message = `📖 Keep practicing! ${correct}/${storyData.total} (${percentage}%) - Review the lesson and try again!`;
+                className = 'needs-work';
+            }
+
+            feedback.textContent = message;
+            feedback.className = `story-feedback ${className}`;
+        }
+
+        /* =================================================================
+        INITIALIZATION
+        ================================================================= */
         document.addEventListener('DOMContentLoaded', function () {
+            showSlide(0);
+
             initExercise1();
             initExercise2();
+            initExercise3();
+            initDragAndDrop();
+            initStory();
         });
     </script>
-    
 </body>
 
 </html>
