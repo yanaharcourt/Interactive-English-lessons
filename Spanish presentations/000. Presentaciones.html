@@ -1214,4 +1214,666 @@
 
             const shuffledOptions = [...currentQuestion.options].sort(() => Math.random() - 0.5);
 
-            shuffledOptions.forEach
+            shuffledOptions.forEach(option => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'option-card';
+                optionEl.textContent = option;
+                optionEl.onclick = function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    checkAnswer2(option);
+                };
+
+                if (exercise2Data.answered[exercise2Data.currentIndex]) {
+                    optionEl.style.pointerEvents = 'none';
+                    if (option === currentQuestion.correct) {
+                        optionEl.classList.add('correct');
+                    } else if (option === exercise2Data.userAnswers[exercise2Data.currentIndex]) {
+                        optionEl.classList.add('incorrect');
+                    }
+                }
+
+                optionsContainer.appendChild(optionEl);
+            });
+
+            updateNavButtons2();
+        }
+
+        function checkAnswer2(selectedAnswer) {
+            if (exercise2Data.answered[exercise2Data.currentIndex]) return;
+
+            const currentQuestion = exercise2Data.questions[exercise2Data.currentIndex];
+            const correct = selectedAnswer === currentQuestion.correct;
+            const options = document.querySelectorAll('#options2 .option-card');
+
+            exercise2Data.answered[exercise2Data.currentIndex] = true;
+            exercise2Data.userAnswers[exercise2Data.currentIndex] = selectedAnswer;
+
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                if (option.textContent === currentQuestion.correct) {
+                    option.classList.add('correct');
+                } else if (option.textContent === selectedAnswer && !correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            if (correct) {
+                exercise2Data.score++;
+                document.getElementById('score2').textContent = exercise2Data.score;
+            }
+
+            updateNavButtons2();
+        }
+
+        function nextQuestion2() {
+            if (exercise2Data.currentIndex < exercise2Data.questions.length - 1) {
+                exercise2Data.currentIndex++;
+                showQuestion2();
+            }
+        }
+
+        function prevQuestion2() {
+            if (exercise2Data.currentIndex > 0) {
+                exercise2Data.currentIndex--;
+                showQuestion2();
+            }
+        }
+
+        function updateNavButtons2() {
+            const prevBtn = document.getElementById('prevQ2Btn');
+            const nextBtn = document.getElementById('nextQ2Btn');
+
+            if (prevBtn) prevBtn.disabled = exercise2Data.currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = exercise2Data.currentIndex === exercise2Data.questions.length - 1;
+        }
+
+        function resetExercise2() {
+            exercise2Data.score = 0;
+            exercise2Data.currentIndex = 0;
+            exercise2Data.answered = Array(8).fill(false);
+            exercise2Data.userAnswers = Array(8).fill(null);
+
+            document.getElementById('score2').textContent = '0';
+
+            showQuestion2();
+        }
+
+        /* =================================================================
+        ЗАДАНИЕ 3
+        ================================================================= */
+        let exercise3Data = {
+            score: 0,
+            currentIndex: 0,
+            answered: [],
+            userAnswers: [],
+            questions: [
+                {
+                    original: "Me llamas María.",
+                    task: "Правильно или нет?",
+                    options: ["Правильно", "Неправильно - должно быть: Me llamo María"],
+                    correct: "Неправильно - должно быть: Me llamo María"
+                },
+                {
+                    original: "Soy de España.",
+                    task: "Правильно или нет?",
+                    options: ["Правильно", "Неправильно"],
+                    correct: "Правильно"
+                },
+                {
+                    original: "Hablo el español.",
+                    task: "Правильно или нет?",
+                    options: ["Правильно", "Неправильно - должно быть: Hablo español"],
+                    correct: "Неправильно - должно быть: Hablo español"
+                },
+                {
+                    original: "¿Cómo te llamas?",
+                    task: "Правильно или нет?",
+                    options: ["Правильно", "Неправильно"],
+                    correct: "Правильно"
+                },
+                {
+                    original: "Nosotros estamos de Italia.",
+                    task: "Правильно или нет?",
+                    options: ["Правильно", "Неправильно - должно быть: Nosotros somos de Italia"],
+                    correct: "Неправильно - должно быть: Nosotros somos de Italia"
+                },
+                {
+                    original: "Mucho gusto.",
+                    task: "Правильно или нет?",
+                    options: ["Правильно", "Неправильно"],
+                    correct: "Правильно"
+                }
+            ]
+        };
+
+        function initExercise3() {
+            exercise3Data.currentIndex = 0;
+            exercise3Data.score = 0;
+            exercise3Data.answered = Array(exercise3Data.questions.length).fill(false);
+            exercise3Data.userAnswers = Array(exercise3Data.questions.length).fill(null);
+            document.getElementById('score3').textContent = '0';
+            showQuestion3();
+        }
+
+        function showQuestion3() {
+            const currentQuestion = exercise3Data.questions[exercise3Data.currentIndex];
+            
+            document.getElementById('currentSentence3').textContent = currentQuestion.original;
+            document.getElementById('sentenceTask3').textContent = currentQuestion.task;
+            
+            const optionsContainer = document.getElementById('options3');
+            optionsContainer.innerHTML = '';
+
+            const shuffledOptions = [...currentQuestion.options].sort(() => Math.random() - 0.5);
+
+            shuffledOptions.forEach(option => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'option-card';
+                optionEl.textContent = option;
+                
+                if (exercise3Data.answered[exercise3Data.currentIndex]) {
+                    optionEl.style.pointerEvents = 'none';
+                    if (option === currentQuestion.correct) {
+                        optionEl.classList.add('correct');
+                    } else if (option === exercise3Data.userAnswers[exercise3Data.currentIndex]) {
+                        optionEl.classList.add('incorrect');
+                    }
+                } else {
+                    optionEl.onclick = () => checkAnswer3(option);
+                }
+                
+                optionsContainer.appendChild(optionEl);
+            });
+            
+            updateFeedback3();
+            updateNavButtons3();
+        }
+
+        function checkAnswer3(selectedAnswer) {
+            if (exercise3Data.answered[exercise3Data.currentIndex]) return;
+
+            const currentQuestion = exercise3Data.questions[exercise3Data.currentIndex];
+            const correct = selectedAnswer === currentQuestion.correct;
+            
+            exercise3Data.answered[exercise3Data.currentIndex] = true;
+            exercise3Data.userAnswers[exercise3Data.currentIndex] = selectedAnswer;
+
+            const options = document.querySelectorAll('#options3 .option-card');
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                if (option.textContent === currentQuestion.correct) {
+                    option.classList.add('correct');
+                } else if (option.textContent === selectedAnswer && !correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            if (correct) {
+                exercise3Data.score++;
+                document.getElementById('score3').textContent = exercise3Data.score;
+            }
+
+            updateFeedback3();
+            updateNavButtons3();
+        }
+
+        function updateFeedback3() {
+            const feedbackEl = document.getElementById('feedback3');
+            if (!feedbackEl) return;
+            feedbackEl.innerHTML = ''; 
+        }
+
+        function nextQuestion3() {
+            if (exercise3Data.currentIndex < exercise3Data.questions.length - 1) {
+                exercise3Data.currentIndex++;
+                showQuestion3();
+            }
+        }
+
+        function prevQuestion3() {
+            if (exercise3Data.currentIndex > 0) {
+                exercise3Data.currentIndex--;
+                showQuestion3();
+            }
+        }
+
+        function updateNavButtons3() {
+            const prevBtn = document.getElementById('prevQ3Btn');
+            const nextBtn = document.getElementById('nextQ3Btn');
+
+            if (prevBtn) prevBtn.disabled = exercise3Data.currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = exercise3Data.currentIndex === exercise3Data.questions.length - 1;
+        }
+
+        function resetExercise3() {
+            exercise3Data.score = 0;
+            exercise3Data.currentIndex = 0;
+            exercise3Data.answered = Array(exercise3Data.questions.length).fill(false);
+            exercise3Data.userAnswers = Array(exercise3Data.questions.length).fill(null);
+            document.getElementById('score3').textContent = '0';
+            document.getElementById('feedback3').innerHTML = '';
+            showQuestion3();
+        }
+
+        /* =================================================================
+        ДОМАШНЕЕ ЗАДАНИЕ 1: DRAG & DROP
+        ================================================================= */
+        let draggedElement = null;
+
+        function addDragListeners(element) {
+            element.addEventListener('dragstart', function (e) {
+                draggedElement = this;
+                this.classList.add('dragging');
+                e.dataTransfer.effectAllowed = 'move';
+            });
+
+            element.addEventListener('dragend', function () {
+                this.classList.remove('dragging');
+                draggedElement = null;
+            });
+        }
+
+        function initDragAndDrop() {
+            const draggableWords = document.querySelectorAll('.draggable-word');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            draggableWords.forEach(word => {
+                addDragListeners(word);
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', function (e) {
+                    e.preventDefault();
+                    this.classList.add('drag-over');
+                });
+
+                zone.addEventListener('dragleave', function () {
+                    this.classList.remove('drag-over');
+                });
+
+                zone.addEventListener('drop', function (e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+
+                    if (draggedElement) {
+                        const droppedWord = document.createElement('div');
+                        droppedWord.className = 'dropped-word';
+                        droppedWord.textContent = draggedElement.textContent;
+                        droppedWord.dataset.type = draggedElement.dataset.type;
+                        droppedWord.dataset.originalType = draggedElement.dataset.type;
+
+                        const correctZone = this.dataset.type === draggedElement.dataset.type;
+                        if (correctZone) {
+                            droppedWord.classList.add('correct');
+                            droppedWord.style.borderColor = '#27ae60';
+                            droppedWord.style.backgroundColor = '#d5f4e6';
+                        } else {
+                            droppedWord.classList.add('incorrect');
+                            droppedWord.style.borderColor = '#e74c3c';
+                            droppedWord.style.backgroundColor = '#ffeaea';
+                        }
+
+                        droppedWord.addEventListener('click', function () {
+                            if (this.parentNode) {
+                                const originalWord = document.createElement('div');
+                                originalWord.className = 'draggable-word';
+                                originalWord.textContent = this.textContent;
+                                originalWord.dataset.type = this.dataset.originalType;
+                                originalWord.draggable = true;
+
+                                addDragListeners(originalWord);
+
+                                document.querySelector('.draggable-words').appendChild(originalWord);
+                                this.remove();
+                            }
+                        });
+
+                        this.appendChild(droppedWord);
+                        draggedElement.remove();
+                    }
+                });
+            });
+        }
+
+        function resetSorting() {
+            document.querySelectorAll('.dropped-word').forEach(word => word.remove());
+
+            const container = document.querySelector('.draggable-words');
+            container.innerHTML = '';
+
+            const wordsData = [
+                { word: 'Hola', type: 'saludos' },
+                { word: 'España', type: 'paises' },
+                { word: 'Buenos días', type: 'saludos' },
+                { word: 'español', type: 'idiomas' },
+                { word: 'Francia', type: 'paises' },
+                { word: 'Adiós', type: 'saludos' },
+                { word: 'inglés', type: 'idiomas' },
+                { word: 'Italia', type: 'paises' },
+                { word: 'Mucho gusto', type: 'saludos' },
+                { word: 'francés', type: 'idiomas' }
+            ];
+
+            wordsData.forEach(data => {
+                const wordElement = document.createElement('div');
+                wordElement.className = 'draggable-word';
+                wordElement.textContent = data.word;
+                wordElement.dataset.type = data.type;
+                wordElement.draggable = true;
+                addDragListeners(wordElement);
+                container.appendChild(wordElement);
+            });
+        }
+
+        /* =================================================================
+        ДОМАШНЕЕ ЗАДАНИЕ 2: ИСПРАВЛЕНИЕ ОШИБОК
+        ================================================================= */
+        function checkSingleCorrection(button) {
+            const correctionItem = button.closest('.correction-item');
+            const input = correctionItem.querySelector('.correction-input');
+            const userAnswer = input.value.trim();
+            const correctAnswer = input.dataset.correct;
+
+            const existingFeedback = correctionItem.querySelector('.single-feedback');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+
+            const feedback = document.createElement('div');
+            feedback.className = 'single-feedback';
+
+            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                input.classList.add('correct');
+                input.classList.remove('incorrect');
+                feedback.classList.add('correct');
+                feedback.innerHTML = '✅ Правильно!';
+                button.classList.add('checked');
+            } else {
+                input.classList.add('incorrect');
+                input.classList.remove('correct');
+                feedback.classList.add('incorrect');
+                feedback.innerHTML = `❌ Неправильно! Правильный ответ: "${correctAnswer}"`;
+                button.classList.remove('checked');
+            }
+
+            correctionItem.appendChild(feedback);
+        }
+
+        function checkCorrections() {
+            const inputs = document.querySelectorAll('.correction-input');
+            let correct = 0;
+
+            inputs.forEach(input => {
+                const userAnswer = input.value.trim();
+                const correctAnswer = input.dataset.correct;
+
+                if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                    correct++;
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            });
+        }
+
+        function resetCorrections() {
+            const inputs = document.querySelectorAll('.correction-input');
+            inputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('correct', 'incorrect');
+            });
+
+            document.querySelectorAll('.single-feedback').forEach(feedback => {
+                feedback.remove();
+            });
+
+            document.querySelectorAll('.check-single-btn').forEach(button => {
+                button.classList.remove('checked');
+            });
+        }
+
+        /* =================================================================
+        ДОМАШНЕЕ ЗАДАНИЕ 3: ИСТОРИЯ
+        ================================================================= */
+        let currentBlank = null;
+        let storyData = {
+            completed: 0,
+            total: 16,
+            score: 0
+        };
+
+        function initStory() {
+            const blanks = document.querySelectorAll('.story-blank');
+
+            blanks.forEach(blank => {
+                blank.addEventListener('click', function () {
+                    document.querySelectorAll('.options-popup').forEach(popup => {
+                        popup.remove();
+                    });
+
+                    document.querySelectorAll('.story-blank').forEach(b => b.classList.remove('selected'));
+
+                    this.classList.add('selected');
+                    currentBlank = this;
+
+                    showOptionsPopup(this);
+                });
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.story-blank') && !e.target.closest('.options-popup')) {
+                    document.querySelectorAll('.options-popup').forEach(popup => {
+                        popup.remove();
+                    });
+                    document.querySelectorAll('.story-blank').forEach(blank => {
+                        blank.classList.remove('selected');
+                    });
+                }
+            });
+        }
+
+        function showOptionsPopup(blank) {
+            const options = JSON.parse(blank.dataset.options);
+
+            const popup = document.createElement('div');
+            popup.className = 'options-popup';
+
+            options.forEach(option => {
+                const optionEl = document.createElement('button');
+                optionEl.className = 'option-item';
+                optionEl.textContent = option;
+                optionEl.onclick = () => selectOption(blank, option, popup);
+                popup.appendChild(optionEl);
+            });
+
+            document.body.appendChild(popup);
+            positionPopup(blank, popup);
+
+            popup.style.opacity = '0';
+            popup.style.transform = 'scale(0.8)';
+            popup.offsetHeight;
+            popup.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            popup.style.opacity = '1';
+            popup.style.transform = 'scale(1)';
+        }
+
+        function positionPopup(blank, popup) {
+            const blankRect = blank.getBoundingClientRect();
+            const popupRect = popup.getBoundingClientRect();
+
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+            let left = blankRect.left + scrollLeft + (blankRect.width / 2) - (popupRect.width / 2);
+            let top = blankRect.bottom + scrollTop + 5;
+
+            if (left + popupRect.width > windowWidth + scrollLeft) {
+                left = windowWidth + scrollLeft - popupRect.width - 10;
+            }
+
+            if (left < scrollLeft + 10) {
+                left = scrollLeft + 10;
+            }
+
+            if (top + popupRect.height > windowHeight + scrollTop) {
+                top = blankRect.top + scrollTop - popupRect.height - 5;
+
+                if (top < scrollTop + 10) {
+                    top = scrollTop + (windowHeight - popupRect.height) / 2;
+                }
+            }
+
+            popup.style.left = Math.round(left) + 'px';
+            popup.style.top = Math.round(top) + 'px';
+        }
+
+        function selectOption(blank, option, popup) {
+            const wasAlreadyFilled = blank.classList.contains('filled');
+
+            popup.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+            popup.style.opacity = '0';
+            popup.style.transform = 'scale(0.8)';
+
+            setTimeout(() => {
+                if (popup && popup.parentNode) {
+                    popup.remove();
+                }
+            }, 200);
+
+            blank.textContent = option;
+            blank.classList.add('filled');
+            blank.classList.remove('selected');
+
+            if (!wasAlreadyFilled) {
+                updateProgress();
+            }
+        }
+
+        function handleWindowEvents() {
+            const popup = document.querySelector('.options-popup');
+            const selectedBlank = document.querySelector('.story-blank.selected');
+
+            if (popup && selectedBlank) {
+                positionPopup(selectedBlank, popup);
+            }
+        }
+
+        window.addEventListener('resize', handleWindowEvents);
+        window.addEventListener('scroll', handleWindowEvents);
+
+        function updateProgress() {
+            const filledBlanks = document.querySelectorAll('.story-blank.filled');
+            storyData.completed = filledBlanks.length;
+
+            document.getElementById('storyProgress').textContent = storyData.completed;
+
+            const checkBtn = document.getElementById('checkStoryBtn');
+            if (storyData.completed === storyData.total) {
+                checkBtn.style.background = '#27ae60';
+                checkBtn.textContent = 'Проверить';
+            }
+        }
+
+        function showAllHints() {
+            const blanks = document.querySelectorAll('.story-blank');
+
+            blanks.forEach(blank => {
+                const hint = blank.dataset.hint;
+                if (hint && !blank.classList.contains('filled')) {
+
+                    const existingHint = blank.querySelector('.hint-display');
+                    if (existingHint) {
+                        existingHint.remove();
+                        return;
+                    }
+
+                    const hintEl = document.createElement('div');
+                    hintEl.className = 'hint-display';
+                    hintEl.textContent = hint;
+
+                    blank.appendChild(hintEl);
+
+                    setTimeout(() => {
+                        hintEl.style.opacity = '1';
+                    }, 10);
+
+                    setTimeout(() => {
+                        if (hintEl.parentNode) {
+                            hintEl.style.opacity = '0';
+                            setTimeout(() => {
+                                if (hintEl.parentNode) {
+                                    hintEl.remove();
+                                }
+                            }, 300);
+                        }
+                    }, 8000);
+                }
+            });
+        }
+
+        function checkStory() {
+            const blanks = document.querySelectorAll('.story-blank');
+            let correct = 0;
+
+            blanks.forEach(blank => {
+                const userAnswer = blank.textContent.trim();
+                const correctAnswer = blank.dataset.correct;
+
+                blank.classList.remove('correct', 'incorrect');
+
+                if (userAnswer === correctAnswer) {
+                    blank.classList.add('correct');
+                    correct++;
+                } else if (blank.classList.contains('filled')) {
+                    blank.classList.add('incorrect');
+                }
+            });
+
+            storyData.score = correct;
+            showFeedback(correct);
+        }
+
+        function showFeedback(correct) {
+            const feedback = document.getElementById('storyFeedback');
+            const percentage = Math.round((correct / storyData.total) * 100);
+
+            let message = '';
+            let className = '';
+
+            if (percentage >= 90) {
+                message = `🏆 Превосходно! ${correct}/${storyData.total} (${percentage}%) - Ты отлично знаешь приветствия и знакомство!`;
+                className = 'excellent';
+            } else if (percentage >= 70) {
+                message = `👍 Хорошо! ${correct}/${storyData.total} (${percentage}%) - Почти всё правильно!`;
+                className = 'good';
+            } else {
+                message = `📖 Нужно больше практики! ${correct}/${storyData.total} (${percentage}%) - Повтори фразы и попробуй ещё раз!`;
+                className = 'needs-work';
+            }
+
+            feedback.textContent = message;
+            feedback.className = `story-feedback ${className}`;
+        }
+
+        /* =================================================================
+        ИНИЦИАЛИЗАЦИЯ
+        ================================================================= */
+        document.addEventListener('DOMContentLoaded', function () {
+            showSlide(0);
+
+            initExercise1();
+            initExercise2();
+            initExercise3();
+            initDragAndDrop();
+            initStory();
+        });
+    </script>
+</body>
+
+</html>
