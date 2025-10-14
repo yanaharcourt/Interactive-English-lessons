@@ -249,7 +249,7 @@
     <!-- =================================
     Mobile Menu 
     ================================= -->
-    <script>
+    <!-- <script>
         const burgerBtn = document.getElementById('burgerBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const menuOverlay = document.getElementById('menuOverlay');
@@ -283,6 +283,59 @@
             if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
                 toggleMenu();
             }
+        });
+    </script> -->
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navLinks = document.querySelector('.nav-links');
+            const navButtons = document.querySelector('.nav-buttons');
+            const languageSwitcher = document.querySelector('.language-switcher');
+            const body = document.body;
+
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    
+                    if (navLinks) navLinks.classList.toggle('mobile-active');
+                    if (navButtons) navButtons.classList.toggle('mobile-active');
+                    if (languageSwitcher) languageSwitcher.classList.toggle('mobile-active');
+                    
+                    // Prevent body scroll when menu is open
+                    if (this.classList.contains('active')) {
+                        body.style.overflow = 'hidden';
+                    } else {
+                        body.style.overflow = '';
+                    }
+                });
+            }
+
+            // Close menu when clicking on a link
+            const allNavLinks = document.querySelectorAll('.nav-links a, .nav-buttons a, .language-switcher a');
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (mobileMenu && mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        if (navLinks) navLinks.classList.remove('mobile-active');
+                        if (navButtons) navButtons.classList.remove('mobile-active');
+                        if (languageSwitcher) languageSwitcher.classList.remove('mobile-active');
+                        body.style.overflow = '';
+                    }
+                });
+            });
+
+            // Close menu on ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    if (navLinks) navLinks.classList.remove('mobile-active');
+                    if (navButtons) navButtons.classList.remove('mobile-active');
+                    if (languageSwitcher) languageSwitcher.classList.remove('mobile-active');
+                    body.style.overflow = '';
+                }
+            });
         });
     </script>
 </body>
