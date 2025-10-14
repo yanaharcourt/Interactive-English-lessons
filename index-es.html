@@ -15,7 +15,7 @@
     <!-- =================================
     Navigation 
     ================================= -->
-    <div class="nav-section">
+    <!-- <div class="nav-section">
         <div class="container">
             <div class="nav-content">
                 <div class="nav-buttons">
@@ -48,7 +48,34 @@
         <a href="./index-es.html" class="mobile-language-btn">ES</a>
     </div>
 
-    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="menu-overlay" id="menuOverlay"></div> -->
+
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="./index-es.html" class="logo">
+                <img src="./assets/img/logo.png" alt="Logo" class="logo-image">
+                Yana
+            </a>
+            <ul class="nav-links">
+                <li><a href="./index-es.html" class="active">Home</a></li>
+                <li><a href="bookshelf.html">Bookshelf</a></li>
+                <li><a href="https://yanaharcourt.dev/cambridge_voca/">Vocabulary</a></li>
+            </ul>
+            <ul class="nav-buttons">
+                <div class="language-switcher">
+                    <a href="./index.html" class="language-btn" title="Switch to English">
+                        <span class="language-text">EN</span>
+                    </a>
+                </div>
+            </ul>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
     <!-- =================================
     Main 
@@ -534,42 +561,140 @@
         });
     </script>
 
-    <!-- =================================
-    Mobile Menu 
-    ================================= -->
+    <!--  ==============================
+    Mobile Nav. menu
+    ============================== -->
     <script>
-        const burgerBtn = document.getElementById('burgerBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const body = document.body;
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobileMenu');
+            const navigationMenu = document.querySelector('.nav-links');
+            const navButtons = document.querySelector('.nav-buttons');
+            const languageSwitcher = document.querySelector('.language-switcher');
 
-        function toggleMenu() {
-            burgerBtn.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            
-            if (mobileMenu.classList.contains('active')) {
-                body.style.overflow = 'hidden';
-            } else {
-                body.style.overflow = '';
+            // Create mobile overlay
+            let mobileOverlay = document.querySelector('.mobile-overlay');
+            if (!mobileOverlay) {
+                mobileOverlay = document.createElement('div');
+                mobileOverlay.className = 'mobile-overlay';
+                document.body.appendChild(mobileOverlay);
             }
-        }
 
-        burgerBtn.addEventListener('click', toggleMenu);
-        menuOverlay.addEventListener('click', toggleMenu);
+            // Check if elements exist
+            if (!mobileMenuButton || !navigationMenu) {
+                console.error('Mobile menu elements not found');
+                return;
+            }
 
-        const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
-        mobileNavBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                mobileNavBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                toggleMenu();
+            // Toggle mobile menu
+            function toggleMobileMenu(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const isOpen = navigationMenu.classList.contains('mobile-active');
+
+                if (isOpen) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            }
+
+            // Open mobile menu
+            function openMobileMenu() {
+                // Сначала показываем overlay
+                mobileOverlay.style.display = 'block';
+                mobileOverlay.classList.add('active');
+
+                // Затем активируем меню
+                navigationMenu.classList.add('mobile-active');
+                mobileMenuButton.classList.add('active');
+
+                // Show buttons and language switcher on mobile
+                if (navButtons) {
+                    navButtons.classList.add('mobile-active');
+                }
+                if (languageSwitcher) {
+                    languageSwitcher.classList.add('mobile-active');
+                }
+
+                // Prevent background scroll
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Close mobile menu
+            function closeMobileMenu() {
+                navigationMenu.classList.remove('mobile-active');
+                mobileMenuButton.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+
+                // Hide buttons and language switcher
+                if (navButtons) {
+                    navButtons.classList.remove('mobile-active');
+                }
+                if (languageSwitcher) {
+                    languageSwitcher.classList.remove('mobile-active');
+                }
+
+                // Restore background scroll
+                document.body.style.overflow = '';
+
+                // Hide overlay after animation
+                setTimeout(() => {
+                    if (!mobileOverlay.classList.contains('active')) {
+                        mobileOverlay.style.display = 'none';
+                    }
+                }, 300);
+            }
+
+            // Event listeners
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+            // Close menu when clicking on navigation links
+            navigationMenu.addEventListener('click', function (e) {
+                if (e.target.tagName === 'A') {
+                    closeMobileMenu();
+                }
             });
+
+            // Close menu when clicking on nav buttons
+            if (navButtons) {
+                navButtons.addEventListener('click', function (e) {
+                    if (e.target.tagName === 'A') {
+                        closeMobileMenu();
+                    }
+                });
+            }
+
+            // Close menu when clicking on overlay
+            mobileOverlay.addEventListener('click', closeMobileMenu);
+
+            // Close menu on window resize to desktop
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 768) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Handle escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && navigationMenu.classList.contains('mobile-active')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Ensure overlay is properly hidden on page load
+            mobileOverlay.style.display = 'none';
         });
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                toggleMenu();
+        // Navbar scroll effect (keep existing)
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             }
         });
     </script>
