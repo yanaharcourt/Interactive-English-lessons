@@ -2235,7 +2235,7 @@ Bookshelf
     overflow: hidden;
     border: 3px solid transparent;
     cursor: pointer;
-    height: 450px;
+    height: 380px;
     display: flex;
     flex-direction: column;
 }
@@ -2246,19 +2246,23 @@ Bookshelf
 }
 
 .book-cover {
-    width: 100%;
-    height: 250px;
-    background: linear-gradient(135deg, var(--info-color), var(--secondary-color));
+    width: 100% !important;
+    height: 80px !important;
+    min-height: 80px !important;
+    max-height: 80px !important;
+    display: block !important; 
     position: relative;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 20px 20px 0 0;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .book-card.beginner .book-cover {
-    background: linear-gradient(135deg, var(--success-color), var(--teal-color));
+    background-color: var(--accent-color);
+    background-image: 
+        repeating-linear-gradient(45deg, rgba(255,255,255, 0.05) 0px, rgba(255,255,255, 0.05) 1px, transparent 1px, transparent 10px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255, 0.05) 0px, rgba(255,255,255, 0.05) 1px, transparent 1px, transparent 10px);
 }
 
 .book-card.elementary .book-cover {
@@ -2408,3 +2412,4 @@ Bookshelf
         font-size: 0.9em;
     }
 }
+
