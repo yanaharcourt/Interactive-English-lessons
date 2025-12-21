@@ -2227,13 +2227,12 @@ Bookshelf
 
 .book-card {
     background: var(--background-white);
-    border-radius: 50px;
+    border-radius: 60px;
     padding: 0;
     box-shadow: var(--shadow-light);
     transition: all var(--transition);
     position: relative;
     overflow: hidden;
-    border: 3px solid transparent;
     cursor: pointer;
     height: 380px;
     display: flex;
@@ -2290,11 +2289,11 @@ Bookshelf
 .level-badge {
     position: absolute;
     top: 15px;
-    right: 15px;
+    right: 35px;
     background: rgba(255, 255, 255, 0.9);
     color: var(--text-dark);
     padding: 5px 12px;
-    border-radius: 15px;
+    border-radius: 10px;
     font-size: 0.8em;
     font-weight: 700;
 }
@@ -2352,6 +2351,7 @@ Bookshelf
 
 .read-button:hover {
     transform: translateY(-2px);
+    border: 2px solid var(--accent-color);
 }
 
 .coming-soon {
