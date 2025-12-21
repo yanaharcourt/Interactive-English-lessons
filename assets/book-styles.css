@@ -393,6 +393,13 @@ body {
     visibility: visible;
 }
 
+.translation-tooltip {
+    background: var(--background-presentation); 
+    color: var(--text-dark);
+    border: 1px solid var(--primary-color);
+    box-shadow: var(--shadow-medium);
+}
+
 @keyframes pageFlip {
     0% {
         transform: rotateY(-10deg);
@@ -404,4 +411,3 @@ body {
         opacity: 1;
     }
 }
-
