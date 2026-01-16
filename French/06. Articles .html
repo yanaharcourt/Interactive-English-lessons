@@ -1176,68 +1176,108 @@
 
                     <div class="story-text" id="storyText">
                         <p class="story-paragraph">
-                            Ce matin, je mange <span class="story-blank"
-                                data-options='["du", "de la", "le"]'
-                                data-correct="du" data-hint="pain = masculine uncountable">____</span> pain avec
+                            Ce matin, je mange
                             <span class="story-blank"
-                                data-options='["du", "de la", "de l'\''"]'
-                                data-correct="de la" data-hint="confiture = feminine uncountable">____</span> confiture.
+                                data-options='["du", "de la", "le"]'
+                                data-correct="du"
+                                data-hint="pain = masculine uncountable">____</span>
+                            pain avec
+                            <span class="story-blank"
+                                data-options='["du", "de la", "de l&apos;"]'
+                                data-correct="de la"
+                                data-hint="confiture = feminine uncountable">____</span>
+                            confiture.
                         </p>
 
                         <p class="story-paragraph">
-                            Je bois <span class="story-blank"
-                                data-options='["du", "de l'\''", "le"]'
-                                data-correct="du" data-hint="café = masculine uncountable">____</span> café.
-                            J'aime <span class="story-blank"
+                            Je bois
+                            <span class="story-blank"
+                                data-options='["du", "de l&apos;", "le"]'
+                                data-correct="du"
+                                data-hint="café = masculine uncountable">____</span>
+                            café.
+                            J'aime
+                            <span class="story-blank"
                                 data-options='["le", "un", "du"]'
-                                data-correct="le" data-hint="general statement - definite">____</span> café français!
+                                data-correct="le"
+                                data-hint="general statement - definite">____</span>
+                            café français!
                         </p>
 
                         <p class="story-paragraph">
-                            Après <span class="story-blank"
+                            Après
+                            <span class="story-blank"
                                 data-options='["le", "un", "du"]'
-                                data-correct="le" data-hint="specific breakfast - definite">____</span> petit-déjeuner,
-                            je vais à <span class="story-blank"
-                                data-options='["l'\''", "un", "de l'\''"]'
-                                data-correct="l'" data-hint="école = definite before vowel">____</span> école.
+                                data-correct="le"
+                                data-hint="specific breakfast - definite">____</span>
+                            petit-déjeuner,
+                            je vais à
+                            <span class="story-blank"
+                                data-options='["l&apos;", "un", "de l&apos;"]'
+                                data-correct="l'"
+                                data-hint="école = definite before vowel">____</span>
+                            école.
                         </p>
 
                         <p class="story-paragraph">
-                            J'ai <span class="story-blank"
+                            J'ai
+                            <span class="story-blank"
                                 data-options='["un", "le", "du"]'
-                                data-correct="un" data-hint="indefinite - a friend">____</span> ami qui s'appelle Pierre.
+                                data-correct="un"
+                                data-hint="indefinite - a friend">____</span>
+                            ami qui s'appelle Pierre.
                             <span class="story-blank"
                                 data-options='["Le", "Un", "Du"]'
-                                data-correct="Le" data-hint="specific friend - definite">____</span> garçon est très gentil.
+                                data-correct="Le"
+                                data-hint="specific friend - definite">____</span>
+                            garçon est très gentil.
                         </p>
 
                         <p class="story-paragraph">
-                            À midi, nous mangeons <span class="story-blank"
+                            À midi, nous mangeons
+                            <span class="story-blank"
                                 data-options='["de la", "la", "une"]'
-                                data-correct="de la" data-hint="viande = feminine uncountable">____</span> viande et
+                                data-correct="de la"
+                                data-hint="viande = feminine uncountable">____</span>
+                            viande et
                             <span class="story-blank"
                                 data-options='["des", "les", "de"]'
-                                data-correct="des" data-hint="indefinite plural">____</span> légumes.
+                                data-correct="des"
+                                data-hint="indefinite plural">____</span>
+                            légumes.
                         </p>
 
                         <p class="story-paragraph">
-                            Après <span class="story-blank"
+                            Après
+                            <span class="story-blank"
                                 data-options='["les", "des", "de"]'
-                                data-correct="les" data-hint="specific classes - definite">____</span> cours,
-                            je rentre à <span class="story-blank"
+                                data-correct="les"
+                                data-hint="specific classes - definite">____</span>
+                            cours,
+                            je rentre à
+                            <span class="story-blank"
                                 data-options='["la", "une", "de la"]'
-                                data-correct="la" data-hint="specific house - definite">____</span> maison.
+                                data-correct="la"
+                                data-hint="specific house - definite">____</span>
+                            maison.
                         </p>
 
                         <p class="story-paragraph">
-                            Le soir, j'écoute <span class="story-blank"
+                            Le soir, j'écoute
+                            <span class="story-blank"
                                 data-options='["de la", "la", "une"]'
-                                data-correct="de la" data-hint="musique = feminine uncountable">____</span> musique.
-                            J'aime beaucoup <span class="story-blank"
+                                data-correct="de la"
+                                data-hint="musique = feminine uncountable">____</span>
+                            musique.
+                            J'aime beaucoup
+                            <span class="story-blank"
                                 data-options='["la", "de la", "une"]'
-                                data-correct="la" data-hint="general statement - definite">____</span> musique française!
+                                data-correct="la"
+                                data-hint="general statement - definite">____</span>
+                            musique française!
                         </p>
                     </div>
+
 
                     <div class="story-controls">
                         <div class="story-progress">
@@ -2123,4 +2163,158 @@ MAIN PRESENTATION NAVIGATION
             left = scrollLeft + 10;
         }
 
-        if (top + popupRect.height > windowHeight + scroll
+        if (top + popupRect.height > windowHeight + scrollTop)  if (top + popupRect.height > windowHeight + scrollTop) {
+            top = blankRect.top + scrollTop - popupRect.height - 5;
+
+            if (top < scrollTop + 10) {
+                top = scrollTop + (windowHeight - popupRect.height) / 2;
+            }
+        }
+
+        popup.style.left = Math.round(left) + 'px';
+        popup.style.top = Math.round(top) + 'px';
+    }
+
+    function selectOption(blank, option, popup) {
+        const wasAlreadyFilled = blank.classList.contains('filled');
+
+        popup.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        popup.style.opacity = '0';
+        popup.style.transform = 'scale(0.8)';
+
+        setTimeout(() => {
+            if (popup && popup.parentNode) {
+                popup.remove();
+            }
+        }, 200);
+
+        blank.textContent = option;
+        blank.classList.add('filled');
+        blank.classList.remove('selected');
+
+        if (!wasAlreadyFilled) {
+            updateProgress();
+        }
+    }
+
+    function handleWindowEvents() {
+        const popup = document.querySelector('.options-popup');
+        const selectedBlank = document.querySelector('.story-blank.selected');
+
+        if (popup && selectedBlank) {
+            positionPopup(selectedBlank, popup);
+        }
+    }
+
+    window.addEventListener('resize', handleWindowEvents);
+    window.addEventListener('scroll', handleWindowEvents);
+
+    function updateProgress() {
+        const filledBlanks = document.querySelectorAll('.story-blank.filled');
+        storyData.completed = filledBlanks.length;
+
+        document.getElementById('storyProgress').textContent = storyData.completed;
+
+        const checkBtn = document.getElementById('checkStoryBtn');
+        if (storyData.completed === storyData.total) {
+            checkBtn.style.background = '#27ae60';
+            checkBtn.textContent = 'Check';
+        }
+    }
+
+    function showAllHints() {
+        const blanks = document.querySelectorAll('.story-blank');
+
+        blanks.forEach(blank => {
+            const hint = blank.dataset.hint;
+            if (hint && !blank.classList.contains('filled')) {
+
+                const existingHint = blank.querySelector('.hint-display');
+                if (existingHint) {
+                    existingHint.remove();
+                    return;
+                }
+
+                const hintEl = document.createElement('div');
+                hintEl.className = 'hint-display';
+                hintEl.textContent = hint;
+
+                blank.appendChild(hintEl);
+
+                setTimeout(() => {
+                    hintEl.style.opacity = '1';
+                }, 10);
+
+                setTimeout(() => {
+                    if (hintEl.parentNode) {
+                        hintEl.style.opacity = '0';
+                        setTimeout(() => {
+                            if (hintEl.parentNode) {
+                                hintEl.remove();
+                            }
+                        }, 300);
+                    }
+                }, 8000);
+            }
+        });
+    }
+
+    function checkStory() {
+        const blanks = document.querySelectorAll('.story-blank');
+        let correct = 0;
+
+        blanks.forEach(blank => {
+            const userAnswer = blank.textContent.trim();
+            const correctAnswer = blank.dataset.correct;
+
+            blank.classList.remove('correct', 'incorrect');
+
+            if (userAnswer === correctAnswer) {
+                blank.classList.add('correct');
+                correct++;
+            } else if (blank.classList.contains('filled')) {
+                blank.classList.add('incorrect');
+            }
+        });
+
+        storyData.score = correct;
+        showFeedback(correct);
+    }
+
+    function showFeedback(correct) {
+        const feedback = document.getElementById('storyFeedback');
+        const percentage = Math.round((correct / storyData.total) * 100);
+
+        let message = '';
+        let className = '';
+
+        if (percentage >= 90) {
+            message = `🏆 Excellent! ${correct}/${storyData.total} (${percentage}%) - You mastered French articles!`;
+            className = 'excellent';
+        } else if (percentage >= 70) {
+            message = `👍 Good job! ${correct}/${storyData.total} (${percentage}%) - Almost perfect!`;
+            className = 'good';
+        } else {
+            message = `📖 Keep practicing! ${correct}/${storyData.total} (${percentage}%) - Review the rules and try again!`;
+            className = 'needs-work';
+        }
+
+        feedback.textContent = message;
+        feedback.className = `story-feedback ${className}`;
+    }
+
+    /* =================================================================
+    INITIALIZATION ON PAGE LOAD
+    ================================================================= */
+    document.addEventListener('DOMContentLoaded', function () {
+        showSlide(0);
+
+        initExercise1();
+        initExercise2();
+        initExercise3();
+        initDragAndDrop();
+        initStory();
+    });
+</script>
+</body>
+</html>
