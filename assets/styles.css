@@ -971,6 +971,50 @@ Nav
     visibility: visible;
     display: block;
 }
+.language-switcher {
+    position: relative;
+}
+
+.language-dropdown {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--accent-color);
+    border-radius: 14px;
+    list-style: none;
+    padding: 6px 0;
+    margin: 0;
+    min-width: 80px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: all 0.25s ease;
+    z-index: 1000;
+}
+
+.language-dropdown li a {
+    display: block;
+    padding: 8px 14px;
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: var(--font-text-small);
+    transition: background 0.2s ease;
+}
+
+.language-dropdown li a:hover {
+    background: var(--accent-color-2);
+    color: var(--text-dark);
+}
+
+/* Активное состояние */
+.language-switcher.open .language-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
 
 /* =====================================================
 DESKTOP RESPONSIVE BREAKPOINTS

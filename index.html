@@ -63,13 +63,33 @@
                 <li><a href="bookshelf.html">Bookshelf</a></li>
                 <li><a href="https://yanaharcourt.dev/cambridge_voca/">Vocabulary</a></li>
             </ul>
-            <ul class="nav-buttons">
+            <!-- <ul class="nav-buttons">
                 <div class="language-switcher">
                     <a href="./index-es.html" class="language-btn" title="Cambiar a Español">
                         <span class="language-text">ES</span>
                     </a>
                 </div>
+            </ul> -->
+            <ul class="nav-buttons">
+                <li class="language-switcher">
+                    <button class="language-btn" aria-haspopup="true">
+                    <span class="language-text">EN</span>
+                    </button>
+
+                    <ul class="language-dropdown">
+                        <li>
+                            <a href="./index.html">EN</a>
+                        </li>
+                        <li>
+                            <a href="./index-es.html">ES</a>
+                        </li>
+                        <!-- <li>
+                            <a href="./index-fr.html">FR</a>
+                        </li> -->
+                    </ul>
+                </li>
             </ul>
+
 
             <div class="mobile-menu" id="mobileMenu">
                 <span></span>
@@ -77,6 +97,22 @@
                 <span></span>
             </div>
         </div>
+        <script>
+            const languageBtn = document.querySelector('.language-btn');
+                const languageSwitcher = document.querySelector('.language-switcher');
+
+                languageBtn.addEventListener('click', () => {
+                languageSwitcher.classList.toggle('open');
+                });
+
+                // закрытие по клику вне меню
+                document.addEventListener('click', (e) => {
+                if (!languageSwitcher.contains(e.target)) {
+                    languageSwitcher.classList.remove('open');
+                }
+                });
+
+        </script>
     </nav>
 
     <!-- =================================
