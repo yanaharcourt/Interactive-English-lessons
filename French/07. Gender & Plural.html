@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -1239,8 +1240,8 @@
     </div>
 
     <!-- =================================================================
-    MAIN PRESENTATION NAVIGATION
-    ================================================================= -->
+MAIN PRESENTATION NAVIGATION
+================================================================= -->
     <script>
         let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slide');
@@ -2087,38 +2088,39 @@
         function showAllHints() {
             const blanks = document.querySelectorAll('.story-blank');
 
-            blanks.forEach(blank => {
-                const hint = blank.dataset.hint;
-                if (hint && !blank.classList.contains('filled')) {
+            blanks.
+                forEach(blank => {
+                    const hint = blank.dataset.hint;
+                    if (hint && !blank.classList.contains('filled')) {
 
-                    const existingHint = blank.querySelector('.hint-display');
-                    if (existingHint) {
-                        existingHint.remove();
-                        return;
-                    }
-
-                    const hintEl = document.createElement('div');
-                    hintEl.className = 'hint-display';
-                    hintEl.textContent = hint;
-
-                    blank.appendChild(hintEl);
-
-                    setTimeout(() => {
-                        hintEl.style.opacity = '1';
-                    }, 10);
-
-                    setTimeout(() => {
-                        if (hintEl.parentNode) {
-                            hintEl.style.opacity = '0';
-                            setTimeout(() => {
-                                if (hintEl.parentNode) {
-                                    hintEl.remove();
-                                }
-                            }, 300);
+                        const existingHint = blank.querySelector('.hint-display');
+                        if (existingHint) {
+                            existingHint.remove();
+                            return;
                         }
-                    }, 8000);
-                }
-            });
+
+                        const hintEl = document.createElement('div');
+                        hintEl.className = 'hint-display';
+                        hintEl.textContent = hint;
+
+                        blank.appendChild(hintEl);
+
+                        setTimeout(() => {
+                            hintEl.style.opacity = '1';
+                        }, 10);
+
+                        setTimeout(() => {
+                            if (hintEl.parentNode) {
+                                hintEl.style.opacity = '0';
+                                setTimeout(() => {
+                                    if (hintEl.parentNode) {
+                                        hintEl.remove();
+                                    }
+                                }, 300);
+                            }
+                        }, 8000);
+                    }
+                });
         }
 
         function checkStory() {
@@ -2178,6 +2180,7 @@
             initStory();
         });
     </script>
+
 </body>
 
 </html>
