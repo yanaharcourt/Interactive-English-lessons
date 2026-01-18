@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&subset=cyrillic,latin&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&subset=cyrillic,latin&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body> 
+
+<body>
     <!-- =================================
     Navigation 
     ================================= -->
@@ -71,19 +74,19 @@
             <ul class="nav-buttons">
                 <li class="language-switcher">
                     <button class="language-btn" aria-haspopup="true">
-                    <span class="language-text">FR</span>
+                        <span class="language-text">FR</span>
                     </button>
 
                     <ul class="language-dropdown">
-                    <li>
-                        <a href="./index.html">EN</a>
-                    </li>
-                    <li>
-                        <a href="./index-es.html">ES</a>
-                    </li>
-                    <li>
-                        <a href="./index-fr.html">FR</a>
-                    </li>
+                        <li>
+                            <a href="./index.html">EN</a>
+                        </li>
+                        <li>
+                            <a href="./index-es.html">ES</a>
+                        </li>
+                        <li>
+                            <a href="./index-fr.html">FR</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -97,26 +100,26 @@
         </div>
         <script>
             const languageBtn = document.querySelector('.language-btn');
-                const languageSwitcher = document.querySelector('.language-switcher');
+            const languageSwitcher = document.querySelector('.language-switcher');
 
-                languageBtn.addEventListener('click', () => {
+            languageBtn.addEventListener('click', () => {
                 languageSwitcher.classList.toggle('open');
-                });
+            });
 
-                // закрытие по клику вне меню
-                document.addEventListener('click', (e) => {
+            // закрытие по клику вне меню
+            document.addEventListener('click', (e) => {
                 if (!languageSwitcher.contains(e.target)) {
                     languageSwitcher.classList.remove('open');
                 }
-                });
+            });
 
         </script>
 
-            <div class="mobile-menu" id="mobileMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         </div>
     </nav>
 
@@ -145,7 +148,8 @@
                 <div class="lesson-card grammar" onclick="openLesson('./French/01. french_alphabet.html')">
                     <h3 class="lesson-title">French Alphabet & Pronunciation</h3>
                     <p class="lesson-description">
-                        Master the French alphabet, letter pronunciation, accents, and sounds essential for reading and speaking correctly.
+                        Master the French alphabet, letter pronunciation, accents, and sounds essential for reading and
+                        speaking correctly.
                     </p>
                     <div class="lesson-topics">
                         <span class="topic-tag">Alphabet</span>
@@ -159,7 +163,8 @@
                 <div class="lesson-card grammar" onclick="openLesson('./French/02. french_greetings.html')">
                     <h3 class="lesson-title">French Greetings</h3>
                     <p class="lesson-description">
-                        Learn how to greet people in French, introduce yourself, and use polite expressions in everyday conversations.
+                        Learn how to greet people in French, introduce yourself, and use polite expressions in everyday
+                        conversations.
                     </p>
                     <div class="lesson-topics">
                         <span class="topic-tag">Greetings</span>
@@ -173,7 +178,8 @@
                 <div class="lesson-card grammar" onclick="openLesson('./French/03. french_numbers.html')">
                     <h3 class="lesson-title">French Numbers</h3>
                     <p class="lesson-description">
-                        Learn how to count in French, use numbers in dates, prices, phone numbers, and everyday situations.
+                        Learn how to count in French, use numbers in dates, prices, phone numbers, and everyday
+                        situations.
                     </p>
                     <div class="lesson-topics">
                         <span class="topic-tag">Numbers</span>
@@ -201,7 +207,8 @@
                 <div class="lesson-card grammar" onclick="openLesson('./French/05. verbs_conjugation.html')">
                     <h3 class="lesson-title">Verb Conjugation Basics</h3>
                     <p class="lesson-description">
-                        Learn how French verbs work, verb groups (-er, -ir, -re), and how to conjugate them in the present tense.
+                        Learn how French verbs work, verb groups (-er, -ir, -re), and how to conjugate them in the
+                        present tense.
                     </p>
                     <div class="lesson-topics">
                         <span class="topic-tag">Verbs</span>
@@ -215,7 +222,8 @@
                 <div class="lesson-card grammar" onclick="openLesson('./French/06. articles.html')">
                     <h3 class="lesson-title">French Articles</h3>
                     <p class="lesson-description">
-                        Learn how to use French articles: le, la, les, un, une, des, and understand when to use each one.
+                        Learn how to use French articles: le, la, les, un, une, des, and understand when to use each
+                        one.
                     </p>
                     <div class="lesson-topics">
                         <span class="topic-tag">Articles</span>
@@ -229,7 +237,8 @@
                 <div class="lesson-card grammar" onclick="openLesson('./French/07. gender_plural.html')">
                     <h3 class="lesson-title">Gender & Plural in French</h3>
                     <p class="lesson-description">
-                        Understand masculine and feminine nouns, plural forms, and common patterns used in French grammar.
+                        Understand masculine and feminine nouns, plural forms, and common patterns used in French
+                        grammar.
                     </p>
                     <div class="lesson-topics">
                         <span class="topic-tag">Gender</span>
@@ -243,7 +252,8 @@
                 <div class="lesson-card grammar" onclick="openLesson('./French/08. french_avoir_negation.html')">
                     <h3 class="lesson-title">Avoir & Negation</h3>
                     <p class="lesson-description">
-                        Master the essential verb AVOIR (to have) and learn how to make negative sentences in French with ne...pas.
+                        Master the essential verb AVOIR (to have) and learn how to make negative sentences in French
+                        with ne...pas.
                     </p>
                     <div class="lesson-topics">
                         <span class="topic-tag">Avoir</span>
@@ -257,7 +267,8 @@
                 <div class="lesson-card grammar" onclick="openLesson('./French/09. questions_prepositions.html')">
                     <h3 class="lesson-title">Questions & Prepositions</h3>
                     <p class="lesson-description">
-                        Learn how to ask questions in French using intonation and Est-ce que, and master prepositions of place (à, en, au, chez).
+                        Learn how to ask questions in French using intonation and Est-ce que, and master prepositions of
+                        place (à, en, au, chez).
                     </p>
                     <div class="lesson-topics">
                         <span class="topic-tag">Intonation</span>
@@ -267,9 +278,42 @@
                     </div>
                     <button class="lesson-button">Start Learning</button>
                 </div>
+
+                <!-- 010. French Colours -->
+                <div class="lesson-card vocabulary" onclick="openLesson('./French/010. french-colours.html')">
+                    <h3 class="lesson-title">French Colours</h3>
+                    <p class="lesson-description">
+                        Master French colour vocabulary and learn agreement rules for masculine, feminine, singular, and
+                        plural forms. Understand invariable colours and special cases.
+                    </p>
+                    <div class="lesson-topics">
+                        <span class="topic-tag">Colours</span>
+                        <span class="topic-tag">Agreement</span>
+                        <span class="topic-tag">Gender</span>
+                        <span class="topic-tag">Invariable</span>
+                    </div>
+                    <button class="lesson-button">Start Learning</button>
+                </div>
+
+                <!-- 012. French Possessive Adjectives -->
+                <div class="lesson-card grammar" onclick="openLesson('./French/012. possessive_adjectives.html')">
+                    <h3 class="lesson-title">Possessive Adjectives</h3>
+                    <p class="lesson-description">
+                        Learn how to express ownership in French using possessive adjectives (mon, ton, son, notre,
+                        votre, leur) and understand how they agree with the thing owned, not the owner.
+                    </p>
+                    <div class="lesson-topics">
+                        <span class="topic-tag">Mon/Ma/Mes</span>
+                        <span class="topic-tag">Ton/Ta/Tes</span>
+                        <span class="topic-tag">Son/Sa/Ses</span>
+                        <span class="topic-tag">Notre/Votre/Leur</span>
+                    </div>
+                    <button class="lesson-button">Start Learning</button>
+                </div>
             </div>
         </div>
     </div>
+
 
 
     <script>
@@ -278,20 +322,20 @@
         }
 
         // Add some interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const cards = document.querySelectorAll('.lesson-card');
-            
+
             cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
+                card.addEventListener('mouseenter', function () {
                     this.style.transform = 'translateY(-10px) rotate(1deg)';
                 });
-                
-                card.addEventListener('mouseleave', function() {
+
+                card.addEventListener('mouseleave', function () {
                     this.style.transform = 'translateY(0) rotate(0)';
                 });
-                
+
                 // Add click animation
-                card.addEventListener('click', function() {
+                card.addEventListener('click', function () {
                     this.style.transform = 'scale(0.98)';
                     setTimeout(() => {
                         this.style.transform = '';
@@ -301,9 +345,9 @@
         });
 
         // Add floating animation to header icons
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const floatingIcons = document.querySelectorAll('.floating-icon');
-            
+
             floatingIcons.forEach((icon, index) => {
                 icon.style.animationDelay = `${index * 0.5}s`;
             });
@@ -450,7 +494,7 @@
 
     <script>
         // Mobile Menu Toggle
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const mobileMenu = document.getElementById('mobileMenu');
             const navLinks = document.querySelector('.nav-links');
             const navButtons = document.querySelector('.nav-buttons');
@@ -458,13 +502,13 @@
             const body = document.body;
 
             if (mobileMenu) {
-                mobileMenu.addEventListener('click', function() {
+                mobileMenu.addEventListener('click', function () {
                     this.classList.toggle('active');
-                    
+
                     if (navLinks) navLinks.classList.toggle('mobile-active');
                     if (navButtons) navButtons.classList.toggle('mobile-active');
                     if (languageSwitcher) languageSwitcher.classList.toggle('mobile-active');
-                    
+
                     // Prevent body scroll when menu is open
                     if (this.classList.contains('active')) {
                         body.style.overflow = 'hidden';
@@ -477,7 +521,7 @@
             // Close menu when clicking on a link
             const allNavLinks = document.querySelectorAll('.nav-links a, .nav-buttons a, .language-switcher a');
             allNavLinks.forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function () {
                     if (mobileMenu && mobileMenu.classList.contains('active')) {
                         mobileMenu.classList.remove('active');
                         if (navLinks) navLinks.classList.remove('mobile-active');
@@ -489,7 +533,7 @@
             });
 
             // Close menu on ESC key
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
                     mobileMenu.classList.remove('active');
                     if (navLinks) navLinks.classList.remove('mobile-active');
@@ -501,4 +545,5 @@
         });
     </script>
 </body>
+
 </html>
