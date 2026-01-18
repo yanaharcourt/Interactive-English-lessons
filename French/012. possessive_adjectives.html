@@ -1126,7 +1126,6 @@
             <div class="homework-section">
                 <h3>📋 Task 1: Drag to correct category</h3>
                 <div class="homework-task">
-
                     <div class="words-to-sort">
                         <h4>Drag these words:</h4>
                         <div class="draggable-words">
@@ -1176,7 +1175,7 @@
                 </div>
             </div>
 
-            <!-- Task 2: Corrections - 6 SENTENCES -->
+            <!-- Task 2: Corrections -->
             <div class="homework-section">
                 <h3>✏️ Task 2: Fill in the correct possessive adjective</h3>
                 <div class="homework-task">
@@ -1248,7 +1247,7 @@
                 <h3>📚 Task 3: Complete the story</h3>
                 <div class="homework-task">
                     <p class="info-sub-text">
-                        Fill in the correct possessive adjectives in this short story
+                        Read the story and choose the correct words to fill in the blanks
                     </p>
 
                     <div class="story-container">
@@ -1333,20 +1332,26 @@
                         </div>
 
                         <div class="story-controls">
-                            <button onclick="checkStory()" class="check-btn">Check Story</button>
-                            <button onclick="resetStory()" class="reset-btn">Reset Story</button>
-                            <button onclick="showStoryHints()" class="hint-btn">Show Hints</button>
+                            <div class="story-progress">
+                                <span>Completed: <strong id="storyProgress">0</strong>/16 blanks</span>
+                            </div>
+
+                            <div class="story-buttons">
+                                <button onclick="checkStory()" class="check-btn" id="checkStoryBtn">Check</button>
+                                <button onclick="showAllHints()" class="hint-btn">Hints</button>
+                            </div>
                         </div>
 
-                        <div id="storyResult" class="homework-result" style="margin-top: 20px;"></div>
+                        <div id="storyFeedback" class="story-feedback"></div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="navigation">
             <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Back</button>
             <span class="slide-counter">
-                <span id="currentSlide">1</span> of <span id="totalSlides">15</span>
+                <span id="currentSlide">1</span> of <span id="totalSlides">20</span>
             </span>
             <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Forward →</button>
         </div>
@@ -1355,18 +1360,20 @@
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
+        const totalSlidesElement = document.getElementById('totalSlides');
+        const currentSlideElement = document.getElementById('currentSlide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
 
-        document.getElementById('totalSlides').textContent = totalSlides;
+        totalSlidesElement.textContent = slides.length;
 
         function showSlide(n) {
             slides[currentSlide].classList.remove('active');
-            currentSlide = (n + totalSlides) % totalSlides;
+            currentSlide = (n + slides.length) % slides.length;
             slides[currentSlide].classList.add('active');
-            document.getElementById('slideNumber').textContent = currentSlide + 1;
-
-            document.getElementById('prevBtn').disabled = currentSlide === 0;
-            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+            currentSlideElement.textContent = currentSlide + 1;
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
         }
 
         function changeSlide(direction) {
@@ -1374,348 +1381,320 @@
         }
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') changeSlide(-1);
-            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft' && currentSlide > 0) changeSlide(-1);
+            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) changeSlide(1);
         });
 
-        // Exercise 1: MON/MA/MES
+        // Exercise 1
         const exercise1Data = [
-            { sentence: "___ père (my father)", translation: "masculine singular", answer: "mon" },
-            { sentence: "___ mère (my mother)", translation: "feminine singular", answer: "ma" },
-            { sentence: "___ chat (my cat)", translation: "masculine singular", answer: "mon" },
-            { sentence: "___ voiture (my car)", translation: "feminine singular", answer: "ma" },
-            { sentence: "___ amis (my friends)", translation: "plural", answer: "mes" },
-            { sentence: "___ maison (my house)", translation: "feminine singular", answer: "ma" },
-            { sentence: "___ livres (my books)", translation: "plural", answer: "mes" },
-            { sentence: "___ amie (my friend - f)", translation: "feminine + vowel", answer: "mon" },
-            { sentence: "___ sœur (my sister)", translation: "feminine singular", answer: "ma" },
-            { sentence: "___ école (my school)", translation: "feminine + vowel", answer: "mon" }
+            { sentence: "___ père (my father)", translation: "masculine singular", answer: "mon", options: ["mon", "ma", "mes"] },
+            { sentence: "___ mère (my mother)", translation: "feminine singular", answer: "ma", options: ["mon", "ma", "mes"] },
+            { sentence: "___ chat (my cat)", translation: "masculine singular", answer: "mon", options: ["mon", "ma", "mes"] },
+            { sentence: "___ voiture (my car)", translation: "feminine singular", answer: "ma", options: ["mon", "ma", "mes"] },
+            { sentence: "___ amis (my friends)", translation: "plural", answer: "mes", options: ["mon", "ma", "mes"] },
+            { sentence: "___ maison (my house)", translation: "feminine singular", answer: "ma", options: ["mon", "ma", "mes"] },
+            { sentence: "___ livres (my books)", translation: "plural", answer: "mes", options: ["mon", "ma", "mes"] },
+            { sentence: "___ amie (my friend - f)", translation: "feminine + vowel", answer: "mon", options: ["mon", "ma", "mes"] },
+            { sentence: "___ sœur (my sister)", translation: "feminine singular", answer: "ma", options: ["mon", "ma", "mes"] },
+            { sentence: "___ école (my school)", translation: "feminine + vowel", answer: "mon", options: ["mon", "ma", "mes"] }
         ];
 
+        let currentQ1 = 0;
         let score1 = 0;
-        let currentQuestion1 = 0;
-        let answered1 = new Array(exercise1Data.length).fill(false);
+        let answers1 = new Array(exercise1Data.length).fill(null);
 
-        function loadQuestion1() {
-            document.getElementById('currentSentence1').textContent = exercise1Data[currentQuestion1].sentence;
-            document.getElementById('sentenceTranslation1').textContent = exercise1Data[currentQuestion1].translation;
-            document.getElementById('currentQ1').textContent = currentQuestion1 + 1;
-            document.getElementById('score1').textContent = score1;
+        function displayQuestion1() {
+            const q = exercise1Data[currentQ1];
+            document.getElementById('currentSentence1').textContent = q.sentence;
+            document.getElementById('sentenceTranslation1').textContent = q.translation;
+            document.getElementById('currentQ1').textContent = currentQ1 + 1;
 
-            const options = document.querySelectorAll('#options1 .option-card');
-            options.forEach(opt => {
-                opt.classList.remove('correct', 'incorrect', 'selected');
+            const optionsContainer = document.getElementById('options1');
+            optionsContainer.innerHTML = '';
+            q.options.forEach(option => {
+                const div = document.createElement('div');
+                div.className = 'option-card';
+                div.textContent = option;
+                div.onclick = () => checkAnswer1(option);
+                if (answers1[currentQ1] === option) {
+                    div.classList.add(option === q.answer ? 'correct' : 'incorrect');
+                }
+                optionsContainer.appendChild(div);
             });
 
-            updateNavButtons1();
+            document.getElementById('prevQ1Btn').disabled = currentQ1 === 0;
+            document.getElementById('nextQ1Btn').disabled = currentQ1 === exercise1Data.length - 1;
         }
 
-        function checkAnswer1(answer) {
-            if (answered1[currentQuestion1]) return;
+        function checkAnswer1(selected) {
+            const q = exercise1Data[currentQ1];
+            if (answers1[currentQ1] !== null) return;
 
-            const correct = exercise1Data[currentQuestion1].answer;
-            const options = document.querySelectorAll('#options1 .option-card');
-
-            options.forEach(opt => {
-                if (opt.textContent.trim() === answer) {
-                    opt.classList.add('selected');
-                    if (answer === correct) {
-                        opt.classList.add('correct');
-                        if (!answered1[currentQuestion1]) {
-                            score1++;
-                            answered1[currentQuestion1] = true;
-                        }
-                    } else {
-                        opt.classList.add('incorrect');
-                    }
-                }
-                if (opt.textContent.trim() === correct) {
-                    opt.classList.add('correct');
-                }
-            });
-
-            document.getElementById('score1').textContent = score1;
-            setTimeout(() => {
-                if (currentQuestion1 < exercise1Data.length - 1) {
-                    nextQuestion1();
-                }
-            }, 1500);
+            answers1[currentQ1] = selected;
+            if (selected === q.answer) {
+                score1++;
+                document.getElementById('score1').textContent = score1;
+            }
+            displayQuestion1();
         }
 
         function nextQuestion1() {
-            if (currentQuestion1 < exercise1Data.length - 1) {
-                currentQuestion1++;
-                loadQuestion1();
+            if (currentQ1 < exercise1Data.length - 1) {
+                currentQ1++;
+                displayQuestion1();
             }
         }
 
         function prevQuestion1() {
-            if (currentQuestion1 > 0) {
-                currentQuestion1--;
-                loadQuestion1();
+            if (currentQ1 > 0) {
+                currentQ1--;
+                displayQuestion1();
             }
         }
 
-        function updateNavButtons1() {
-            document.getElementById('prevQ1Btn').disabled = currentQuestion1 === 0;
-            document.getElementById('nextQ1Btn').disabled = currentQuestion1 === exercise1Data.length - 1;
-        }
-
         function resetExercise1() {
+            currentQ1 = 0;
             score1 = 0;
-            currentQuestion1 = 0;
-            answered1 = new Array(exercise1Data.length).fill(false);
-            loadQuestion1();
+            answers1 = new Array(exercise1Data.length).fill(null);
+            document.getElementById('score1').textContent = '0';
+            displayQuestion1();
         }
 
-        // Exercise 2: SON/SA/SES
+        // Exercise 2
         const exercise2Data = [
-            { sentence: "Pierre et ___ mère (Pierre and his mother)", translation: "feminine singular", answer: "sa" },
-            { sentence: "Marie et ___ père (Marie and her father)", translation: "masculine singular", answer: "son" },
-            { sentence: "___ chat (his/her cat)", translation: "masculine singular", answer: "son" },
-            { sentence: "___ voiture (his/her car)", translation: "feminine singular", answer: "sa" },
-            { sentence: "___ amis (his/her friends)", translation: "plural", answer: "ses" },
-            { sentence: "___ maison (his/her house)", translation: "feminine singular", answer: "sa" },
-            { sentence: "___ livres (his/her books)", translation: "plural", answer: "ses" },
-            { sentence: "___ amie (his/her friend - f)", translation: "feminine + vowel", answer: "son" }
+            { sentence: "Pierre et ___ mère (Pierre and his mother)", translation: "feminine singular", answer: "sa", options: ["son", "sa", "ses"] },
+            { sentence: "Marie et ___ père (Marie and her father)", translation: "masculine singular", answer: "son", options: ["son", "sa", "ses"] },
+            { sentence: "___ chat (his/her cat)", translation: "masculine singular", answer: "son", options: ["son", "sa", "ses"] },
+            { sentence: "___ voiture (his/her car)", translation: "feminine singular", answer: "sa", options: ["son", "sa", "ses"] },
+            { sentence: "___ amis (his/her friends)", translation: "plural", answer: "ses", options: ["son", "sa", "ses"] },
+            { sentence: "___ maison (his/her house)", translation: "feminine singular", answer: "sa", options: ["son", "sa", "ses"] },
+            { sentence: "___ livres (his/her books)", translation: "plural", answer: "ses", options: ["son", "sa", "ses"] },
+            { sentence: "___ amie (his/her friend - f)", translation: "feminine + vowel", answer: "son", options: ["son", "sa", "ses"] }
         ];
 
+        let currentQ2 = 0;
         let score2 = 0;
-        let currentQuestion2 = 0;
-        let answered2 = new Array(exercise2Data.length).fill(false);
+        let answers2 = new Array(exercise2Data.length).fill(null);
 
-        function loadQuestion2() {
-            document.getElementById('currentSentence2').textContent = exercise2Data[currentQuestion2].sentence;
-            document.getElementById('sentenceTranslation2').textContent = exercise2Data[currentQuestion2].translation;
-            document.getElementById('currentQ2').textContent = currentQuestion2 + 1;
-            document.getElementById('score2').textContent = score2;
+        function displayQuestion2() {
+            const q = exercise2Data[currentQ2];
+            document.getElementById('currentSentence2').textContent = q.sentence;
+            document.getElementById('sentenceTranslation2').textContent = q.translation;
+            document.getElementById('currentQ2').textContent = currentQ2 + 1;
 
-            const options = document.querySelectorAll('#options2 .option-card');
-            options.forEach(opt => {
-                opt.classList.remove('correct', 'incorrect', 'selected');
+            const optionsContainer = document.getElementById('options2');
+            optionsContainer.innerHTML = '';
+            q.options.forEach(option => {
+                const div = document.createElement('div');
+                div.className = 'option-card';
+                div.textContent = option;
+                div.onclick = () => checkAnswer2(option);
+                if (answers2[currentQ2] === option) {
+                    div.classList.add(option === q.answer ? 'correct' : 'incorrect');
+                }
+                optionsContainer.appendChild(div);
             });
 
-            updateNavButtons2();
+            document.getElementById('prevQ2Btn').disabled = currentQ2 === 0;
+            document.getElementById('nextQ2Btn').disabled = currentQ2 === exercise2Data.length - 1;
         }
 
-        function checkAnswer2(answer) {
-            if (answered2[currentQuestion2]) return;
+        function checkAnswer2(selected) {
+            const q = exercise2Data[currentQ2];
+            if (answers2[currentQ2] !== null) return;
 
-            const correct = exercise2Data[currentQuestion2].answer;
-            const options = document.querySelectorAll('#options2 .option-card');
-
-            options.forEach(opt => {
-                if (opt.textContent.trim() === answer) {
-                    opt.classList.add('selected');
-                    if (answer === correct) {
-                        opt.classList.add('correct');
-                        if (!answered2[currentQuestion2]) {
-                            score2++;
-                            answered2[currentQuestion2] = true;
-                        }
-                    } else {
-                        opt.classList.add('incorrect');
-                    }
-                }
-                if (opt.textContent.trim() === correct) {
-                    opt.classList.add('correct');
-                }
-            });
-
-            document.getElementById('score2').textContent = score2;
-            setTimeout(() => {
-                if (currentQuestion2 < exercise2Data.length - 1) {
-                    nextQuestion2();
-                }
-            }, 1500);
+            answers2[currentQ2] = selected;
+            if (selected === q.answer) {
+                score2++;
+                document.getElementById('score2').textContent = score2;
+            }
+            displayQuestion2();
         }
 
         function nextQuestion2() {
-            if (currentQuestion2 < exercise2Data.length - 1) {
-                currentQuestion2++;
-                loadQuestion2();
+            if (currentQ2 < exercise2Data.length - 1) {
+                currentQ2++;
+                displayQuestion2();
             }
         }
 
         function prevQuestion2() {
-            if (currentQuestion2 > 0) {
-                currentQuestion2--;
-                loadQuestion2();
+            if (currentQ2 > 0) {
+                currentQ2--;
+                displayQuestion2();
             }
         }
 
-        function updateNavButtons2() {
-            document.getElementById('prevQ2Btn').disabled = currentQuestion2 === 0;
-            document.getElementById('nextQ2Btn').disabled = currentQuestion2 === exercise2Data.length - 1;
-        }
-
         function resetExercise2() {
+            currentQ2 = 0;
             score2 = 0;
-            currentQuestion2 = 0;
-            answered2 = new Array(exercise2Data.length).fill(false);
-            loadQuestion2();
+            answers2 = new Array(exercise2Data.length).fill(null);
+            document.getElementById('score2').textContent = '0';
+            displayQuestion2();
         }
 
-        // Exercise 3: NOTRE/NOS, VOTRE/VOS, LEUR/LEURS
+        // Exercise 3
         const exercise3Data = [
-            { sentence: "___ maison (our house)", translation: "singular - owner: nous", answer: "notre" },
-            { sentence: "___ enfants (our children)", translation: "plural - owner: nous", answer: "nos" },
-            { sentence: "___ nom (your name - formal)", translation: "singular - owner: vous", answer: "votre" },
-            { sentence: "___ amis (your friends - formal)", translation: "plural - owner: vous", answer: "vos" },
-            { sentence: "___ chat (their cat)", translation: "singular - owner: ils/elles", answer: "leur" },
-            { sentence: "___ voitures (their cars)", translation: "plural - owner: ils/elles", answer: "leurs" },
-            { sentence: "___ parents (our parents)", translation: "plural - owner: nous", answer: "nos" },
-            { sentence: "___ maison (their house)", translation: "singular - owner: ils/elles", answer: "leur" }
+            { sentence: "___ maison (our house)", translation: "singular - owner: nous", answer: "notre", options: ["notre", "nos"] },
+            { sentence: "___ enfants (our children)", translation: "plural - owner: nous", answer: "nos", options: ["notre", "nos"] },
+            { sentence: "___ nom (your name - formal)", translation: "singular - owner: vous", answer: "votre", options: ["votre", "vos"] },
+            { sentence: "___ amis (your friends - formal)", translation: "plural - owner: vous", answer: "vos", options: ["votre", "vos"] },
+            { sentence: "___ chat (their cat)", translation: "singular - owner: ils/elles", answer: "leur", options: ["leur", "leurs"] },
+            { sentence: "___ voitures (their cars)", translation: "plural - owner: ils/elles", answer: "leurs", options: ["leur", "leurs"] },
+            { sentence: "___ parents (our parents)", translation: "plural - owner: nous", answer: "nos", options: ["notre", "nos"] },
+            { sentence: "___ maison (their house)", translation: "singular - owner: ils/elles", answer: "leur", options: ["leur", "leurs"] }
         ];
 
+        let currentQ3 = 0;
         let score3 = 0;
-        let currentQuestion3 = 0;
-        let answered3 = new Array(exercise3Data.length).fill(false);
+        let answers3 = new Array(exercise3Data.length).fill(null);
 
-        function loadQuestion3() {
-            document.getElementById('currentSentence3').textContent = exercise3Data[currentQuestion3].sentence;
-            document.getElementById('sentenceTranslation3').textContent = exercise3Data[currentQuestion3].translation;
-            document.getElementById('currentQ3').textContent = currentQuestion3 + 1;
-            document.getElementById('score3').textContent = score3;
+        function displayQuestion3() {
+            const q = exercise3Data[currentQ3];
+            document.getElementById('currentSentence3').textContent = q.sentence;
+            document.getElementById('sentenceTranslation3').textContent = q.translation;
+            document.getElementById('currentQ3').textContent = currentQ3 + 1;
 
-            const options = document.querySelectorAll('#options3 .option-card');
-            options.forEach(opt => {
-                opt.classList.remove('correct', 'incorrect', 'selected');
+            const optionsContainer = document.getElementById('options3');
+            optionsContainer.innerHTML = '';
+            q.options.forEach(option => {
+                const div = document.createElement('div');
+                div.className = 'option-card';
+                div.textContent = option;
+                div.onclick = () => checkAnswer3(option);
+                if (answers3[currentQ3] === option) {
+                    div.classList.add(option === q.answer ? 'correct' : 'incorrect');
+                }
+                optionsContainer.appendChild(div);
             });
 
-            updateNavButtons3();
+            document.getElementById('prevQ3Btn').disabled = currentQ3 === 0;
+            document.getElementById('nextQ3Btn').disabled = currentQ3 === exercise3Data.length - 1;
         }
 
-        function checkAnswer3(answer) {
-            if (answered3[currentQuestion3]) return;
+        function checkAnswer3(selected) {
+            const q = exercise3Data[currentQ3];
+            if (answers3[currentQ3] !== null) return;
 
-            const correct = exercise3Data[currentQuestion3].answer;
-            const options = document.querySelectorAll('#options3 .option-card');
-
-            options.forEach(opt => {
-                if (opt.textContent.trim() === answer) {
-                    opt.classList.add('selected');
-                    if (answer === correct) {
-                        opt.classList.add('correct');
-                        if (!answered3[currentQuestion3]) {
-                            score3++;
-                            answered3[currentQuestion3] = true;
-                        }
-                    } else {
-                        opt.classList.add('incorrect');
-                    }
-                }
-                if (opt.textContent.trim() === correct) {
-                    opt.classList.add('correct');
-                }
-            });
-
-            document.getElementById('score3').textContent = score3;
-            setTimeout(() => {
-                if (currentQuestion3 < exercise3Data.length - 1) {
-                    nextQuestion3();
-                }
-            }, 1500);
+            answers3[currentQ3] = selected;
+            if (selected === q.answer) {
+                score3++;
+                document.getElementById('score3').textContent = score3;
+            }
+            displayQuestion3();
         }
 
         function nextQuestion3() {
-            if (currentQuestion3 < exercise3Data.length - 1) {
-                currentQuestion3++;
-                loadQuestion3();
+            if (currentQ3 < exercise3Data.length - 1) {
+                currentQ3++;
+                displayQuestion3();
             }
         }
 
         function prevQuestion3() {
-            if (currentQuestion3 > 0) {
-                currentQuestion3--;
-                loadQuestion3();
+            if (currentQ3 > 0) {
+                currentQ3--;
+                displayQuestion3();
             }
         }
 
-        function updateNavButtons3() {
-            document.getElementById('prevQ3Btn').disabled = currentQuestion3 === 0;
-            document.getElementById('nextQ3Btn').disabled = currentQuestion3 === exercise3Data.length - 1;
-        }
-
         function resetExercise3() {
+            currentQ3 = 0;
             score3 = 0;
-            currentQuestion3 = 0;
-            answered3 = new Array(exercise3Data.length).fill(false);
-            loadQuestion3();
+            answers3 = new Array(exercise3Data.length).fill(null);
+            document.getElementById('score3').textContent = '0';
+            displayQuestion3();
         }
 
-        // Homework - Drag and Drop
+        // Initialize exercises when page loads
+        displayQuestion1();
+        displayQuestion2();
+        displayQuestion3();
+
+        // Drag and Drop Homework
         let draggedElement = null;
 
         document.querySelectorAll('.draggable-word').forEach(word => {
             word.addEventListener('dragstart', function (e) {
                 draggedElement = this;
-                setTimeout(() => this.classList.add('dragging'), 0);
+                setTimeout(() => this.style.opacity = '0.5', 0);
             });
 
             word.addEventListener('dragend', function () {
-                this.classList.remove('dragging');
+                setTimeout(() => this.style.opacity = '1', 0);
+                draggedElement = null;
             });
         });
 
         document.querySelectorAll('.drop-zone').forEach(zone => {
             zone.addEventListener('dragover', function (e) {
                 e.preventDefault();
-                this.classList.add('drag-over');
+                this.style.background = 'rgba(99, 102, 241, 0.1)';
             });
 
             zone.addEventListener('dragleave', function () {
-                this.classList.remove('drag-over');
+                this.style.background = '';
             });
 
             zone.addEventListener('drop', function (e) {
                 e.preventDefault();
-                this.classList.remove('drag-over');
+                this.style.background = '';
 
-                if (draggedElement) {
-                    const wordType = draggedElement.dataset.type;
-                    const zoneType = this.dataset.type;
-
-                    if (wordType === zoneType) {
-                        this.appendChild(draggedElement);
-                        draggedElement.classList.add('correct-drop');
-                    } else {
-                        draggedElement.classList.add('incorrect-drop');
-                        setTimeout(() => {
-                            draggedElement.classList.remove('incorrect-drop');
-                        }, 1000);
+                if (draggedElement && draggedElement.dataset.type === this.dataset.type) {
+                    this.appendChild(draggedElement);
+                    draggedElement.style.background = 'var(--color-success)';
+                    draggedElement.style.color = 'white';
+                    draggedElement.draggable = false;
+                } else if (draggedElement) {
+                    const originalParent = document.querySelector('.draggable-words');
+                    if (!originalParent.contains(draggedElement)) {
+                        draggedElement.parentElement.querySelector('p').style.display = 'block';
                     }
+                    this.appendChild(draggedElement);
+                    draggedElement.style.background = 'var(--color-error)';
+                    setTimeout(() => {
+                        if (draggedElement.parentElement === this) {
+                            originalParent.appendChild(draggedElement);
+                            draggedElement.style.background = '';
+                        }
+                    }, 1000);
+                }
+
+                if (this.children.length > 1) {
+                    this.children[0].style.display = 'none';
                 }
             });
         });
 
         function resetSorting() {
-            const words = document.querySelectorAll('.draggable-word');
-            const container = document.querySelector('.draggable-words');
-            words.forEach(word => {
-                word.classList.remove('correct-drop', 'incorrect-drop');
-                container.appendChild(word);
+            const originalContainer = document.querySelector('.draggable-words');
+            document.querySelectorAll('.draggable-word').forEach(word => {
+                word.style.background = '';
+                word.style.color = '';
+                word.draggable = true;
+                originalContainer.appendChild(word);
             });
+            document.querySelectorAll('.drop-zone p').forEach(p => p.style.display = 'block');
         }
 
-        // Homework - Corrections
+        // Correction Exercises
         function checkSingleCorrection(button) {
             const input = button.previousElementSibling;
-            const correct = input.dataset.correct.toLowerCase();
-            const userAnswer = input.value.trim().toLowerCase();
+            const correct = input.dataset.correct.toLowerCase().trim();
+            const userAnswer = input.value.toLowerCase().trim();
 
             if (userAnswer === correct) {
                 input.style.borderColor = 'var(--color-success)';
-                input.style.backgroundColor = 'rgba(46, 213, 115, 0.1)';
+                input.style.background = 'rgba(34, 197, 94, 0.1)';
                 button.textContent = '✅';
+                button.disabled = true;
             } else {
                 input.style.borderColor = 'var(--color-error)';
-                input.style.backgroundColor = 'rgba(255, 71, 87, 0.1)';
+                input.style.background = 'rgba(239, 68, 68, 0.1)';
                 button.textContent = '❌';
                 setTimeout(() => {
-                    input.value = correct;
-                    input.style.borderColor = 'var(--color-primary)';
-                    input.style.backgroundColor = 'rgba(88, 177, 159, 0.1)';
+                    input.style.borderColor = '';
+                    input.style.background = '';
                     button.textContent = '✅';
                 }, 1500);
             }
@@ -1726,16 +1705,16 @@
             let correct = 0;
 
             inputs.forEach(input => {
-                const correctAnswer = input.dataset.correct.toLowerCase();
-                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswer = input.dataset.correct.toLowerCase().trim();
+                const userAnswer = input.value.toLowerCase().trim();
 
                 if (userAnswer === correctAnswer) {
                     input.style.borderColor = 'var(--color-success)';
-                    input.style.backgroundColor = 'rgba(46, 213, 115, 0.1)';
+                    input.style.background = 'rgba(34, 197, 94, 0.1)';
                     correct++;
                 } else {
                     input.style.borderColor = 'var(--color-error)';
-                    input.style.backgroundColor = 'rgba(255, 71, 87, 0.1)';
+                    input.style.background = 'rgba(239, 68, 68, 0.1)';
                 }
             });
 
@@ -1743,105 +1722,243 @@
         }
 
         function resetCorrections() {
-            const inputs = document.querySelectorAll('.correction-input');
-            inputs.forEach(input => {
+            document.querySelectorAll('.correction-input').forEach(input => {
                 input.value = '';
                 input.style.borderColor = '';
-                input.style.backgroundColor = '';
+                input.style.background = '';
             });
-
-            const buttons = document.querySelectorAll('.check-single-btn');
-            buttons.forEach(btn => btn.textContent = '✅');
+            document.querySelectorAll('.check-single-btn').forEach(btn => {
+                btn.textContent = '✅';
+                btn.disabled = false;
+            });
         }
 
         // Story Exercise
-        let storyBlanks = [];
-        let hintsVisible = false;
+        let currentBlank = null;
+        let storyData = {
+            completed: 0,
+            total: 16,
+            score: 0
+        };
 
         function initStory() {
-            storyBlanks = document.querySelectorAll('.story-blank');
-            storyBlanks.forEach((blank, index) => {
-                const options = JSON.parse(blank.dataset.options);
-                const select = document.createElement('select');
-                select.className = 'story-select';
-                select.innerHTML = '<option value="">___</option>';
+            const blanks = document.querySelectorAll('.story-blank');
 
-                options.forEach(opt => {
-                    const option = document.createElement('option');
-                    option.value = opt;
-                    option.textContent = opt;
-                    select.appendChild(option);
+            blanks.forEach(blank => {
+                blank.addEventListener('click', function () {
+                    document.querySelectorAll('.options-popup').forEach(popup => {
+                        popup.remove();
+                    });
+
+                    document.querySelectorAll('.story-blank').forEach(b => b.classList.remove('selected'));
+
+                    this.classList.add('selected');
+                    currentBlank = this;
+
+                    showOptionsPopup(this);
                 });
+            });
 
-                blank.appendChild(select);
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.story-blank') && !e.target.closest('.options-popup')) {
+                    document.querySelectorAll('.options-popup').forEach(popup => {
+                        popup.remove();
+                    });
+                    document.querySelectorAll('.story-blank').forEach(blank => {
+                        blank.classList.remove('selected');
+                    });
+                }
+            });
+        }
+
+        function showOptionsPopup(blank) {
+            const options = JSON.parse(blank.dataset.options);
+
+            const popup = document.createElement('div');
+            popup.className = 'options-popup';
+
+            options.forEach(option => {
+                const optionEl = document.createElement('button');
+                optionEl.className = 'option-item';
+                optionEl.textContent = option;
+                optionEl.onclick = () => selectOption(blank, option, popup);
+                popup.appendChild(optionEl);
+            }); document.body.appendChild(popup);
+            positionPopup(blank, popup);
+            popup.style.opacity = '0';
+            popup.style.transform = 'scale(0.8)';
+            popup.offsetHeight;
+            popup.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            popup.style.opacity = '1';
+            popup.style.transform = 'scale(1)';
+        }
+
+        function positionPopup(blank, popup) {
+            const blankRect = blank.getBoundingClientRect();
+            const popupRect = popup.getBoundingClientRect();
+
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+            let left = blankRect.left + scrollLeft + (blankRect.width / 2) - (popupRect.width / 2);
+            let top = blankRect.bottom + scrollTop + 5;
+
+            if (left + popupRect.width > windowWidth + scrollLeft) {
+                left = windowWidth + scrollLeft - popupRect.width - 10;
+            }
+
+            if (left < scrollLeft + 10) {
+                left = scrollLeft + 10;
+            }
+
+            if (top + popupRect.height > windowHeight + scrollTop) {
+                top = blankRect.top + scrollTop - popupRect.height - 5;
+
+                if (top < scrollTop + 10) {
+                    top = scrollTop + (windowHeight - popupRect.height) / 2;
+                }
+            }
+
+            popup.style.left = Math.round(left) + 'px';
+            popup.style.top = Math.round(top) + 'px';
+        }
+
+        function selectOption(blank, option, popup) {
+            const wasAlreadyFilled = blank.classList.contains('filled');
+
+            popup.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+            popup.style.opacity = '0';
+            popup.style.transform = 'scale(0.8)';
+
+            setTimeout(() => {
+                if (popup && popup.parentNode) {
+                    popup.remove();
+                }
+            }, 200);
+
+            blank.textContent = option;
+            blank.classList.add('filled');
+            blank.classList.remove('selected');
+
+            if (!wasAlreadyFilled) {
+                updateProgress();
+            }
+        }
+
+        function handleWindowEvents() {
+            const popup = document.querySelector('.options-popup');
+            const selectedBlank = document.querySelector('.story-blank.selected');
+
+            if (popup && selectedBlank) {
+                positionPopup(selectedBlank, popup);
+            }
+        }
+
+        window.addEventListener('resize', handleWindowEvents);
+        window.addEventListener('scroll', handleWindowEvents);
+
+        function updateProgress() {
+            const filledBlanks = document.querySelectorAll('.story-blank.filled');
+            storyData.completed = filledBlanks.length;
+
+            document.getElementById('storyProgress').textContent = storyData.completed;
+
+            const checkBtn = document.getElementById('checkStoryBtn');
+            if (storyData.completed === storyData.total) {
+                checkBtn.style.background = '#27ae60';
+                checkBtn.textContent = 'Check';
+            }
+        }
+
+        function showAllHints() {
+            const blanks = document.querySelectorAll('.story-blank');
+
+            blanks.forEach(blank => {
+                const hint = blank.dataset.hint;
+                if (hint && !blank.classList.contains('filled')) {
+
+                    const existingHint = blank.querySelector('.hint-display');
+                    if (existingHint) {
+                        existingHint.remove();
+                        return;
+                    }
+
+                    const hintEl = document.createElement('div');
+                    hintEl.className = 'hint-display';
+                    hintEl.textContent = hint;
+
+                    blank.appendChild(hintEl);
+
+                    setTimeout(() => {
+                        hintEl.style.opacity = '1';
+                    }, 10);
+
+                    setTimeout(() => {
+                        if (hintEl.parentNode) {
+                            hintEl.style.opacity = '0';
+                            setTimeout(() => {
+                                if (hintEl.parentNode) {
+                                    hintEl.remove();
+                                }
+                            }, 300);
+                        }
+                    }, 8000);
+                }
             });
         }
 
         function checkStory() {
+            const blanks = document.querySelectorAll('.story-blank');
             let correct = 0;
-            let total = storyBlanks.length;
 
-            storyBlanks.forEach(blank => {
-                const select = blank.querySelector('select');
+            blanks.forEach(blank => {
+                const userAnswer = blank.textContent.trim();
                 const correctAnswer = blank.dataset.correct;
-                const userAnswer = select.value;
+
+                blank.classList.remove('correct', 'incorrect');
 
                 if (userAnswer === correctAnswer) {
-                    select.style.borderColor = 'var(--color-success)';
-                    select.style.backgroundColor = 'rgba(46, 213, 115, 0.1)';
+                    blank.classList.add('correct');
                     correct++;
-                } else {
-                    select.style.borderColor = 'var(--color-error)';
-                    select.style.backgroundColor = 'rgba(255, 71, 87, 0.1)';
+                } else if (blank.classList.contains('filled')) {
+                    blank.classList.add('incorrect');
                 }
             });
 
-            document.getElementById('storyResult').innerHTML =
-                `<p style="font-size: 1.2em; font-weight: 600;">Result: ${correct}/${total} correct!</p>`;
+            storyData.score = correct;
+            showFeedback(correct);
         }
 
-        function resetStory() {
-            storyBlanks.forEach(blank => {
-                const select = blank.querySelector('select');
-                select.value = '';
-                select.style.borderColor = '';
-                select.style.backgroundColor = '';
-            });
-            document.getElementById('storyResult').innerHTML = '';
-            hintsVisible = false;
+        function showFeedback(correct) {
+            const feedback = document.getElementById('storyFeedback');
+            const percentage = Math.round((correct / storyData.total) * 100);
+
+            let message = '';
+            let className = '';
+
+            if (percentage >= 90) {
+                message = `🏆 Excellent! ${correct}/${storyData.total} (${percentage}%) - You know possessive adjectives very well!`;
+                className = 'excellent';
+            } else if (percentage >= 70) {
+                message = `👍 Good job! ${correct}/${storyData.total} (${percentage}%) - Almost perfect!`;
+                className = 'good';
+            } else {
+                message = `📖 Keep practicing! ${correct}/${storyData.total} (${percentage}%) - Review the rules and try again!`;
+                className = 'needs-work';
+            }
+
+            feedback.textContent = message;
+            feedback.className = `story-feedback ${className}`;
         }
 
-        function showStoryHints() {
-            hintsVisible = !hintsVisible;
-            storyBlanks.forEach(blank => {
-                const hint = blank.dataset.hint;
-                let hintElement = blank.querySelector('.hint-text');
-
-                if (hintsVisible) {
-                    if (!hintElement) {
-                        hintElement = document.createElement('span');
-                        hintElement.className = 'hint-text';
-                        hintElement.style.cssText = 'font-size: 0.8em; color: var(--color-accent); margin-left: 8px;';
-                        hintElement.textContent = `(${hint})`;
-                        blank.appendChild(hintElement);
-                    }
-                } else {
-                    if (hintElement) {
-                        hintElement.remove();
-                    }
-                }
-            });
-        }
-
-        // Initialize exercises when slides load
-        window.addEventListener('load', () => {
-            loadQuestion1();
-            loadQuestion2();
-            loadQuestion3();
+        // Initialize story when page loads
+        document.addEventListener('DOMContentLoaded', function () {
             initStory();
         });
     </script>
-
 </body>
 
 </html>
