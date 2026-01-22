@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Up 2 - Final Level Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/new-presentation-styles.css">
+</head>
+
+<body>
+    <div class="presentation">
+        <!-- Слайд 1: Введение -->
+        <div class="slide active">
+            <div class="decorative-star star-1">📝</div>
+            <div class="decorative-star star-2">🎯</div>
+            <div class="decorative-shape shape-triangle"></div>
+            <div class="decorative-shape shape-circle"></div>
+
+            <h1 class="title-decoration">Power Up 2</h1>
+            <h2>Final Level Test</h2>
+
+            <div class="info-box">
+                <h3 class="info-title">Инструкция к тесту</h3>
+                <p class="example-text">
+                    Этот тест проверяет твои знания после учебника Power Up 2.<br>
+                    В тесте 4 части:
+                </p>
+            </div>
+
+            <div class="pronoun-types-grid">
+                <div class="pronoun-type-card personal-pronoun-card">
+                    <h4>📖 Part 1</h4>
+                    <p><strong>Reading</strong></p>
+                    <p class="card-description">Чтение и понимание текста</p>
+                    <p class="card-subtitle">20 минут</p>
+                </div>
+
+                <div class="pronoun-type-card possessive-pronoun-card">
+                    <h4>✍️ Part 2</h4>
+                    <p><strong>Grammar & Vocabulary</strong></p>
+                    <p class="card-description">Грамматика и словарный запас</p>
+                    <p class="card-subtitle">25 минут</p>
+                </div>
+
+                <div class="pronoun-type-card demonstrative-pronoun-card">
+                    <h4>🎧 Part 3</h4>
+                    <p><strong>Listening</strong></p>
+                    <p class="card-description">Аудирование</p>
+                    <p class="card-subtitle">15 минут</p>
+                </div>
+
+                <div class="pronoun-type-card personal-pronoun-card">
+                    <h4>✏️ Part 4</h4>
+                    <p><strong>Writing</strong></p>
+                    <p class="card-description">Письменное задание</p>
+                    <p class="card-subtitle">20 минут</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p class="example-text">
+                    <strong>Общее время:</strong> 80 минут<br>
+                    <strong>Максимальный балл:</strong> 100 баллов<br><br>
+                    Удачи! 🍀
+                </p>
+            </div>
+        </div>
+
+        <!-- PART 1: READING -->
+        <div class="slide">
+            <div class="decorative-star star-1">📖</div>
+            <div class="decorative-star star-2">📚</div>
+            <div class="decorative-shape shape-circle"></div>
+
+            <h1 class="title-decoration">Part 1: Reading</h1>
+
+            <div class="info-box">
+                <h3>Task 1: Read the text and answer the questions</h3>
+                <p class="info-sub-text">Прочитай текст о Саре и ответь на вопросы (10 баллов)</p>
+            </div>
+
+            <div class="story-container">
+                <div class="story-title">
+                    <h4>My Best Friend Sarah</h4>
+                </div>
+
+                <div class="story-text">
+                    <p class="story-paragraph">
+                        My name is Emma and I'm ten years old. I want to tell you about my best friend Sarah. 
+                        She lives in my neighbourhood and we go to the same school. Sarah is very kind and funny. 
+                        She always makes me laugh!
+                    </p>
+
+                    <p class="story-paragraph">
+                        Sarah has got long brown hair and blue eyes. She's taller than me. She usually wears 
+                        jeans and T-shirts, but on special days she likes wearing dresses. Her favourite colour 
+                        is purple, so she has a lot of purple clothes in her wardrobe.
+                    </p>
+
+                    <p class="story-paragraph">
+                        Sarah loves animals. She has got a cat called Fluffy and a dog called Max. Every morning 
+                        before school, she walks Max in the park. At the weekends, we often go to the park together 
+                        with our pets. Sarah wants to be a vet when she grows up because she wants to help animals.
+                    </p>
+
+                    <p class="story-paragraph">
+                        Sarah is also very good at sports. She can swim very fast and she plays basketball twice 
+                        a week. I'm not very sporty, but Sarah is teaching me how to play basketball. She's a great 
+                        teacher! We also like reading books and watching films together. Our favourite film is 
+                        "The Lion King".
+                    </p>
+
+                    <p class="story-paragraph">
+                        I'm so happy that Sarah is my best friend. We do everything together and we never fight. 
+                        She's the best friend anyone could have!
+                    </p>
+                </div>
+            </div>
+            <div id="reading1" class="exercise-container">
+                <div class="score-board">
+                    <span>Правильно: <strong id="scoreReading1">0</strong>/10</span>
+                    <button onclick="resetReading1()" class="reset-btn">Сбросить</button>
+                </div>
+                <div class="homework-section">
+                    <div class="correction-exercises">
+                        <div class="correction-item">
+                            <p><strong>1.</strong> How old is Emma?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkReading1(this, 1, 'ten')">Nine</div>
+                                <div class="option-card" onclick="checkReading1(this, 1, 'ten')">Ten</div>
+                                <div class="option-card" onclick="checkReading1(this, 1, 'ten')">Eleven</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>2.</strong> Where does Sarah live?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkReading1(this, 2, 'neighbourhood')">In Emma's neighbourhood</div>
+                                <div class="option-card" onclick="checkReading1(this, 2, 'neighbourhood')">In another city</div>
+                                <div class="option-card" onclick="checkReading1(this, 2, 'neighbourhood')">Near the school</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>3.</strong> What colour is Sarah's hair?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkReading1(this, 3, 'brown')">Blonde</div>
+                                <div class="option-card" onclick="checkReading1(this, 3, 'brown')">Brown</div>
+                                <div class="option-card" onclick="checkReading1(this, 3, 'brown')">Black</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>4.</strong> What is Sarah's favourite colour?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkReading1(this, 4, 'purple')">Blue</div>
+                                <div class="option-card" onclick="checkReading1(this, 4, 'purple')">Purple</div>
+                                <div class="option-card" onclick="checkReading1(this, 4, 'purple')">Pink</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>5.</strong> How many pets does Sarah have?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkReading1(this, 5, 'two')">One</div>
+                                <div class="option-card" onclick="checkReading1(this, 5, 'two')">Two</div>
+                                <div class="option-card" onclick="checkReading1(this, 5, 'two')">Three</div>
+                            </div>
+                        </div>
+                        <div class="correction-item">
+                            <p><strong>6.</strong> What's the dog's name?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkReading2(this, 6, 'max')">Max</div>
+                                <div class="option-card" onclick="checkReading2(this, 6, 'max')">Fluffy</div>
+                                <div class="option-card" onclick="checkReading2(this, 6, 'max')">Lucky</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>7.</strong> What does Sarah want to be when she grows up?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkReading2(this, 7, 'vet')">A teacher</div>
+                                <div class="option-card" onclick="checkReading2(this, 7, 'vet')">A vet</div>
+                                <div class="option-card" onclick="checkReading2(this, 7, 'vet')">A basketball player</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>8.</strong> How often does Sarah play basketball?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkReading2(this, 8, 'twice')">Once a week</div>
+                                <div class="option-card" onclick="checkReading2(this, 8, 'twice')">Twice a week</div>
+                                <div class="option-card" onclick="checkReading2(this, 8, 'twice')">Every day</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>9.</strong> What is the girls' favourite film?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkReading2(this, 9, 'lion')">Finding Nemo</div>
+                                <div class="option-card" onclick="checkReading2(this, 9, 'lion')">The Lion King</div>
+                                <div class="option-card" onclick="checkReading2(this, 9, 'lion')">Frozen</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>10.</strong> True or False: Emma and Sarah often fight.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkReading2(this, 10, 'false')">True</div>
+                                <div class="option-card" onclick="checkReading2(this, 10, 'false')">False</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PART 2: GRAMMAR & VOCABULARY -->
+        <div class="slide">
+            <div class="decorative-star star-1">✍️</div>
+            <div class="decorative-star star-2">📝</div>
+            <div class="decorative-shape shape-square"></div>
+
+            <h1 class="title-decoration">Part 2: Grammar & Vocabulary</h1>
+
+            <div class="info-box">
+                <h3>Task 2: Choose the correct answer</h3>
+                <p class="info-sub-text">Выбери правильный вариант (30 баллов)</p>
+            </div>
+
+            <div id="grammar1" class="exercise-container">
+                <div class="score-board">
+                    <span>Правильно: <strong id="scoreGrammar">0</strong>/30</span>
+                    <button onclick="resetGrammar()" class="reset-btn">Сбросить</button>
+                </div>
+
+                <div class="homework-section">
+                    <h4>Present Simple & Present Continuous</h4>
+                    <div class="correction-exercises">
+                        <div class="correction-item">
+                            <p><strong>1.</strong> She _____ to school every day.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkGrammar(this, 1, 'goes')">go</div>
+                                <div class="option-card" onclick="checkGrammar(this, 1, 'goes')">goes</div>
+                                <div class="option-card" onclick="checkGrammar(this, 1, 'goes')">going</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>2.</strong> Look! The children _____ in the park.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkGrammar(this, 2, 'playing')">play</div>
+                                <div class="option-card" onclick="checkGrammar(this, 2, 'playing')">plays</div>
+                                <div class="option-card" onclick="checkGrammar(this, 2, 'playing')">are playing</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>3.</strong> My brother _____ video games right now.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkGrammar(this, 3, 'playing')">play</div>
+                                <div class="option-card" onclick="checkGrammar(this, 3, 'playing')">is playing</div>
+                                <div class="option-card" onclick="checkGrammar(this, 3, 'playing')">plays</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>4.</strong> We usually _____ breakfast at 8 o'clock.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkGrammar(this, 4, 'have')">have</div>
+                                <div class="option-card" onclick="checkGrammar(this, 4, 'have')">has</div>
+                                <div class="option-card" onclick="checkGrammar(this, 4, 'have')">are having</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>5.</strong> _____ you like pizza?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkGrammar(this, 5, 'do')">Do</div>
+                                <div class="option-card" onclick="checkGrammar(this, 5, 'do')">Does</div>
+                                <div class="option-card" onclick="checkGrammar(this, 5, 'do')">Are</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="homework-section">
+                <h4>Past Simple</h4>
+                <div class="correction-exercises">
+                    <div class="correction-item">
+                        <p><strong>6.</strong> I _____ to the cinema yesterday.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 6, 'went')">go</div>
+                            <div class="option-card" onclick="checkGrammar(this, 6, 'went')">went</div>
+                            <div class="option-card" onclick="checkGrammar(this, 6, 'went')">goed</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>7.</strong> She _____ her homework last night.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 7, 'did')">do</div>
+                            <div class="option-card" onclick="checkGrammar(this, 7, 'did')">did</div>
+                            <div class="option-card" onclick="checkGrammar(this, 7, 'did')">does</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>8.</strong> They _____ football on Sunday.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 8, 'played')">play</div>
+                            <div class="option-card" onclick="checkGrammar(this, 8, 'played')">played</div>
+                            <div class="option-card" onclick="checkGrammar(this, 8, 'played')">plays</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>9.</strong> We _____ a great time at the party.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 9, 'had')">have</div>
+                            <div class="option-card" onclick="checkGrammar(this, 9, 'had')">had</div>
+                            <div class="option-card" onclick="checkGrammar(this, 9, 'had')">has</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>10.</strong> _____ you see that film?</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 10, 'did')">Do</div>
+                            <div class="option-card" onclick="checkGrammar(this, 10, 'did')">Did</div>
+                            <div class="option-card" onclick="checkGrammar(this, 10, 'did')">Does</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="homework-section">
+                <h4>Can/Can't & Comparatives</h4>
+                <div class="correction-exercises">
+                    <div class="correction-item">
+                        <p><strong>11.</strong> My sister _____ swim very well.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 11, 'can')">can</div>
+                            <div class="option-card" onclick="checkGrammar(this, 11, 'can')">cans</div>
+                            <div class="option-card" onclick="checkGrammar(this, 11, 'can')">is can</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>12.</strong> I _____ speak Chinese.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 12, 'cant')">can</div>
+                            <div class="option-card" onclick="checkGrammar(this, 12, 'cant')">can't</div>
+                            <div class="option-card" onclick="checkGrammar(this, 12, 'cant')">not can</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>13.</strong> An elephant is _____ than a mouse.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 13, 'bigger')">big</div>
+                            <div class="option-card" onclick="checkGrammar(this, 13, 'bigger')">bigger</div>
+                            <div class="option-card" onclick="checkGrammar(this, 13, 'bigger')">more big</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>14.</strong> This book is _____ than that one.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 14, 'interesting')">interesting</div>
+                            <div class="option-card" onclick="checkGrammar(this, 14, 'interesting')">more interesting</div>
+                            <div class="option-card" onclick="checkGrammar(this, 14, 'interesting')">interestinger</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>15.</strong> My brother is _____ than me.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 15, 'taller')">tall</div>
+                            <div class="option-card" onclick="checkGrammar(this, 15, 'taller')">taller</div>
+                            <div class="option-card" onclick="checkGrammar(this, 15, 'taller')">more tall</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="homework-section">
+                <h4>Prepositions & Pronouns</h4>
+                <div class="correction-exercises">
+                    <div class="correction-item">
+                        <p><strong>16.</strong> The cat is _____ the table.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 16, 'under')">under</div>
+                            <div class="option-card" onclick="checkGrammar(this, 16, 'under')">on</div>
+                            <div class="option-card" onclick="checkGrammar(this, 16, 'under')">in</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>17.</strong> We go to school _____ bus.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 17, 'by')">by</div>
+                            <div class="option-card" onclick="checkGrammar(this, 17, 'by')">on</div>
+                            <div class="option-card" onclick="checkGrammar(this, 17, 'by')">with</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>18.</strong> This is _____ book.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 18, 'my')">my</div>
+                            <div class="option-card" onclick="checkGrammar(this, 18, 'my')">mine</div>
+                            <div class="option-card" onclick="checkGrammar(this, 18, 'my')">I</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>19.</strong> The red car is _____.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 19, 'his')">he</div>
+                            <div class="option-card" onclick="checkGrammar(this, 19, 'his')">him</div>
+                            <div class="option-card" onclick="checkGrammar(this, 19, 'his')">his</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>20.</strong> _____ house is very big.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 20, 'their')">They</div>
+                            <div class="option-card" onclick="checkGrammar(this, 20, 'their')">Their</div>
+                            <div class="option-card" onclick="checkGrammar(this, 20, 'their')">Theirs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="homework-section">
+                <h4>Vocabulary</h4>
+                <div class="correction-exercises">
+                    <div class="correction-item">
+                        <p><strong>21.</strong> I'm _____. I want to eat something.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 21, 'hungry')">thirsty</div>
+                            <div class="option-card" onclick="checkGrammar(this, 21, 'hungry')">hungry</div>
+                            <div class="option-card" onclick="checkGrammar(this, 21, 'hungry')">tired</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>22.</strong> A _____ helps sick people.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 22, 'doctor')">teacher</div>
+                            <div class="option-card" onclick="checkGrammar(this, 22, 'doctor')">doctor</div>
+                            <div class="option-card" onclick="checkGrammar(this, 22, 'doctor')">police officer</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>23.</strong> In summer, the weather is usually _____.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 23, 'hot')">cold</div>
+                            <div class="option-card" onclick="checkGrammar(this, 23, 'hot')">hot</div>
+                            <div class="option-card" onclick="checkGrammar(this, 23, 'hot')">snowy</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>24.</strong> We sleep in the _____.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 24, 'bedroom')">kitchen</div>
+                            <div class="option-card" onclick="checkGrammar(this, 24, 'bedroom')">bedroom</div>
+                            <div class="option-card" onclick="checkGrammar(this, 24, 'bedroom')">bathroom</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>25.</strong> A lion is a _____ animal.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 25, 'wild')">pet</div>
+                            <div class="option-card" onclick="checkGrammar(this, 25, 'wild')">farm</div>
+                            <div class="option-card" onclick="checkGrammar(this, 25, 'wild')">wild</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>26.</strong> I _____ my teeth every morning.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 26, 'brush')">wash</div>
+                            <div class="option-card" onclick="checkGrammar(this, 26, 'brush')">brush</div>
+                            <div class="option-card" onclick="checkGrammar(this, 26, 'brush')">clean</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>27.</strong> There _____ a book on the desk.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 27, 'is')">is</div>
+                            <div class="option-card" onclick="checkGrammar(this, 27, 'is')">are</div>
+                            <div class="option-card" onclick="checkGrammar(this, 27, 'is')">am</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>28.</strong> There _____ many students in the classroom.</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 28, 'are')">is</div>
+                            <div class="option-card" onclick="checkGrammar(this, 28, 'are')">are</div>
+                            <div class="option-card" onclick="checkGrammar(this, 28, 'are')">am</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>29.</strong> How _____ juice do you want?</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 29, 'much')">many</div>
+                            <div class="option-card" onclick="checkGrammar(this, 29, 'much')">much</div>
+                            <div class="option-card" onclick="checkGrammar(this, 29, 'much')">lot</div>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <p><strong>30.</strong> How _____ apples are there?</p>
+                        <div class="options-grid">
+                            <div class="option-card" onclick="checkGrammar(this, 30, 'many')">many</div>
+                            <div class="option-card" onclick="checkGrammar(this, 30, 'many')">much</div>
+                            <div class="option-card" onclick="checkGrammar(this, 30, 'many')">lot</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Listening Task 1 -->
+        <div class="slide">
+            <h1>Part 3: Listening</h1>
+            <h2>Task 3.1 - Dialogue</h2>
+
+            <div class="info-box">
+                <h3>🎧 Послушай диалог и ответь на вопросы (5 баллов)</h3>
+                <p class="info-sub-text">Audio 1: Dialogue about weekend plans</p>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Текст для аудио записи Audio 1:</h4>
+                <p class="example-text" style="text-align: left; line-height: 1.8;">
+                    <strong>Boy:</strong> Hi Lucy! What are you doing this weekend?<br>
+                    <strong>Girl:</strong> Hi Tom! On Saturday, I'm going to visit my grandma. She lives in the countryside.<br>
+                    <strong>Boy:</strong> That sounds nice! What about Sunday?<br>
+                    <strong>Girl:</strong> On Sunday morning, I'm playing tennis with my dad. And in the afternoon, I'm going to the cinema with my friends. We're watching the new superhero film.<br>
+                    <strong>Boy:</strong> Cool! I want to see that film too!<br>
+                    <strong>Girl:</strong> You can come with us if you want!<br>
+                    <strong>Boy:</strong> Great! What time?<br>
+                    <strong>Girl:</strong> The film starts at 3 o'clock. Let's meet at 2:30 at the cinema.<br>
+                    <strong>Boy:</strong> Perfect! See you on Sunday!
+                </p>
+            </div>
+
+            <div id="listening1" class="exercise-container">
+                <div class="score-board">
+                    <span>Правильно: <strong id="scoreListening1">0</strong>/5</span>
+                    <button onclick="resetListening1()" class="reset-btn">Сбросить</button>
+                </div>
+
+                <div class="homework-section">
+                    <div class="correction-exercises">
+                        <div class="correction-item">
+                            <p><strong>1.</strong> Where is Lucy going on Saturday?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening1(this, 1, 'grandma')">To her grandma's</div>
+                                <div class="option-card" onclick="checkListening1(this, 1, 'grandma')">To the cinema</div>
+                                <div class="option-card" onclick="checkListening1(this, 1, 'grandma')">To play tennis</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>2.</strong> Where does Lucy's grandma live?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening1(this, 2, 'countryside')">In the city</div>
+                                <div class="option-card" onclick="checkListening1(this, 2, 'countryside')">In the countryside</div>
+                                <div class="option-card" onclick="checkListening1(this, 2, 'countryside')">Near the cinema</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>3.</strong> What is Lucy doing on Sunday morning?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening1(this, 3, 'tennis')">Watching a film</div>
+                                <div class="option-card" onclick="checkListening1(this, 3, 'tennis')">Playing tennis</div>
+                                <div class="option-card" onclick="checkListening1(this, 3, 'tennis')">Visiting grandma</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>4.</strong> What time does the film start?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening1(this, 4, '3')">2:30</div>
+                                <div class="option-card" onclick="checkListening1(this, 4, '3')">3:00</div>
+                                <div class="option-card" onclick="checkListening1(this, 4, '3')">3:30</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>5.</strong> What type of film are they watching?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening1(this, 5, 'superhero')">Comedy</div>
+                                <div class="option-card" onclick="checkListening1(this, 5, 'superhero')">Superhero film</div>
+                                <div class="option-card" onclick="checkListening1(this, 5, 'superhero')">Cartoon</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Listening Task 2 -->
+        <div class="slide">
+            <h1>Part 3: Listening</h1>
+            <h2>Task 3.2 - Daily Routine</h2>
+
+            <div class="info-box">
+                <h3>🎧 Послушай и выбери правильный ответ (5 баллов)</h3>
+                <p class="info-sub-text">Audio 2: Daily routine description</p>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Текст для аудио записи Audio 2:</h4>
+                <p class="example-text" style="text-align: left; line-height: 1.8;">
+                    My name is Mike and I'm 11 years old. Let me tell you about my typical day. I usually wake up at 7 o'clock in the morning. First, I have a shower and brush my teeth. Then I have breakfast with my family. I usually eat cereal and drink orange juice.<br><br>
+                    
+                    School starts at 8:30, so I leave home at 8 o'clock. I go to school by bike. It takes about 15 minutes. My favourite subject is Science because I love learning about animals and space.<br><br>
+                    
+                    After school, I get home at 4 o'clock. I do my homework for one hour. Then I play video games or watch TV. We have dinner at 7 o'clock. My mum is a great cook! After dinner, I sometimes read a book or play with my little sister.<br><br>
+                    
+                    I go to bed at 9:30. Before I sleep, I always listen to music. I love my daily routine!
+                </p>
+            </div>
+
+            <div id="listening2" class="exercise-container">
+                <div class="score-board">
+                    <span>Правильно: <strong id="scoreListening2">0</strong>/5</span>
+                    <button onclick="resetListening2()" class="reset-btn">Сбросить</button>
+                </div>
+
+                <div class="homework-section">
+                    <div class="correction-exercises">
+                        <div class="correction-item">
+                            <p><strong>6.</strong> What time does Mike wake up?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening2(this, 6, '7')">6:00</div>
+                                <div class="option-card" onclick="checkListening2(this, 6, '7')">7:00</div>
+                                <div class="option-card" onclick="checkListening2(this, 6, '7')">8:00</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>7.</strong> How does Mike go to school?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening2(this, 7, 'bike')">By bus</div>
+                                <div class="option-card" onclick="checkListening2(this, 7, 'bike')">By bike</div>
+                                <div class="option-card" onclick="checkListening2(this, 7, 'bike')">On foot</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>8.</strong> What is Mike's favourite subject?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening2(this, 8, 'science')">Maths</div>
+                                <div class="option-card" onclick="checkListening2(this, 8, 'science')">Science</div>
+                                <div class="option-card" onclick="checkListening2(this, 8, 'science')">English</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>9.</strong> How long does Mike do homework?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening2(this, 9, 'hour')">30 minutes</div>
+                                <div class="option-card" onclick="checkListening2(this, 9, 'hour')">One hour</div>
+                                <div class="option-card" onclick="checkListening2(this, 9, 'hour')">Two hours</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>10.</strong> What does Mike do before he sleeps?</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening2(this, 10, 'music')">Reads a book</div>
+                                <div class="option-card" onclick="checkListening2(this, 10, 'music')">Listens to music</div>
+                                <div class="option-card" onclick="checkListening2(this, 10, 'music')">Watches TV</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Listening Task 3 -->
+        <div class="slide">
+            <h1>Part 3: Listening</h1>
+            <h2>Task 3.3 - A Trip Story</h2>
+
+            <div class="info-box">
+                <h3>🎧 Послушай историю и ответь True или False (10 баллов)</h3>
+                <p class="info-sub-text">Audio 3: A trip to the beach</p>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Текст для аудио записи Audio 3:</h4>
+                <p class="example-text" style="text-align: left; line-height: 1.8;">
+                    Last summer, my family and I went on a trip to the beach. We travelled by car. The journey took three hours. The weather was beautiful - it was sunny and hot.<br><br>
+                    
+                    We stayed in a small hotel near the sea. Our room had a big balcony with a beautiful view of the ocean. Every morning, we had breakfast at the hotel restaurant. They served delicious pancakes and fresh fruit.<br><br>
+                    
+                    On the first day, we went swimming in the sea. The water was really cold at first, but then it was perfect! My little brother built a huge sandcastle. It was amazing! We also collected seashells on the beach.<br><br>
+                    
+                    On the second day, we went to an aquarium. I saw many different fish and sea animals. My favourite was a big sea turtle. It was very old - about 100 years! We also saw dolphins. They were so clever and funny!<br><br>
+                    
+                    In the evening, we ate ice cream and watched the sunset. It was so beautiful! The sky was orange and pink. We took lots of photos.<br><br>
+                    
+                    We had a wonderful time at the beach. I can't wait to go back next summer!
+                </p>
+            </div>
+
+            <div id="listening3" class="exercise-container">
+                <div class="score-board">
+                    <span>Правильно: <strong id="scoreListening3">0</strong>/10</span>
+                    <button onclick="resetListening3()" class="reset-btn">Сбросить</button>
+                </div>
+
+                <div class="homework-section">
+                    <div class="correction-exercises">
+                        <div class="correction-item">
+                            <p><strong>11.</strong> The family went to the beach last winter.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening3(this, 11, 'false')">True</div>
+                                <div class="option-card" onclick="checkListening3(this, 11, 'false')">False</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>12.</strong> They travelled by car.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening3(this, 12, 'true')">True</div>
+                                <div class="option-card" onclick="checkListening3(this, 12, 'true')">False</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>13.</strong> The journey took five hours.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening3(this, 13, 'false')">True</div>
+                                <div class="option-card" onclick="checkListening3(this, 13, 'false')">False</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>14.</strong> Their hotel room had a balcony.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening3(this, 14, 'true')">True</div>
+                                <div class="option-card" onclick="checkListening3(this, 14, 'true')">False</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>15.</strong> The water in the sea was warm.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening3(this, 15, 'false')">True</div>
+                                <div class="option-card" onclick="checkListening3(this, 15, 'false')">False</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>16.</strong> They built a sandcastle.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening3(this, 16, 'true')">True</div>
+                                <div class="option-card" onclick="checkListening3(this, 16, 'true')">False</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>17.</strong> They visited a zoo on the second day.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening3(this, 17, 'false')">True</div>
+                                <div class="option-card" onclick="checkListening3(this, 17, 'false')">False</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>18.</strong> The sea turtle was about 100 years old.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening3(this, 18, 'true')">True</div>
+                                <div class="option-card" onclick="checkListening3(this, 18, 'true')">False</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>19.</strong> They saw dolphins at the aquarium.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening3(this, 19, 'true')">True</div>
+                                <div class="option-card" onclick="checkListening3(this, 19, 'true')">False</div>
+                            </div>
+                        </div>
+
+                        <div class="correction-item">
+                            <p><strong>20.</strong> They watched the sunrise in the evening.</p>
+                            <div class="options-grid">
+                                <div class="option-card" onclick="checkListening3(this, 20, 'false')">True</div>
+                                <div class="option-card" onclick="checkListening3(this, 20, 'false')">False</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PART 4: WRITING -->
+        <div class="slide">
+            <div class="decorative-star star-1">✏️</div>
+            <div class="decorative-star star-2">📄</div>
+            <div class="decorative-shape shape-square"></div>
+
+            <h1 class="title-decoration">Part 4: Writing</h1>
+            <h2>Письменное задание</h2>
+
+            <div class="info-box">
+                <h3>Task 4: Write about yourself (20 баллов)</h3>
+                <p class="info-sub-text">Напиши короткое сочинение о себе (50-70 слов)</p>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Включи следующую информацию:</h4>
+                <p class="example-text" style="text-align: left;">
+                    ✓ Your name and age<br>
+                    ✓ Where you live<br>
+                    ✓ Your family (brothers, sisters, parents)<br>
+                    ✓ Your favourite hobbies and activities<br>
+                    ✓ What you like doing at weekends<br>
+                    ✓ Your favourite subject at school<br>
+                    ✓ What you want to be in the future
+                </p>
+            </div>
+
+            <div id="writing" class="exercise-container">
+                <div class="homework-section">
+                    <h4>Напиши свой текст здесь:</h4>
+                    <div style="margin: 20px 0;">
+                        <textarea id="writingText" style="width: 100%; min-height: 300px; padding: 20px; border: 3px solid var(--color-primary); border-radius: 15px; font-family: var(--font-secondary); font-size: 16px; line-height: 1.6;" placeholder="Start writing here..."></textarea>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+                        <span style="font-weight: 600;">Word count: <strong id="wordCount">0</strong> words</span>
+                        <button onclick="clearWriting()" class="reset-btn">Clear</button>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h4>Критерии оценки (20 баллов):</h4>
+                        <p style="text-align: left; line-height: 1.8;">
+                            • <strong>Content</strong> (8 баллов): Вся необходимая информация включена<br>
+                            • <strong>Grammar & Vocabulary</strong> (8 баллов): Правильное использование грамматики и слов<br>
+                            • <strong>Organization</strong> (4 балла): Текст логично организован, есть вступление и заключение
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTS SLIDE -->
+        <div class="slide">
+            <div class="decorative-star star-1">🎉</div>
+            <div class="decorative-star star-2">🏆</div>
+            <div class="decorative-shape shape-circle"></div>
+            <div class="decorative-shape shape-square"></div>
+
+            <h1 class="title-decoration">Test Results</h1>
+            <h2>Твои результаты</h2>
+
+            <div id="finalResults" class="pronoun-types-grid">
+                <div class="pronoun-type-card personal-pronoun-card">
+                    <h4>📖 Reading</h4>
+                    <p class="card-subtitle"><strong id="readingTotal">0</strong> / 10</p>
+                    <div id="readingPercent" class="card-description">0%</div>
+                </div>
+
+                <div class="pronoun-type-card possessive-pronoun-card">
+                    <h4>✍️ Grammar</h4>
+                    <p class="card-subtitle"><strong id="grammarTotal">0</strong> / 30</p>
+                    <div id="grammarPercent" class="card-description">0%</div>
+                </div>
+
+                <div class="pronoun-type-card demonstrative-pronoun-card">
+                    <h4>🎧 Listening</h4>
+                    <p class="card-subtitle"><strong id="listeningTotal">0</strong> / 20</p>
+                    <div id="listeningPercent" class="card-description">0%</div>
+                </div>
+
+                <div class="pronoun-type-card personal-pronoun-card">
+                    <h4>✏️ Writing</h4>
+                    <p class="card-subtitle"><strong>Manual grading</strong></p>
+                    <div class="card-description">Max: 20 points</div>
+                </div>
+            </div>
+
+            <div class="example-box" style="margin-top: 30px;">
+                <h2 id="totalScore" style="font-size: 2.5em; margin: 20px 0;">Total: 0 / 80</h2>
+                <div id="finalGrade" style="font-size: 1.5em; font-weight: 700; margin: 15px 0;"></div>
+                <p id="finalComment" style="font-size: 1.2em; margin-top: 15px;"></p>
+            </div>
+
+            <div class="info-box" style="margin-top: 20px;">
+                <h4>Шкала оценки:</h4>
+                <p style="text-align: left; line-height: 1.8;">
+                    🏆 <strong>90-100 points:</strong> Excellent! Ready for the next level<br>
+                    ⭐ <strong>75-89 points:</strong> Very good! Strong knowledge<br>
+                    👍 <strong>60-74 points:</strong> Good! Some areas need improvement<br>
+                    📚 <strong>Below 60:</strong> Keep practicing! Review the topics
+                </p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Назад</button>
+            <span class="slide-counter">
+                <span id="currentSlide">1</span> из <span id="totalSlides">16</span>
+            </span>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Вперёд →</button>
+        </div>
+    </div>
+
+    <script>
+        // Navigation
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            document.getElementById('currentSlide').textContent = index + 1;
+            document.getElementById('totalSlides').textContent = totalSlides;
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            if (currentSlideIndex < 0) currentSlideIndex = 0;
+            if (currentSlideIndex >= totalSlides) currentSlideIndex = totalSlides - 1;
+            showSlide(currentSlideIndex);
+            if (currentSlideIndex === totalSlides - 1) {
+                calculateFinalResults();
+            }
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Reading Part 1
+        let readingScores = {
+            part1: 0,
+            part2: 0,
+            answered: {}
+        };
+
+        function checkReading1(element, questionNum, correctAnswer) {
+            if (readingScores.answered[questionNum]) return;
+            
+            const parentItem = element.closest('.correction-item');
+            const allOptions = parentItem.querySelectorAll('.option-card');
+            
+            allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            const userAnswer = element.textContent.toLowerCase().includes(correctAnswer);
+            
+            if (userAnswer) {
+                element.classList.add('correct');
+                readingScores.part1++;
+            } else {
+                element.classList.add('incorrect');
+                allOptions.forEach(opt => {
+                    if (opt.textContent.toLowerCase().includes(correctAnswer)) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+            
+            readingScores.answered[questionNum] = true;
+            document.getElementById('scoreReading1').textContent = readingScores.part1 + readingScores.part2;
+        }
+
+        function checkReading2(element, questionNum, correctAnswer) {
+            if (readingScores.answered[questionNum]) return;
+            
+            const parentItem = element.closest('.correction-item');
+            const allOptions = parentItem.querySelectorAll('.option-card');
+            
+            allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            const userAnswer = element.textContent.toLowerCase().includes(correctAnswer);
+            
+            if (userAnswer) {
+                element.classList.add('correct');
+                readingScores.part2++;
+            } else {
+                element.classList.add('incorrect');
+                allOptions.forEach(opt => {
+                    if (opt.textContent.toLowerCase().includes(correctAnswer)) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+            
+            readingScores.answered[questionNum] = true;
+            document.getElementById('scoreReading1').textContent = readingScores.part1 + readingScores.part2;
+        }
+
+        function resetReading1() {
+            readingScores = { part1: 0, part2: 0, answered: {} };
+            document.getElementById('scoreReading1').textContent = '0';
+            
+            document.querySelectorAll('#reading1 .option-card, #reading2 .option-card').forEach(card => {
+                card.classList.remove('correct', 'incorrect');
+                card.style.pointerEvents = 'auto';
+            });
+        }
+
+        // Grammar
+        let grammarScore = 0;
+        let grammarAnswered = {};
+
+        function checkGrammar(element, questionNum, correctAnswer) {
+            if (grammarAnswered[questionNum]) return;
+            
+            const parentItem = element.closest('.correction-item');
+            const allOptions = parentItem.querySelectorAll('.option-card');
+            
+            allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            const userAnswer = element.textContent.toLowerCase().trim();
+            const isCorrect = userAnswer === correctAnswer || 
+                            userAnswer.includes(correctAnswer) ||
+                            (correctAnswer === 'playing' && userAnswer === 'are playing') ||
+                            (correctAnswer === 'cant' && userAnswer === "can't");
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                grammarScore++;
+            } else {
+                element.classList.add('incorrect');
+                allOptions.forEach(opt => {
+                    const optText = opt.textContent.toLowerCase().trim();
+                    if (optText === correctAnswer || 
+                        optText.includes(correctAnswer) ||
+                        (correctAnswer === 'playing' && optText === 'are playing') ||
+                        (correctAnswer === 'cant' && optText === "can't")) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+            
+            grammarAnswered[questionNum] = true;
+            document.getElementById('scoreGrammar').textContent = grammarScore;
+        }
+
+        function resetGrammar() {
+            grammarScore = 0;
+            grammarAnswered = {};
+            document.getElementById('scoreGrammar').textContent = '0';
+            
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('correct', 'incorrect');
+                card.style.pointerEvents = 'auto';
+            });
+        }
+
+        // Listening Part 1
+        let listening1Score = 0;
+        let listening1Answered = {};
+
+        function checkListening1(element, questionNum, correctAnswer) {
+            if (listening1Answered[questionNum]) return;
+            
+            const parentItem = element.closest('.correction-item');
+            const allOptions = parentItem.querySelectorAll('.option-card');
+            
+            allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            const userAnswer = element.textContent.toLowerCase().includes(correctAnswer);
+            
+            if (userAnswer) {
+                element.classList.add('correct');
+                listening1Score++;
+            } else {
+                element.classList.add('incorrect');
+                allOptions.forEach(opt => {
+                    if (opt.textContent.toLowerCase().includes(correctAnswer)) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+            
+            listening1Answered[questionNum] = true;
+            document.getElementById('scoreListening1').textContent = listening1Score;
+        }
+
+        function resetListening1() {
+            listening1Score = 0;
+            listening1Answered = {};
+            document.getElementById('scoreListening1').textContent = '0';
+            
+            document.querySelectorAll('#listening1 .option-card').forEach(card => {
+                card.classList.remove('correct', 'incorrect');
+                card.style.pointerEvents = 'auto';
+            });
+        }
+
+        // Listening Part 2
+        let listening2Score = 0;
+        let listening2Answered = {};
+
+        function checkListening2(element, questionNum, correctAnswer) {
+            if (listening2Answered[questionNum]) return;
+            
+            const parentItem = element.closest('.correction-item');
+            const allOptions = parentItem.querySelectorAll('.option-card');
+            
+            allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            const userAnswer = element.textContent.toLowerCase().includes(correctAnswer);
+            
+            if (userAnswer) {
+                element.classList.add('correct');
+                listening2Score++;
+            } else {
+                element.classList.add('incorrect');
+                allOptions.forEach(opt => {
+                    if (opt.textContent.toLowerCase().includes(correctAnswer)) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+            
+            listening2Answered[questionNum] = true;
+            document.getElementById('scoreListening2').textContent = listening2Score;
+        }
+
+        function resetListening2() {
+            listening2Score = 0;
+            listening2Answered = {};
+            document.getElementById('scoreListening2').textContent = '0';
+            
+            document.querySelectorAll('#listening2 .option-card').forEach(card => {
+                card.classList.remove('correct', 'incorrect');
+                card.style.pointerEvents = 'auto';
+            });
+        }
+
+        // Listening Part 3
+        let listening3Score = 0;
+        let listening3Answered = {};
+
+        function checkListening3(element, questionNum, correctAnswer) {
+            if (listening3Answered[questionNum]) return;
+            
+            const parentItem = element.closest('.correction-item');
+            const allOptions = parentItem.querySelectorAll('.option-card');
+            
+            allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            const userAnswer = element.textContent.toLowerCase().includes(correctAnswer);
+            
+            if (userAnswer) {
+                element.classList.add('correct');
+                listening3Score++;
+            } else {
+                element.classList.add('incorrect');
+                allOptions.forEach(opt => {
+                    if (opt.textContent.toLowerCase().includes(correctAnswer)) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+            
+            listening3Answered[questionNum] = true;
+            document.getElementById('scoreListening3').textContent = listening3Score;
+        }
+
+        function resetListening3() {
+            listening3Score = 0;
+            listening3Answered = {};
+            document.getElementById('scoreListening3').textContent = '0';
+            
+            document.querySelectorAll('#listening3 .option-card').forEach(card => {
+                card.classList.remove('correct', 'incorrect');
+                card.style.pointerEvents = 'auto';
+            });
+        }
+
+        // Writing - Word Counter
+        const writingTextarea = document.getElementById('writingText');
+        const wordCountDisplay = document.getElementById('wordCount');
+
+        if (writingTextarea) {
+            writingTextarea.addEventListener('input', function() {
+                const text = this.value.trim();
+                const words = text === '' ? 0 : text.split(/\s+/).length;
+                wordCountDisplay.textContent = words;
+            });
+        }
+
+        function clearWriting() {
+            if (confirm('Вы уверены, что хотите очистить текст?')) {
+                document.getElementById('writingText').value = '';
+                document.getElementById('wordCount').textContent = '0';
+            }
+        }
+
+        // Final Results Calculation
+        function calculateFinalResults() {
+            const readingTotal = readingScores.part1 + readingScores.part2;
+            const listeningTotal = listening1Score + listening2Score + listening3Score;
+            const totalScore = readingTotal + grammarScore + listeningTotal;
+            
+            // Update individual scores
+            document.getElementById('readingTotal').textContent = readingTotal;
+            document.getElementById('readingPercent').textContent = Math.round((readingTotal / 10) * 100) + '%';
+            
+            document.getElementById('grammarTotal').textContent = grammarScore;
+            document.getElementById('grammarPercent').textContent = Math.round((grammarScore / 30) * 100) + '%';
+            
+            document.getElementById('listeningTotal').textContent = listeningTotal;
+            document.getElementById('listeningPercent').textContent = Math.round((listeningTotal / 20) * 100) + '%';
+            
+            // Update total score
+            document.getElementById('totalScore').textContent = `Total: ${totalScore} / 80`;
+            
+            // Calculate percentage and grade
+            const percentage = Math.round((totalScore / 80) * 100);
+            let grade, comment;
+            
+            if (percentage >= 90) {
+                grade = '🏆 Excellent!';
+                comment = 'Amazing work! You are ready for the next level!';
+            } else if (percentage >= 75) {
+                grade = '⭐ Very Good!';
+                comment = 'Great job! You have strong knowledge of the material!';
+            } else if (percentage >= 60) {
+                grade = '👍 Good!';
+                comment = 'Good effort! Keep practicing to improve further!';
+            } else {
+                grade = '📚 Keep Practicing';
+                comment = 'Don\'t give up! Review the topics and try again!';
+            }
+            
+            document.getElementById('finalGrade').textContent = grade;
+            document.getElementById('finalComment').textContent = comment;
+        }
+
+        // Initialize
+        showSlide(0);
+    </script>
