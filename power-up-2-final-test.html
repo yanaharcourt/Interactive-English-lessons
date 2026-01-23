@@ -9,6 +9,113 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/new-presentation-styles.css">
+    
+    <style>
+        .audio-player-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+        }
+
+        .play-button:active {
+            transform: scale(0.95);
+        }
+
+        .play-button.playing {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .audio-progress-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .audio-time {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-primary, #6366f1);
+            min-width: 45px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            position: relative;
+            flex: 1;
+            height: 8px;
+            background: linear-gradient(to right, #e0e7ff, #ddd6fe);
+            border-radius: 10px;
+            cursor: pointer;
+            overflow: visible;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar:hover {
+            height: 10px;
+            transition: height 0.2s ease;
+        }
+
+        .progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #818cf8, #6366f1);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.1s linear;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+        }
+
+        .progress-handle {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 3px solid #6366f1;
+            border-radius: 50%;
+            left: 0%;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-bar:hover .progress-handle {
+            opacity: 1;
+        }
+
+        .play-button.playing ~ .audio-progress-container .progress-handle {
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -543,8 +650,7 @@
                 <h3>🎧 Послушай диалог и ответь на вопросы (5 баллов)</h3>
                 <p class="info-sub-text">Audio 1: Dialogue about weekend plans</p>
             </div>
-
-            <div class="example-box">
+            <!-- <div class="example-box">
                 <h4>📝 Текст для аудио записи Audio 1:</h4>
                 <p class="example-text" style="text-align: left; line-height: 1.8;">
                     <strong>Boy:</strong> Hi Lucy! What are you doing this weekend?<br>
@@ -557,7 +663,29 @@
                     <strong>Girl:</strong> The film starts at 3 o'clock. Let's meet at 2:30 at the cinema.<br>
                     <strong>Boy:</strong> Perfect! See you on Sunday!
                 </p>
+            </div> -->
+            
+            <div class="example-box" style="padding: 40px;">
+                <div class="audio-player-container">
+                    <img 
+                        src="./assets/img/Play Circle.svg" 
+                        alt="Play Audio" 
+                        class="play-button"
+                        data-audio="audio1"
+                        onclick="toggleAudio(this)"
+                    />
+                    <div class="audio-progress-container">
+                        <div class="audio-time current-time">0:00</div>
+                        <div class="progress-bar" onclick="seekAudio(event, 'audio1')">
+                            <div class="progress-fill" id="progress-audio1"></div>
+                            <div class="progress-handle" id="handle-audio1"></div>
+                        </div>
+                        <div class="audio-time total-time" id="duration-audio1">0:00</div>
+                    </div>
+                    <audio id="audio1" src="./assets/audio/audio1.MP3" ontimeupdate="updateProgress('audio1')" onloadedmetadata="setDuration('audio1')"></audio>
+                </div>
             </div>
+
 
             <div id="listening1" class="exercise-container">
                 <div class="score-board">
@@ -580,8 +708,8 @@
                             <p><strong>2.</strong> Where does Lucy's grandma live?</p>
                             <div class="options-grid">
                                 <div class="option-card" onclick="checkListening1(this, 2, 'countryside')">In the city</div>
-                                <div class="option-card" onclick="checkListening1(this, 2, 'countryside')">In the countryside</div>
                                 <div class="option-card" onclick="checkListening1(this, 2, 'countryside')">Near the cinema</div>
+                                <div class="option-card" onclick="checkListening1(this, 2, 'countryside')">In the countryside</div>
                             </div>
                         </div>
 
@@ -597,8 +725,8 @@
                         <div class="correction-item">
                             <p><strong>4.</strong> What time does the film start?</p>
                             <div class="options-grid">
-                                <div class="option-card" onclick="checkListening1(this, 4, '3')">2:30</div>
                                 <div class="option-card" onclick="checkListening1(this, 4, '3')">3:00</div>
+                                <div class="option-card" onclick="checkListening1(this, 4, '3')">2:30</div>
                                 <div class="option-card" onclick="checkListening1(this, 4, '3')">3:30</div>
                             </div>
                         </div>
@@ -607,8 +735,8 @@
                             <p><strong>5.</strong> What type of film are they watching?</p>
                             <div class="options-grid">
                                 <div class="option-card" onclick="checkListening1(this, 5, 'superhero')">Comedy</div>
-                                <div class="option-card" onclick="checkListening1(this, 5, 'superhero')">Superhero film</div>
                                 <div class="option-card" onclick="checkListening1(this, 5, 'superhero')">Cartoon</div>
+                                <div class="option-card" onclick="checkListening1(this, 5, 'superhero')">Superhero film</div>
                             </div>
                         </div>
                     </div>
@@ -626,7 +754,7 @@
                 <p class="info-sub-text">Audio 2: Daily routine description</p>
             </div>
 
-            <div class="example-box">
+            <!-- <div class="example-box">
                 <h4>📝 Текст для аудио записи Audio 2:</h4>
                 <p class="example-text" style="text-align: left; line-height: 1.8;">
                     My name is Mike and I'm 11 years old. Let me tell you about my typical day. I usually wake up at 7 o'clock in the morning. First, I have a shower and brush my teeth. Then I have breakfast with my family. I usually eat cereal and drink orange juice.<br><br>
@@ -637,6 +765,27 @@
                     
                     I go to bed at 9:30. Before I sleep, I always listen to music. I love my daily routine!
                 </p>
+            </div> -->
+
+            <div class="example-box" style="padding: 40px;">
+                <div class="audio-player-container">
+                    <img 
+                        src="./assets/img/Play Circle.svg" 
+                        alt="Play Audio" 
+                        class="play-button"
+                        data-audio="audio2"
+                        onclick="toggleAudio(this)"
+                    />
+                    <div class="audio-progress-container">
+                        <div class="audio-time current-time">0:00</div>
+                        <div class="progress-bar" onclick="seekAudio(event, 'audio2')">
+                            <div class="progress-fill" id="progress-audio2"></div>
+                            <div class="progress-handle" id="handle-audio2"></div>
+                        </div>
+                        <div class="audio-time total-time" id="duration-audio2">0:00</div>
+                    </div>
+                    <audio id="audio2" src="./assets/audio/audio2.MP3" ontimeupdate="updateProgress('audio2')" onloadedmetadata="setDuration('audio2')"></audio>
+                </div>
             </div>
 
             <div id="listening2" class="exercise-container">
@@ -659,8 +808,8 @@
                         <div class="correction-item">
                             <p><strong>7.</strong> How does Mike go to school?</p>
                             <div class="options-grid">
-                                <div class="option-card" onclick="checkListening2(this, 7, 'bike')">By bus</div>
                                 <div class="option-card" onclick="checkListening2(this, 7, 'bike')">By bike</div>
+                                <div class="option-card" onclick="checkListening2(this, 7, 'bike')">By bus</div>
                                 <div class="option-card" onclick="checkListening2(this, 7, 'bike')">On foot</div>
                             </div>
                         </div>
@@ -669,8 +818,8 @@
                             <p><strong>8.</strong> What is Mike's favourite subject?</p>
                             <div class="options-grid">
                                 <div class="option-card" onclick="checkListening2(this, 8, 'science')">Maths</div>
-                                <div class="option-card" onclick="checkListening2(this, 8, 'science')">Science</div>
                                 <div class="option-card" onclick="checkListening2(this, 8, 'science')">English</div>
+                                <div class="option-card" onclick="checkListening2(this, 8, 'science')">Science</div>
                             </div>
                         </div>
 
@@ -679,7 +828,7 @@
                             <div class="options-grid">
                                 <div class="option-card" onclick="checkListening2(this, 9, 'hour')">30 minutes</div>
                                 <div class="option-card" onclick="checkListening2(this, 9, 'hour')">One hour</div>
-                                <div class="option-card" onclick="checkListening2(this, 9, 'hour')">Two hours</div>
+                                <div class="option-card" onclick="checkListening2(this, 9, 'one hour')">Two hours</div>
                             </div>
                         </div>
 
@@ -687,8 +836,8 @@
                             <p><strong>10.</strong> What does Mike do before he sleeps?</p>
                             <div class="options-grid">
                                 <div class="option-card" onclick="checkListening2(this, 10, 'music')">Reads a book</div>
-                                <div class="option-card" onclick="checkListening2(this, 10, 'music')">Listens to music</div>
                                 <div class="option-card" onclick="checkListening2(this, 10, 'music')">Watches TV</div>
+                                <div class="option-card" onclick="checkListening2(this, 10, 'music')">Listens to music</div>
                             </div>
                         </div>
                     </div>
@@ -706,7 +855,7 @@
                 <p class="info-sub-text">Audio 3: A trip to the beach</p>
             </div>
 
-            <div class="example-box">
+            <!-- <div class="example-box">
                 <h4>📝 Текст для аудио записи Audio 3:</h4>
                 <p class="example-text" style="text-align: left; line-height: 1.8;">
                     Last summer, my family and I went on a trip to the beach. We travelled by car. The journey took three hours. The weather was beautiful - it was sunny and hot.<br><br>
@@ -721,6 +870,27 @@
                     
                     We had a wonderful time at the beach. I can't wait to go back next summer!
                 </p>
+            </div> -->
+
+            <div class="example-box" style="padding: 40px;">
+                <div class="audio-player-container">
+                    <img 
+                        src="./assets/img/Play Circle.svg" 
+                        alt="Play Audio" 
+                        class="play-button"
+                        data-audio="audio3"
+                        onclick="toggleAudio(this)"
+                    />
+                    <div class="audio-progress-container">
+                        <div class="audio-time current-time">0:00</div>
+                        <div class="progress-bar" onclick="seekAudio(event, 'audio3')">
+                            <div class="progress-fill" id="progress-audio3"></div>
+                            <div class="progress-handle" id="handle-audio3"></div>
+                        </div>
+                        <div class="audio-time total-time" id="duration-audio3">0:00</div>
+                    </div>
+                    <audio id="audio3" src="./assets/audio/audio3.MP3" ontimeupdate="updateProgress('audio3')" onloadedmetadata="setDuration('audio3')"></audio>
+                </div>
             </div>
 
             <div id="listening3" class="exercise-container">
@@ -1263,3 +1433,101 @@
         // Initialize
         showSlide(0);
     </script>
+
+    <script>
+        function toggleAudio(button) {
+            const audioId = button.getAttribute('data-audio');
+            const audio = document.getElementById(audioId);
+            
+            // Остановить все другие аудио
+            document.querySelectorAll('audio').forEach(a => {
+                if (a.id !== audioId && !a.paused) {
+                    a.pause();
+                }
+            });
+            
+            // Сбросить все другие кнопки
+            document.querySelectorAll('.play-button').forEach(btn => {
+                if (btn !== button) {
+                    btn.src = './assets/img/Play Circle.svg';
+                    btn.classList.remove('playing');
+                }
+            });
+            
+            if (audio.paused) {
+                audio.play();
+                button.src = './assets/img/Play Circle-1.svg';
+                button.classList.add('playing');
+            } else {
+                audio.pause();
+                button.src = './assets/img/Play Circle.svg';
+                button.classList.remove('playing');
+            }
+            
+            audio.onended = function() {
+                button.src = './assets/img/Play Circle.svg';
+                button.classList.remove('playing');
+            };
+        }
+
+        function updateProgress(audioId) {
+            const audio = document.getElementById(audioId);
+            const progressFill = document.getElementById('progress-' + audioId);
+            const progressHandle = document.getElementById('handle-' + audioId);
+            const currentTimeEl = audio.previousElementSibling.querySelector('.current-time');
+            
+            const percentage = (audio.currentTime / audio.duration) * 100;
+            progressFill.style.width = percentage + '%';
+            progressHandle.style.left = percentage + '%';
+            
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        }
+
+        function setDuration(audioId) {
+            const audio = document.getElementById(audioId);
+            const durationEl = document.getElementById('duration-' + audioId);
+            
+            // Если длительность уже доступна
+            if (audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) {
+                durationEl.textContent = formatTime(audio.duration);
+            } else {
+                // Ждем загрузки метаданных
+                audio.addEventListener('loadedmetadata', function() {
+                    durationEl.textContent = formatTime(audio.duration);
+                });
+                
+                // Дополнительная проверка при возможности воспроизведения
+                audio.addEventListener('canplay', function() {
+                    if (audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) {
+                        durationEl.textContent = formatTime(audio.duration);
+                    }
+                });
+            }
+        }
+
+        function seekAudio(event, audioId) {
+            const audio = document.getElementById(audioId);
+            const progressBar = event.currentTarget;
+            const rect = progressBar.getBoundingClientRect();
+            const offsetX = event.clientX - rect.left;
+            const percentage = offsetX / rect.width;
+            
+            audio.currentTime = percentage * audio.duration;
+        }
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return mins + ':' + (secs < 10 ? '0' : '') + secs;
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация всех аудио плееров
+            document.querySelectorAll('audio').forEach(audio => {
+                setDuration(audio.id);
+            });
+        });
+    </script>
+</body>
+</html>
